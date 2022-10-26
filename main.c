@@ -9,10 +9,8 @@
 /*   Updated: 2022/10/26 16:26:53 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
-#include <ctype.h>
 #include "libft.h"
+#include <stdio.h>
 
 int main(int ac, char **av)
 {

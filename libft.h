@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:08:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/10/26 14:02:26 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/10/26 22:14:08 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t  ft_strlen(const char *s);
 
 // void    ft_putstr(char str);
 
-void    *ft_memset(void *b,int c, size_t len);
+void    *ft_memset(void *b, int c, size_t len);
 
 // void    ft_bzero(void *s, size_t n);
 
