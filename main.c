@@ -6,12 +6,11 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 14:09:38 by fabien            #+#    #+#             */
-/*   Updated: 2022/10/26 16:26:53 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:05:17 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <stdio.h>
-
+ 
 int main(int ac, char **av)
 {
     (void) ac;
