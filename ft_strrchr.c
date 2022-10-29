@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 10:46:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/10/28 17:30:44 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/10/29 12:25:32 by fgrasset          #+#    #+#             */
+/*   Updated: 2022/10/29 12:25:32 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int ft_isprint(int c)
+char *ft_strrchr (const char *s, int c)
 {
-    if (c >= 32 && c <= 126)
-        return (1);
-    return (0);
+    int i;
+
+    i = ft_strlen(s);
+    while (i >= 0)
+    {
+        if (((char *) s)[i] == (char)c)
+            return(&((char *)s)[i]);
+        i--;
+    }
+    return (NULL);
 }
