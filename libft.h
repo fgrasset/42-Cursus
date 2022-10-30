@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:08:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/10/29 16:01:09 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/10/30 17:54:06 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 size_t  ft_strlen(const char *s);
 void    *ft_memset(void *b, int c, size_t len);
@@ -38,6 +39,7 @@ char    *ft_strrchr (const char *s, int c);
 int	    ft_strncmp(const char *s1, const char *s2, size_t n);
 char    *ft_strnstr(const char *haystack, const char *needle, size_t len);
 int     ft_atoi(const char *str);
+void	*ft_calloc(size_t count, size_t size);
 
 
 #endif
