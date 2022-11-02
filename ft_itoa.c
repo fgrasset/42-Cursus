@@ -15,7 +15,7 @@ static int	ft_power(int power)
 {
 	int	res;
 
-	res = 10;
+	res = 1;
 	if (power == 0)
 		return (1);
 	while (power > 0)
@@ -31,8 +31,11 @@ static int	check_power(int n)
 	int	i;
 
 	i = 0;
-	while (n >= ft_power(i))
+	while (n > 9)
+	{
+		n /= 10;
 		i++;
+	}
 	return (i);
 }
 
@@ -44,27 +47,41 @@ char	*ft_itoa(int n)
 
 	j = 0;
 	pow = check_power(n);
-
 	if (n == -2147483648)
 	{
 		res = "-2147483648";
 		return (res);
 	}
-	res = malloc((pow + 1) * sizeof(char));
+	res = (char *)malloc((pow + 3) * sizeof(char));
 	if(!res)
 		return(NULL);
 	if (n < 0)
 	{
-		j = -1;
-		res[++j] = '-';
+		res[j] = '-';
+		j++;
 	}
 	
 	while (n > 9)
 	{
-		res[++j] = (char)(n / ft_power(pow));
-		n /= ft_power(pow);
+		res[j] = (n / ft_power(pow)) + '0';
+		//printf("res at %d is %c\n", j, res[j]);
+		n = n % ft_power(pow);
+		//printf("and n is %d\n", n);
+		j++;
 		pow--;
 	}
-	res[j] = (char)n;
+	res[j] = n + '0';
+	res[j + 1] = '\0';
 	return (res);
 }
+
+// int	main()
+// {
+// 	int	i;
+// 	char	*ptr;
+
+// 	i = 99999;
+// 	ptr = ft_itoa(i);
+// 	printf("%s", ptr);
+// 	free(ptr);
+// }

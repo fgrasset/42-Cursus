@@ -9,26 +9,52 @@
 /*   Updated: 2022/11/01 21:07:02 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-
-static int	counting_set(char const *s, char const *set, int len)
+static int	checking_set(char c, char const *set)
 {
 	int	i;
 
 	i = 0;
-	while (s[len] == set[i])
+	while (set[i])
+	{
+		if (c == set[i])
+			return (1);
 		i++;
-	return (i);
+	}
+	return (0);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		start;
 	int		end;
+	int		i;
+	int		j;
 	char	*ptr;
 
-	start = counting_set(s1, set);
-	end = counting_set(s1, set);
-	ptr = malloc((ft_strlen(s1) - (start + end) + 1) * sizeof(char));
-	// while()
+	i = ft_strlen(s1);
+	end = 0;
+	j = 0;
+	while (i >= 0 && checking_set(s1[i], set))
+	{
+		end++;
+		i--;
+	}
+	i = 0;
+	while(s1[i] && checking_set(s1[i], set))
+		i++;
+	printf("%d ' ' %d", end, i);
+	ptr = malloc((ft_strlen(s1) - (i + end) + 3) * sizeof(char));
+	while(s1[i] && i <= end)
+	{
+		ptr[j] = s1[i];
+		ptr++;
+		j++;
+	}
+	return (ptr);
+}
+
+int	main()
+{
+	printf("%s", ft_itoa(5603));
 }
