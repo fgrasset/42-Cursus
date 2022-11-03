@@ -9,14 +9,22 @@
 /*   Updated: 2022/11/02 14:03:33 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "libft.h"
 
 char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*ptr;
+	char			*ptr;
+	unsigned int	i;
 
-	ptr = malloc(ft_strlen(s) * sizeof(s));
-	while(s[++i])
-		(*f)(i, s[i]);
-	return ((char *)s);
+	i = 0;
+	ptr = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
+	while(s[i])
+	{
+		ptr[i] = (*f)(i, s[i]);
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }

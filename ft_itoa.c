@@ -3,34 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 20:31:57 by fabien            #+#    #+#             */
-/*   Updated: 2022/10/31 20:31:57 by fabien           ###   ########.fr       */
+/*   Updated: 2022/11/03 15:30:09 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-
-static int	ft_power(int power)
-{
-	int	res;
-
-	res = 1;
-	if (power == 0)
-		return (1);
-	while (power > 0)
-	{
-		res *= 10;
-		power--;
-	}
-	return (res);
-}
 
 static int	check_power(int n)
 {
 	int	i;
 
 	i = 0;
+	if (n < 0 )
+	{
+		i++;
+		n *= -1;
+	}
 	while (n > 9)
 	{
 		n /= 10;
@@ -41,49 +31,29 @@ static int	check_power(int n)
 
 char	*ft_itoa(int n)
 {
-	int		j;
-	int		pow;
+	int		len;
 	char	*res;
 
-	j = 0;
-	pow = check_power(n);
+	len = check_power(n) + 1;
 	if (n == -2147483648)
-	{
-		res = (char *)malloc((12) * sizeof(char));
-		res = "-2147483648";
-		return (res);
-	}
-	res = (char *)malloc((pow + 3) * sizeof(char));
+		return (ft_strdup("-2147483648"));
+	res = malloc((len + 1) * sizeof(char));
 	if(!res)
 		return(NULL);
 	if (n < 0)
 	{
-		res[j] = '-';
+		res[0] = '-';
 		n *= -1;
-		j++;
 	}
-	
-	while (n > 9)
+	res[len] = '\0';
+	if (n == 0)
+		res[0] = '0';
+	while (n != '\0')
 	{
-		res[j] = (n / ft_power(pow)) + '0';
-		//printf("res at %d is %c\n", j, res[j]);
-		n = n % ft_power(pow);
-		//printf("and n is %d\n", n);
-		j++;
-		pow--;
+		res[len - 1] = n % 10 + '0';
+		n /= 10;
+		len--;
 	}
-	res[j] = n + '0';
-	res[j + 1] = '\0';
 	return (res);
 }
 
-// int	main()
-// {
-// 	int	i;
-// 	char	*ptr;
-
-// 	i = 99999;
-// 	ptr = ft_itoa(i);
-// 	printf("%s", ptr);
-// 	free(ptr);
-// }
