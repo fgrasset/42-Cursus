@@ -49,6 +49,7 @@ char	*ft_itoa(int n)
 	pow = check_power(n);
 	if (n == -2147483648)
 	{
+		res = (char *)malloc((12) * sizeof(char));
 		res = "-2147483648";
 		return (res);
 	}
@@ -58,6 +59,7 @@ char	*ft_itoa(int n)
 	if (n < 0)
 	{
 		res[j] = '-';
+		n *= -1;
 		j++;
 	}
 	
