@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:08:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/03 17:22:27 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/04 13:09:12 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ char	*ft_itoa(int n);
 char	*ft_strtrim(char const *s1, char const *set);
 char 	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
+char	**ft_split(char const *s, char c);
 
 #endif
