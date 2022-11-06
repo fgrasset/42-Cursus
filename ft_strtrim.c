@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 20:12:51 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/03 16:36:22 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/06 10:50:54 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	checking_set(char c, char const *set)
 	i = 0;
 	while (set[i])
 	{
-		if ((int)c == (int)set[i])
+		if (c == set[i])
 			return (1);
 		i++;
 	}
@@ -33,7 +33,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		j;
 	char	*ptr;
 
-	i = ft_strlen(s1);
+	i = strlen(s1) - 1;
 	end = 0;
 	j = 0;
 	while (i >= 0 && checking_set(s1[i], set))
@@ -44,20 +44,19 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i = 0;
 	while(s1[i] && checking_set(s1[i], set))
 		i++;
-	ptr = malloc((ft_strlen(s1) - (i + end) + 1) * sizeof(char));
+	ptr = malloc((strlen(s1) - (i + end) + 1) * sizeof(char));
 	if (!ptr)
 		return (NULL);
-	while(s1[i] && i < end)
+	while(s1[i + j] && ((i + j) < ((int)strlen(s1) - end)))
 	{
-		printf("voici le i : %d et le j : %d\n", i, j);
-		ptr[j] = s1[i];
+		ptr[j] = s1[j + i];
 		j++;
 	}
 	ptr[j] = '\0';
 	return (ptr);
 }
 
-int	main()
-{
-	printf("%s", ft_strtrim("aaacecie est le test eeaa", "aec"));
-}
+// int	main()
+// {
+// 	printf("%s", ft_strtrim("      ", " "));
+// }

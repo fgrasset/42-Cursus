@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:32:17 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/04 16:36:34 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/06 13:30:18 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int wordcount(char const *s, char c)
 	word = 0;
 	if (s[0] == c)
 		word--;	
-	while(s[++i])
+	while (s[++i])
 		if (s[i] == c && s[i + 1] != c)
 			word++;
 	return (word);
@@ -33,10 +33,10 @@ static char	*wordcreate(int start, int end, char const *s)
 	int		i;
 	
 	i = 0;
-	word = malloc((end - start + 1) * sizeof(char));
-	if(!word)
+	word = malloc((end - start + 2) * sizeof(char));
+	if (!word)
 		return (NULL);
-	while (start < end - 1)
+	while (start <= end)
 	{
 		word[i] = s[start];
 		i++;
@@ -55,31 +55,28 @@ char	**ft_split(char const *s, char c)
 
 	tab = malloc((wordcount(s, c) + 1) * sizeof(char *));
 	i = 0;
-	wplace = 0;
+	wplace = -1;
 	while (s[i])
 	{
 		j = 0;
-		// printf("%d", i);
-		// while ((s[(i + j) - 1] == c && s[(i + j)] != c) || (s[(i + j)] != c))
 		while (s[i + j] != c)
 		{
-			if (s[i + j + 1] == c)
-			{
-				// printf("start is %d\n end is %d\n", i, j);
-				tab[wplace] = wordcreate(i, i + j, s);
-				wplace++;
-				i = j;
-			}
+			if (s[(i + j) + 1] == c)
+				tab[++wplace] = wordcreate(i, i + j, s);
 			j++;
 		}
+		i += j;
 		i++;
 	}
-	tab[wplace] = (NULL);
+	tab[++wplace] = (NULL);
 	return (tab);
 }
 
 // int	main()
 // {
-// 	char *tab = ft_split("  tripouille  42  ", ' ')[0];
-// 	printf("%s", tab);
+// 	char *s = "                  olol";
+// 	char **tab = ft_split(s, ' ');
+// 	for(int i=0; i<=1; i++) {
+//          printf("%s\n", tab[i]);
+// 	}
 // }
