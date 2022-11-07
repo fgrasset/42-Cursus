@@ -6,9 +6,10 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 14:50:29 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/10/28 15:12:45 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:01:31 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)

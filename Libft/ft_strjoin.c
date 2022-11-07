@@ -6,9 +6,10 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:56:45 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/10/31 16:56:45 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:02:20 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -18,7 +19,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = -1;
 	ptr = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if( !ptr)
+	if (!ptr)
 		return (NULL);
 	while (s1[++i])
 		ptr[i] = s1[i];

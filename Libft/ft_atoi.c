@@ -6,9 +6,10 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 14:57:05 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/10/29 14:57:05 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:01:15 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static int	ft_isspace(int c)

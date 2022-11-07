@@ -6,9 +6,10 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 13:29:16 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/10/29 13:30:22 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:02:53 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)

@@ -6,9 +6,10 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:56:55 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/10/31 15:56:55 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:03:02 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)

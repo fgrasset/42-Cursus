@@ -6,9 +6,10 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 20:31:57 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/03 15:30:09 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:05:33 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static int	check_power(int n)
@@ -16,7 +17,7 @@ static int	check_power(int n)
 	int	i;
 
 	i = 0;
-	if (n < 0 )
+	if (n < 0)
 	{
 		i++;
 		n *= -1;
@@ -38,8 +39,8 @@ char	*ft_itoa(int n)
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
 	res = malloc((len + 1) * sizeof(char));
-	if(!res)
-		return(NULL);
+	if (!res)
+		return (NULL);
 	if (n < 0)
 	{
 		res[0] = '-';
@@ -56,4 +57,3 @@ char	*ft_itoa(int n)
 	}
 	return (res);
 }
-

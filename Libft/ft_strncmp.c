@@ -6,9 +6,10 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 13:10:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/10/29 13:14:57 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:02:50 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
