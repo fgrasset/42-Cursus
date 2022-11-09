@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:32:17 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/07 16:05:03 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/09 16:05:35 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,50 +47,29 @@ static char	*wordcreate(int start, int end, char const *s)
 	return (word);
 }
 
-static void	*timetofree(char **tab, int wplace)
-{
-	while (wplace > 0)
-		free(tab[--wplace]);
-	free(tab);
-	return (NULL);
-}
-
-// static void	initvar(char **tab, int i, int j, int wplace)
-// {
-// 	**tab;
-// 	i = 0;
-// 	j;
-// 	wplace;
-// }
-
 char	**ft_split(char const *s, char c)
 {
 	char	**tab;
-	int		i;
-	int		j;
-	int		wplace;
+	int		var[3];
 
 	tab = malloc((wordcount(s, c) + 1) * sizeof(char *));
 	if (!tab)
 		return (NULL);
-	i = 0;
-	wplace = -1;
-	while (s[i])
+	var[0] = 0;
+	var[2] = -1;
+	while (s[var[0]])
 	{
-		j = 0;
-		while (s[j + i] && s[i + j] != c)
+		var[1] = 0;
+		while (s[var[1] + var[0]] && s[var[0] + var[1]] != c)
 		{
-			if (s[i + j + 1] == '\0' || s[(i + j) + 1] == c)
-				tab[++wplace] = wordcreate(i, i + j, s);
-			if (s[i + j + 1] == '\0' || s[(i + j) + 1] == c)
-				if (tab[wplace] == (NULL))
-					return (timetofree(tab, wplace));
-			j++;
+			if (s[var[0] + var[1] + 1] == '\0' || s[(var[0] + var[1]) + 1] == c)
+				tab[++var[2]] = wordcreate(var[0], var[0] + var[1], s);
+			var[1]++;
 		}
-		i += j;
-		if (s[i] != '\0')
-			i++;
+		var[0] += var[1];
+		if (s[var[0]] != '\0')
+			var[0]++;
 	}
-	tab[++wplace] = (NULL);
+	tab[++var[2]] = (NULL);
 	return (tab);
 }
