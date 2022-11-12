@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   printf_x.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 15:12:03 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/12 18:13:39 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/11/12 13:09:07 by fgrasset          #+#    #+#             */
+/*   Updated: 2022/11/12 18:51:27 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-// typedef struct print
-// {
-// 	va_list args;
-// 	int	sgn;
-// 	int	prc;
-// 	int	len;
-// 	char	**s;
-// }print;
+int	printf_x(unsigned int n)
+{
+	int		len;
 
-# include <stdarg.h>
-# include "Libft/libft.h"
+	len = 0;
 
-int	ft_printf(const char *string, ...);
-int	printf_c(char c);
-int	printf_s(char *s);
-int	printf_prc();
-int	printf_d(int n);
-int	printf_u(unsigned int n);
-int	printf_x(unsigned int n);
-
-#endif
+	if (n >= 16)
+	{
+		printf_x(n / 16);
+		printf_x(n % 16);
+	}
+	else
+	{
+		if (n <= 9)
+			ft_putchar_fd(n + '0', 1);
+		else
+			ft_putchar_fd((n - 10) + 'a', 1);
+	}
+	// alpha = ft_itoa(n);
+	// len = ft_strlen(alpha);
+	// free(alpha);
+	return (sizeof(n)/4);	
+}

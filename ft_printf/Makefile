@@ -1,5 +1,5 @@
 SRCS	= ft_printf.c printf_c.c printf_s.c printf_prc.c printf_d.c\
-printf_u.c
+printf_u.c printf_x.c
 
 OBJS	= ${SRCS:.c=.o}
 

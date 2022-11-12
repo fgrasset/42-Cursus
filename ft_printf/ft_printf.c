@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:32:55 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/11 17:10:10 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/12 18:12:13 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	check_flag(va_list args, char flag)
 		return (printf_d(va_arg(args, int)));
 	else if (flag == 'u')
 		return (printf_u(va_arg(args, unsigned int)));
+	else if (flag == 'x' || flag == 'X')
+		return (printf_x(va_arg(args, unsigned int)));
 	else
 		return (0);
 }
