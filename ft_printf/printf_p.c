@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_x.c                                         :+:      :+:    :+:   */
+/*   printf_p.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 13:09:07 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/14 11:26:39 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/11/14 11:28:47 by fgrasset          #+#    #+#             */
+/*   Updated: 2022/11/14 13:20:58 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	count(unsigned int n)
+static int	countlong(unsigned long n)
 {
 	int	i;
 
@@ -27,12 +27,12 @@ static int	count(unsigned int n)
 	return (i);
 }
 
-int	printf_x(unsigned int n)
+static int	printf_long(unsigned long n)
 {
 	if (n >= 16)
 	{
-		printf_x(n / 16);
-		printf_x(n % 16);
+		printf_long(n / 16);
+		printf_long(n % 16);
 	}
 	else
 	{
@@ -41,5 +41,11 @@ int	printf_x(unsigned int n)
 		else
 			ft_putchar_fd((n - 10) + 'a', 1);
 	}
-	return (count(n));
+	return (countlong(n));
+}
+
+int	printf_p(unsigned long cpy)
+{
+	ft_putstr_fd("0x", 1);
+	return (printf_long(cpy) + 2);
 }
