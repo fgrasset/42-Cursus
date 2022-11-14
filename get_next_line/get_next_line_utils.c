@@ -1,26 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/14 20:13:04 by fabien           ###   ########.fr       */
+/*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
+/*   Updated: 2022/11/14 20:09:22 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*get_next_line(int fd)
-{
-	char		*buffer;
-	static char	*stash;
+#include "get_next_line.h"
 
-	buffer = read(fd, BUFFER_SIZE, 1);
-
-
-}
-
-char	*end_line(char *s)
-{
-	
-}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:14:17 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/14 14:16:51 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/14 20:02:42 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+
+BUFFER_SIZE = 5;
 
 #endif
