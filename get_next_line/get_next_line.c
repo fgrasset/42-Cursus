@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/16 16:41:42 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:18:35 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,10 @@ void	stash_add(char buffer[BUFFER_SIZE], char *stash)
 
 	i = -1;
 	j = -1;
-	while(++i <= BUFFER_SIZE)
-	{
+	while(++i < BUFFER_SIZE)
 		if (buffer[i] == '\n')
-		{
 			while (++i <= BUFFER_SIZE)
-			{
 				stash[++j] = buffer[i];
-				buffer[i] = '\0';
-			}
-		}
-	}
 }
 
 char	*get_next_line(int fd)

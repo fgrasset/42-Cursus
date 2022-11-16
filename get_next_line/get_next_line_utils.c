@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/16 16:37:22 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:18:53 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_enter(char buffer[BUFFER_SIZE])
 	int	i;
 
 	i = -1;
-	while (++i <= BUFFER_SIZE)
+	while (++i < BUFFER_SIZE)
 		if (buffer[i] == '\n')
 			return (1);
 	return (0);
@@ -33,7 +33,7 @@ void	list_add(List *root, char buffer[BUFFER_SIZE])
 	newList = malloc(sizeof(struct List));
 	if (!newList)
 		exit(1);
-	while ((++i <= BUFFER_SIZE) && buffer[i - 1] != '\n')
+	while ((++i < BUFFER_SIZE) && buffer[i - 1] != '\n')
 	{
 		buffer[i] = newList->chain[i];
 	}
