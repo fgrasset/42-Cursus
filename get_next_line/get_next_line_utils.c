@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/17 15:58:57 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:54:14 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,31 @@ int	ft_enter(char buffer[BUFFER_SIZE])
 	i = -1;
 	while (++i < BUFFER_SIZE)
 		if (buffer[i] == '\n')
-			return (1);
+			return (i);
 	return (0);
 }
 
 
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	size_t	i;
-	char	*ptr;
+// char	*ft_strjoin(char const *s1, char const *s2)
+// {
+// 	size_t	i;
+// 	char	*ptr;
 
-	i = -1;
-	ptr = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!ptr)
-		return (NULL);
-	while (i <= BUFFER_SIZE)
-		ptr[i] = s1[i];
-	i--;
-	while (s2[++i - ft_strlen(s1)])
-		ptr[i] = s2[i - ft_strlen(s1)];
-	ptr[i] = '\0';
-	return (ptr);
-}
+// 	i = -1;
+// 	ptr = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+// 	if (!ptr)
+// 		return (NULL);
+// 	while (i <= BUFFER_SIZE)
+// 		ptr[i] = s1[i];
+// 	i--;
+// 	while (s2[++i - ft_strlen(s1)])
+// 		ptr[i] = s2[i - ft_strlen(s1)];
+// 	ptr[i] = '\0';
+// 	return (ptr);
+// }
 
 
-int	list_add(t_Node *root, char buffer[BUFFER_SIZE], int fd)
+int	list_add(t_Node *root, int fd)
 {
 	struct t_Node	*tmp;
 	int				i;
@@ -54,15 +54,20 @@ int	list_add(t_Node *root, char buffer[BUFFER_SIZE], int fd)
 		tmp = tmp->next;
 	tmp->next = malloc(sizeof(struct t_Node));
 	if (!tmp->next)
-		exit(1);
+		return (0);
 	tmp->next->chain = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!tmp->next->chain)
+		return (0);
 	i = read(fd, tmp->next->chain, BUFFER_SIZE);
-	while ((i < BUFFER_SIZE) && buffer[i - 1] != '\n')
-	{
-		buffer[i] = tmp->next->chain[i];
-		i++;
-	}
+	tmp->next->chain[i + 1] = '\0';
+	printf("buffer: %s\n", tmp->next->chain);
+	// while ((i < BUFFER_SIZE) && tmp->next->chain[i - 1] != '\n')
+	// {
+	// 	buffer[i] = tmp->next->chain[i];
+	// 	i++;
+	// }
 	tmp->next->next = NULL;
+	return (i - ft_enter(tmp->next->chain));
 }
 
 
@@ -88,7 +93,7 @@ char	*list_get(t_Node *root)
 	while (tmp != NULL)
 	{
 		i = -1;
-		while (++i <= BUFFER_SIZE)
+		while (tmp->chain[++i] && tmp->chain[i] != '\n')
 			line[++j] = tmp->chain[i];
 		tmp = tmp->next;
 	}
