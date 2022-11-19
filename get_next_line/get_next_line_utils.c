@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/19 12:50:20 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/19 13:27:20 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	ft_enter(char *buffer)
 	if (buffer[0] == '\n')
 		return (BUFFER_SIZE);
 	while (buffer[++i])
+		printf("buffer[i] : %c\n", buffer[i]);
 		if (buffer[i] == '\n')
 			return (i);
 	return (BUFFER_SIZE);
@@ -50,7 +51,7 @@ int	list_add(t_Node *root, int fd)
 	// 	i++;
 	// }
 	tmp->next->next = NULL;
-	printf("ft_enter: %d\n", ft_enter(tmp->next->chain));
+	printf("ft_enter: %d\n", (i - (i - ft_enter(tmp->next->chain))));
 	return (i - (i - ft_enter(tmp->next->chain)));
 }
 

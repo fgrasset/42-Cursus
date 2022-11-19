@@ -1,4 +1,3 @@
-
 Premiere est la ligne.
 Deuxieme est celle-ci.
 Troisieme est la derniere.

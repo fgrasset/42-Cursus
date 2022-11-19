@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/19 12:57:40 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/19 13:29:08 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ void	stash_add(t_Node *root, char *stash)
 	tmp = root;
 	i = -1;
 	j = -1;
+	printf("test");
 	while(tmp->next != NULL)
 		tmp = tmp->next;
 	while(tmp->next->chain[++i])
 		if (tmp->next->chain[i] == '\n')
-			while (tmp->next->chain[i])
+			while (tmp->next->chain[++i])
 			{
 				stash[++j] = tmp->next->chain[i];
-				i++;
+				printf("chain[i] : %c\n", tmp->next->chain[i]);
 			}
 	stash[++j] = '\0';
 }
@@ -48,8 +49,9 @@ char	*get_next_line(int fd)
 	while (check == BUFFER_SIZE)
 	{
 		check = list_add(root, fd);
-		// printf("check: %d\n", check);
+		printf("thecheck: %d\n", check);
 	}
+	printf("test");
 	stash_add(root, stash);
 	printf("stash: %s\n", stash);
 	// if (0 < check < BUFFER_SIZE)
@@ -71,6 +73,7 @@ char	*get_next_line(int fd)
 int	main()
 {
 	int	fd = open("file.txt", O_RDONLY);
-	get_next_line(fd);
+	printf("result: %s\n", get_next_line(fd));
+	close(fd);
 	return (0);
 }
