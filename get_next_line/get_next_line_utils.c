@@ -6,41 +6,24 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/18 13:54:14 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/19 12:50:20 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_enter(char buffer[BUFFER_SIZE])
+int	ft_enter(char *buffer)
 {
 	int	i;
 
 	i = -1;
-	while (++i < BUFFER_SIZE)
+	if (buffer[0] == '\n')
+		return (BUFFER_SIZE);
+	while (buffer[++i])
 		if (buffer[i] == '\n')
 			return (i);
-	return (0);
+	return (BUFFER_SIZE);
 }
-
-
-// char	*ft_strjoin(char const *s1, char const *s2)
-// {
-// 	size_t	i;
-// 	char	*ptr;
-
-// 	i = -1;
-// 	ptr = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-// 	if (!ptr)
-// 		return (NULL);
-// 	while (i <= BUFFER_SIZE)
-// 		ptr[i] = s1[i];
-// 	i--;
-// 	while (s2[++i - ft_strlen(s1)])
-// 		ptr[i] = s2[i - ft_strlen(s1)];
-// 	ptr[i] = '\0';
-// 	return (ptr);
-// }
 
 
 int	list_add(t_Node *root, int fd)
@@ -67,7 +50,8 @@ int	list_add(t_Node *root, int fd)
 	// 	i++;
 	// }
 	tmp->next->next = NULL;
-	return (i - ft_enter(tmp->next->chain));
+	printf("ft_enter: %d\n", ft_enter(tmp->next->chain));
+	return (i - (i - ft_enter(tmp->next->chain)));
 }
 
 
