@@ -6,13 +6,14 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/19 13:27:20 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/21 13:36:48 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_enter(char *buffer)
+/*iterate in the buffer until it finds \n then returns the value it has to substract to the BUFFER_SIZE to get to the \n position*/
+int	ft_enter(char buffer[BUFFER_SIZE + 1])
 {
 	int	i;
 
@@ -20,13 +21,12 @@ int	ft_enter(char *buffer)
 	if (buffer[0] == '\n')
 		return (BUFFER_SIZE);
 	while (buffer[++i])
-		printf("buffer[i] : %c\n", buffer[i]);
 		if (buffer[i] == '\n')
-			return (i);
-	return (BUFFER_SIZE);
+			return (BUFFER_SIZE - (i + 1));
+	return (0);
 }
 
-
+/*creates a new node and uses read to fill it*/
 int	list_add(t_Node *root, int fd)
 {
 	struct t_Node	*tmp;
@@ -34,29 +34,27 @@ int	list_add(t_Node *root, int fd)
 
 	tmp = root;
 	i = 0;
-	while(tmp->next != NULL)
+	while(tmp && tmp->next)
 		tmp = tmp->next;
-	tmp->next = malloc(sizeof(struct t_Node));
-	if (!tmp->next)
+	tmp = malloc(sizeof(struct t_Node));
+	if (!tmp)
 		return (0);
-	tmp->next->chain = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!tmp->next->chain)
-		return (0);
-	i = read(fd, tmp->next->chain, BUFFER_SIZE);
-	tmp->next->chain[i + 1] = '\0';
-	printf("buffer: %s\n", tmp->next->chain);
+	// tmp->chain = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	// if (!tmp->chain)
+	// 	return (0);
+	i = read(fd, tmp->chain, BUFFER_SIZE);
+	tmp->chain[i] = '\0';
 	// while ((i < BUFFER_SIZE) && tmp->next->chain[i - 1] != '\n')
 	// {
 	// 	buffer[i] = tmp->next->chain[i];
 	// 	i++;
 	// }
-	tmp->next->next = NULL;
-	printf("ft_enter: %d\n", (i - (i - ft_enter(tmp->next->chain))));
-	return (i - (i - ft_enter(tmp->next->chain)));
+	tmp->next = NULL;
+	return (i - ft_enter(tmp->chain));
 }
 
-
-char	*list_get(t_Node *root)
+/*takes all of the nodes to malloc the line, and copies all the nodes content in the line*/
+char	*list_get(t_Node *root, int check)
 {
 	struct t_Node	*tmp;
 	char			*line;
@@ -66,16 +64,16 @@ char	*list_get(t_Node *root)
 	i = 0;
 	j = -1;
 	tmp = root;
-	while (tmp != NULL)
+	while (tmp && tmp->next)
 	{
 		i++;
 		tmp = tmp->next;
 	}
-	line = malloc(sizeof(char) * (i * BUFFER_SIZE) + 1);
+	line = malloc(sizeof(char) * (((i - 1) * BUFFER_SIZE) + (BUFFER_SIZE - (check - 1))));
 	if (!line)
 		return (NULL);
 	tmp = root;
-	while (tmp != NULL)
+	while (tmp && tmp->next)
 	{
 		i = -1;
 		while (tmp->chain[++i] && tmp->chain[i] != '\n')
@@ -86,12 +84,12 @@ char	*list_get(t_Node *root)
 	return (line);
 }
 
-
+/*frees all the malloc that are still being used*/
 void	list_free(t_Node *root)
 {
 	struct t_Node	*tmp;
 
-	while (root != NULL)
+	while (root && root->next)
 	{
 		tmp = root;
 		root = root->next;

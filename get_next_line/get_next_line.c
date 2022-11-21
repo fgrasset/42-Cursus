@@ -6,13 +6,13 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/19 13:29:08 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/21 13:52:11 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	stash_add(t_Node *root, char *stash)
+void	stash_add(t_Node *root, char *stash, int check)
 {
 	int	i;
 	int	j;
@@ -20,17 +20,23 @@ void	stash_add(t_Node *root, char *stash)
 
 	tmp = root;
 	i = -1;
-	j = -1;
-	printf("test");
-	while(tmp->next != NULL)
+	// j = -1;
+	while(tmp && tmp->next)
+	{
 		tmp = tmp->next;
-	while(tmp->next->chain[++i])
-		if (tmp->next->chain[i] == '\n')
-			while (tmp->next->chain[++i])
-			{
-				stash[++j] = tmp->next->chain[i];
-				printf("chain[i] : %c\n", tmp->next->chain[i]);
-			}
+		printf("tmp.next: %s\n", tmp->chain);
+	}
+	
+	while(check <= BUFFER_SIZE)
+	{
+		printf("chain[i] : %c\n", tmp->chain[i]);
+		// if (tmp->chain[i] == '\n')
+		// while (tmp->chain[++i])
+		// {
+		stash[++i] = tmp->chain[check++];
+		printf("chain[i] : %c\n", tmp->chain[i]);
+		// }
+	}
 	stash[++j] = '\0';
 }
 
@@ -41,23 +47,19 @@ char	*get_next_line(int fd)
 	char			*res;
 	static char		stash[BUFFER_SIZE + 1];
 
-	if (fd <= 0 || BUFFER_SIZE == 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, stash, 0) < 0)
 		return (NULL);
 	root = malloc(sizeof(struct t_Node));
-	check = list_add(root, fd);
+	check = list_add(root, fd);			//check either 10 if no \n, or the position of the \n
 	printf("check: %d\n", check);
 	while (check == BUFFER_SIZE)
 	{
 		check = list_add(root, fd);
 		printf("thecheck: %d\n", check);
 	}
-	printf("test");
-	stash_add(root, stash);
+	// write(1, "test", 4);
+	stash_add(root, stash, check);
 	printf("stash: %s\n", stash);
-	// if (0 < check < BUFFER_SIZE)
-	// 	{
-
-	// 	}
 	
 	// while (read(fd, buffer, BUFFER_SIZE) > 0)
 	// {
@@ -65,7 +67,7 @@ char	*get_next_line(int fd)
 	// 		stash_add(buffer, stash);
 	// 	list_add(root, fd);
 	// }
-	res = list_get(root);
+	res = list_get(root, check);
 	list_free(root);
 	return (res);
 }
