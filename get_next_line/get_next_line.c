@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/21 13:52:11 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/21 20:57:07 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,16 @@ void	stash_add(t_Node *root, char *stash, int check)
 	tmp = root;
 	i = -1;
 	// j = -1;
-	while(tmp && tmp->next)
+	while(tmp->next != NULL)
 	{
+		printf("test");
 		tmp = tmp->next;
 		printf("tmp.next: %s\n", tmp->chain);
 	}
 	
+	printf("chain: %s\n", tmp->chain);
 	while(check <= BUFFER_SIZE)
 	{
-		printf("chain[i] : %c\n", tmp->chain[i]);
 		// if (tmp->chain[i] == '\n')
 		// while (tmp->chain[++i])
 		// {

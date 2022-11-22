@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/21 13:36:48 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/21 20:52:04 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	list_add(t_Node *root, int fd)
 	// 	i++;
 	// }
 	tmp->next = NULL;
+	// printf("chain printf: %s\n", tmp->chain);
 	return (i - ft_enter(tmp->chain));
 }
 
