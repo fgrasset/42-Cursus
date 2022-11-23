@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:14:17 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/21 13:32:17 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:43:29 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,35 @@
 # include <stdio.h>
 # include <fcntl.h>
 
+// typedef struct t_Node{
+// 	char			chain[BUFFER_SIZE + 1];
+// 	struct t_Node 	*next;
+// } t_Node;
+
+// int		ft_enter(char buffer[BUFFER_SIZE + 1]);
+// int		list_add(t_Node *root, int fd);
+// char	*list_get(t_Node *root, int check);
+// void	list_free(t_Node *root);
+
+// char	*get_next_line(int fd);
+// void	stash_add(t_Node *root, char *stash, int check);
+
 typedef struct t_Node{
-	char			chain[BUFFER_SIZE + 1];
+	char			*buffer;
 	struct t_Node 	*next;
 } t_Node;
 
-int		ft_enter(char buffer[BUFFER_SIZE + 1]);
-int		list_add(t_Node *root, int fd);
-char	*list_get(t_Node *root, int check);
-void	list_free(t_Node *root);
 
 char	*get_next_line(int fd);
-void	stash_add(t_Node *root, char *stash, int check);
+void	stash_fill(t_Node **head, char *stash);
+void	stash_get(char *stash, char *res);
+void	ft_bzero(void *s, int n);
+
+int		list_add(t_Node **head, int fd);
+int		list_len(t_Node **head);
+void	list_get(t_Node **head, char *res, char *stash);
+void	list_free(t_Node **head);
+int		enter(char *string);
+
 
 #endif
