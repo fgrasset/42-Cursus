@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/23 17:05:37 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:25:28 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int	list_add(t_Node **head, int fd)
 
 	newNode = malloc(sizeof(t_Node));
 	newNode->buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!newNode || !newNode->buffer)
+		return (0);
 	read(fd, newNode->buffer, BUFFER_SIZE);
 	newNode->buffer[BUFFER_SIZE + 1] = '\0';
 	newNode->next = NULL;
@@ -145,7 +147,7 @@ int	list_len(t_Node **head)
 
 
 /*fills res with all the contents of the buffer in the linkked lists until the \n*/
-void	list_get(t_Node **head, char *res, char *stash)
+void	list_get(t_Node **head, char *res)
 {
 	t_Node	*current;
 	int		i;
@@ -156,17 +158,15 @@ void	list_get(t_Node **head, char *res, char *stash)
 	j = -1;
 	while (res[++j]);
 	current = *head;
-	while (current->next != NULL)
+	while (current != NULL)
 	{
 		i = 0;
 		while (current->buffer[i] != '\0' && current->buffer[i] != '\n')
 		{
 			res[j] = current->buffer[i];
-			printf("buffer[%d] = %c\n", i, current->buffer[i]);
 			i++;
 			j++;
 		}
-		printf("res: %s\n", res);
 		current = current->next;
 	}
 	res[j + i] = '\0';

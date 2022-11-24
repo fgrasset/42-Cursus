@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/23 17:00:49 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:22:22 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,13 @@ char	*get_next_line(int fd)
 	while (list_add(&head, fd) == 0);
 	stash_fill(&head, stash);
 	res = malloc(sizeof(char) * (list_len(&head) + 1));
+	if (!res)
+		return (NULL);
 	ft_bzero(res, list_len(&head) + 1);
 	stash_get(stash, res);
-	printf("stash: %s\n", stash);
-	list_get(&head, res, stash);
+	list_get(&head, res);
 	list_free(&head);
-	write(1, "test", 4);		//5661654
+	write(1,"test",4);
 	return (res);
 }
 
@@ -134,7 +135,6 @@ void	stash_get(char *stash, char *res)
 	while (stash[i + j])
 	{
 		res[j] = stash[i + j];
-		// printf("res[%d]: %c && stash[%d]: %c\n", j, res[i], i+j, stash[i+j]);
 		j++; 
 	}
 	res[j] = '\0';
