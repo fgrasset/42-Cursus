@@ -6,14 +6,15 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/25 14:59:26 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:01:42 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 /*reads BUFFER_SIZE elements and adds them to a buffer
-returns 1 if buffer contains /n, 0 otherwise*/
+returns index of \n if buffer contains /n, 0 otherwise
+or -1 if issue*/
 int	list_add(t_Node **head, int fd)
 {
 	t_Node	*new_node;
@@ -24,20 +25,25 @@ int	list_add(t_Node **head, int fd)
 	new_node->buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!new_node || !new_node->buffer)
 		return (0);
+	current = *head;
 	new_node->next = NULL;
-	if (*head == NULL)
-		*head = new_node;
-	else
-	{
-		current = *head;
-		while (current->next != NULL)
-			current = current->next;
-		current->next = new_node;
-	}
 	read_neg = read(fd, new_node->buffer, BUFFER_SIZE);
-	if (read_neg == -1)
-		return (-1);
+	printf("list_add buffer: %s\n", new_node->buffer);
+	if ((current == NULL && read_neg == 0) || read_neg == -1)
+	{
+		free(new_node->buffer);
+		free(new_node);
+		return(-1);
+	}
 	new_node->buffer[read_neg] = '\0';
+	if (*head == NULL)
+	{
+		*head = new_node;
+		return (enter(new_node->buffer));
+	}
+	while (current != NULL)
+		current = current->next;
+	current = new_node;
 	return (enter(new_node->buffer));
 }
 
@@ -98,16 +104,22 @@ void	list_get(t_Node **head, char *line)
 	while (current != NULL)
 	{
 		i = 0;
-		while (current->buffer[i] != '\0' && current->buffer[i] != '\n')
+		while (current->buffer[i] != '\0')
 		{
-			line[j] = current->buffer[i];
+			if (current->buffer[i] == '\n')
+				{
+					line[j] = current->buffer[i];
+					break ;
+				}
+			line[j++] = current->buffer[i++];
 			// printf("line[%d]: %c and current.buffer[%d]: %c\n", j, line[j], i, current->buffer[i]);
-			i++;
-			j++;
+			// i++;
+			// j++;
 		}
 		current = current->next;
 	}
-	line[j + i] = '\0';
+	// line[j + i] = '\0';
+	// printf("line: %s\n", line);
 }
 
 /*frees the linked list entirely*/
@@ -132,10 +144,16 @@ int	enter(char *string)
 	int	i;
 
 	i = 0;
+	if (string == NULL)
+		return (0);
 	if (string[0] == '\0')
 		return (1);
-	while (string[i] && string[i] != '\n')
+	while (string[i])
+	{
+		if (string[i] == '\n')
+			break;
 		i++;
+	}
 	if (i == BUFFER_SIZE)
 		return (0);
 	return (i);

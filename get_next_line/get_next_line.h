@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:14:17 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/25 14:58:50 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/28 10:44:30 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*get_next_line(int fd);
 void	stash_fill(t_Node **head, char *stash);
 void	stash_get(char *stash, char *line);
 void	ft_bzero(void *s, int n);
+void	stash_make(t_Node **head);
 
 int		list_add(t_Node **head, int fd);
 int		list_len(t_Node **head);
