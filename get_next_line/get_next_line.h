@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:14:17 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/28 10:44:30 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:01:09 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int		list_add(t_Node **head, int fd);
 int		list_len(t_Node **head);
 void	list_get(t_Node **head, char *line);
 void	list_free(t_Node **head);
-int		enter(char *string);
+int		enter(t_Node **head);
 
 #endif

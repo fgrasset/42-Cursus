@@ -6,15 +6,15 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/28 14:01:42 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:20:27 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/*reads BUFFER_SIZE elements and adds them to a buffer
-returns index of \n if buffer contains /n, 0 otherwise
-or -1 if issue*/
+/* reads BUFFER_SIZE elements and adds them to a buffer
+returns 0 if buffer contains /n, number otherwise
+or -1 if issue */
 int	list_add(t_Node **head, int fd)
 {
 	t_Node	*new_node;
@@ -28,7 +28,6 @@ int	list_add(t_Node **head, int fd)
 	current = *head;
 	new_node->next = NULL;
 	read_neg = read(fd, new_node->buffer, BUFFER_SIZE);
-	printf("list_add buffer: %s\n", new_node->buffer);
 	if ((current == NULL && read_neg == 0) || read_neg == -1)
 	{
 		free(new_node->buffer);
@@ -39,31 +38,19 @@ int	list_add(t_Node **head, int fd)
 	if (*head == NULL)
 	{
 		*head = new_node;
-		return (enter(new_node->buffer));
+		return (read_neg);
 	}
 	while (current != NULL)
 		current = current->next;
 	current = new_node;
-	return (enter(new_node->buffer));
+	printf("new_node buffer: %s\n", new_node->buffer);
+	printf("read value: %d\n", read_neg);
+	return (read_neg);
 }
 
-/*returns the length of all the buffers in the linked list*/
+/* returns the length of all the buffers in the linked list */
 int	list_len(t_Node **head)
 {
-	// t_Node	*current;
-	// int		count;
-
-	// count = 0;
-	// if (*head == NULL)
-	// 	return (0);
-	// current = *head;
-	// while (current->next != NULL)
-	// {
-	// 	count++;
-	// 	current = current->next;
-	// }
-	// return ((count + 1) * BUFFER_SIZE);
-
 	t_Node	*current;
 	int		len;
 	int		i;
@@ -88,41 +75,31 @@ int	list_len(t_Node **head)
 	return (len);
 }
 
-/*fills res with contents of buffer in the linked lists until the \n*/
+/* fills res with contents of buffer in the linked lists until the \n */
 void	list_get(t_Node **head, char *line)
 {
 	t_Node	*current;
 	int		i;
-	int		j;
 
 	if (*head == NULL)
 		return ;
-	j = 0;
-	while (line[j])
-		j++;
 	current = *head;
 	while (current != NULL)
 	{
 		i = 0;
 		while (current->buffer[i] != '\0')
 		{
+			line[i] = current->buffer[i];
 			if (current->buffer[i] == '\n')
-				{
-					line[j] = current->buffer[i];
-					break ;
-				}
-			line[j++] = current->buffer[i++];
+				return ;
 			// printf("line[%d]: %c and current.buffer[%d]: %c\n", j, line[j], i, current->buffer[i]);
-			// i++;
-			// j++;
+			i++;
 		}
 		current = current->next;
 	}
-	// line[j + i] = '\0';
-	// printf("line: %s\n", line);
 }
 
-/*frees the linked list entirely*/
+/* frees the linked list entirely */
 void	list_free(t_Node **head)
 {
 	t_Node	*current;
@@ -133,28 +110,33 @@ void	list_free(t_Node **head)
 	{
 		current = stock;
 		stock = stock->next;
-		free (current->buffer);
+		free(current->buffer);
 		free(current);
 	}
 }
 
-/*returns the index in which /n is or 0 if there is none*/
-int	enter(char *string)
+/* returns 0 if \n is in the buffer, n otherwise */
+int	enter(t_Node **head)
 {
-	int	i;
+	t_Node	*current;
+	int		i;
 
 	i = 0;
-	if (string == NULL)
-		return (0);
-	if (string[0] == '\0')
+	if (*head == NULL)
 		return (1);
-	while (string[i])
+	current = *head;
+	while (current->next != NULL)
+		current = current->next;
+	printf("string: %s\n", current->buffer);
+	// if (string == NULL)
+	// 	return (1);
+	// if (string[0] == '\0')
+	// 	return (1);
+	while (current->buffer[i])
 	{
-		if (string[i] == '\n')
-			break;
+		if (current->buffer[i] == '\n')
+			return (0);
 		i++;
 	}
-	if (i == BUFFER_SIZE)
-		return (0);
 	return (i);
 }

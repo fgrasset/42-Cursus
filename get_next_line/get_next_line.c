@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/28 13:57:48 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:17:30 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,60 +36,28 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = NULL;
 	head = NULL;
-	// if (!stash)
-	// {	
-	// 	stash = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	// 	stash[0] = '\0';
-	// }
-	end = 0;
-	while (end == 0)
+	end = 1;
+	while (enter(&head) || end != 0)
+	{
 		end = list_add(&head, fd);
+		printf("end : %d\n", end);
+		write(1, "test", 4);
+	}
 	if (end == -1 || (end == 0 && stash == NULL))
 		return NULL;
 	line = malloc(sizeof(char) * (list_len(&head) + 1));
 	if (!line)
 		return (NULL);
 	ft_bzero(line, list_len(&head) + 1);
-	print_list(&head);
-	stash_make(&head);
-	// write(1,"test",4);
-	// stash_get(stash, line);
-	// stash_fill(&head, stash);
+	// print_list(&head);
 	list_get(&head, line);
+	stash_make(&head);
 	// list_free(&head);
-	printf("line: %s\n", line);
+	// printf("line: %s\n", line);
 	return (line);
 }
 
-
-/*fills stash with elements after the \n in last buffer of linked list*/
-// void	stash_fill(t_Node **head, char *stash)
-// {
-// 	t_Node	*current;
-// 	int		count;
-// 	int		i;
-
-// 	if (*head == NULL)
-// 		return ;
-// 	current = *head;
-// 	count = 0;
-// 	while (current->next != NULL)
-// 		current = current->next;
-// 	printf("current.buffer[%d]: %c\n", count, current->buffer[count]);
-// 	while (current->buffer[count] && current->buffer[count] != '\n')
-// 		count++;
-// 	i = -1;
-// 	printf("current.buffer[%d]: %c\n", count, current->buffer[count]);
-// 	while (current->buffer[count] != '\0')
-// 	{
-// 		stash[++i] = current->buffer[count];
-// 		count++;
-// 	}
-// 	write(1,"stash_fill", 10);
-// 	stash[++i] = '\0';
-// }
-
-/*get last node and removes what is before /n*/
+/* makes a new node of what is after the \n */
 void	stash_make(t_Node **head)
 {
 	t_Node	*current;
@@ -116,30 +84,12 @@ void	stash_make(t_Node **head)
 		stash->buffer[j++] = current->buffer[i++];
 	stash->buffer[j] = '\0';
 	stash->next = NULL;
-	printf("stash: %s\n", stash->buffer);
+	// printf("stash: %s\n", stash->buffer);
 	list_free(head);
 	*head = stash;
 }
 
-/*fills res with the stash from \n to the end*/
-// void	stash_get(char *stash, char *line)
-// {
-// 	int	j;
-
-// 	if (!stash)
-// 	{	
-// 		stash = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-// 		stash[0] = '\0';
-// 	}
-// 	j = -1;
-// 	// if (stash[0] == '\0')
-// 	// 	return ;
-// 	while (stash[++j])
-// 		line[j] = stash[j];
-// 	line[j] = '\0';
-// }
-
-/*basically bzero but made by hand*/
+/* basically bzero but made by hand */
 void	ft_bzero(void *s, int n)
 {
 	int	i;
