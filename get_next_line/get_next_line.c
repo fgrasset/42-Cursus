@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/30 14:17:30 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/01 15:14:19 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*get_next_line(int fd)
 	line = NULL;
 	head = NULL;
 	end = 1;
-	while (enter(&head) || end != 0)
+	while (enter(&head) && end != 0	&& end  != -1)
 	{
 		end = list_add(&head, fd);
 		printf("end : %d\n", end);
@@ -109,8 +109,8 @@ int	main()
 	printf("%s\n", get_next_line(fd));
 	printf("%s\n", get_next_line(fd));
 	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
+	// printf("%s\n", get_next_line(fd));
+	// printf("%s\n", get_next_line(fd));
 	close(fd);
 	return (0);
 }

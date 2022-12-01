@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/30 14:20:27 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/01 15:13:57 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	list_add(t_Node **head, int fd)
 	while (current != NULL)
 		current = current->next;
 	current = new_node;
-	printf("new_node buffer: %s\n", new_node->buffer);
+	printf("new_node buffer: %s\n", current->buffer);
 	printf("read value: %d\n", read_neg);
 	return (read_neg);
 }
@@ -127,11 +127,11 @@ int	enter(t_Node **head)
 	current = *head;
 	while (current->next != NULL)
 		current = current->next;
-	printf("string: %s\n", current->buffer);
 	// if (string == NULL)
 	// 	return (1);
 	// if (string[0] == '\0')
 	// 	return (1);
+	printf("string: %s\n", current->buffer);
 	while (current->buffer[i])
 	{
 		if (current->buffer[i] == '\n')
