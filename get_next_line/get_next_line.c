@@ -6,54 +6,53 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/01 15:14:19 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:12:21 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	print_list(t_Node **head)
-{
-	t_Node *current;
+// void	print_list(t_Node **head)
+// {
+// 	t_Node *current;
 
-	current = *head;
-	while (current)
-	{
-		printf("current.buffer: %s\n", current->buffer);
-		current = current->next;
-	}
-}
+// 	current = *head;
+// 	while (current)
+// 	{
+// 		printf("current.buffer: %s\n", current->buffer);
+// 		current = current->next;
+// 	}
+// }
 
 
 char	*get_next_line(int fd)
 {
-	static char		*stash;
 	static t_Node	*head;
 	char			*line;
-	int				end;
+	int				reading;
 
-	if (fd == 0 || BUFFER_SIZE == 0 || read(fd, &line, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, &line, 0) < 0)
 		return (NULL);
 	line = NULL;
-	head = NULL;
-	end = 1;
-	while (enter(&head) && end != 0	&& end  != -1)
+	reading = 1;
+	while (reading != 0 && !enter(&head))
 	{
-		end = list_add(&head, fd);
-		printf("end : %d\n", end);
-		write(1, "test", 4);
+		reading = list_add(&head, fd);
+		if (reading == -1)
+			return NULL;
 	}
-	if (end == -1 || (end == 0 && stash == NULL))
-		return NULL;
 	line = malloc(sizeof(char) * (list_len(&head) + 1));
 	if (!line)
 		return (NULL);
 	ft_bzero(line, list_len(&head) + 1);
-	// print_list(&head);
 	list_get(&head, line);
 	stash_make(&head);
-	// list_free(&head);
-	// printf("line: %s\n", line);
+	if (line[0] == '\0')
+	{
+		list_free(&head);
+		free(line);
+		return (NULL);
+	}
 	return (line);
 }
 
@@ -84,7 +83,6 @@ void	stash_make(t_Node **head)
 		stash->buffer[j++] = current->buffer[i++];
 	stash->buffer[j] = '\0';
 	stash->next = NULL;
-	// printf("stash: %s\n", stash->buffer);
 	list_free(head);
 	*head = stash;
 }
@@ -102,15 +100,15 @@ void	ft_bzero(void *s, int n)
 	}
 }
 
-int	main()
-{
-	int	fd = open("file.txt", O_RDONLY);
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	// printf("%s\n", get_next_line(fd));
-	// printf("%s\n", get_next_line(fd));
-	close(fd);
-	return (0);
-}
+// int	main()
+// {
+// 	int	fd = open("file.txt", O_RDONLY);
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	// printf("%s\n", get_next_line(fd));
+// 	// printf("%s\n", get_next_line(fd));
+// 	close(fd);
+// 	return (0);
+// }

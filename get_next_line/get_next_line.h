@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:14:17 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/01 15:14:01 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/03 13:09:48 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ typedef struct t_Node{
 }	t_Node;
 
 char	*get_next_line(int fd);
-void	stash_fill(t_Node **head, char *stash);
-void	stash_get(char *stash, char *line);
-void	ft_bzero(void *s, int n);
 void	stash_make(t_Node **head);
+void	ft_bzero(void *s, int n);
 
 int		list_add(t_Node **head, int fd);
 int		list_len(t_Node **head);
