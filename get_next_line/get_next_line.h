@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:14:17 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/03 13:09:48 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/07 20:07:54 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_bzero(void *s, int n);
 int		list_add(t_Node **head, int fd);
 int		list_len(t_Node **head);
 void	list_get(t_Node **head, char *line);
-void	list_free(t_Node **head);
+void	list_free(t_Node **headq);
 int		enter(t_Node **head);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/05 13:18:24 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/07 20:17:09 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	*get_next_line(int fd)
 		if (reading == -1)
 		{
 			list_free(&head);
+			// free(head);
 			return NULL;
 		}
 	}
@@ -74,7 +75,7 @@ void	stash_make(t_Node **head)
 	i = 0;
 	j = 0;
 	while (current->next != NULL)
-		current = current->next;
+		current = current->next;	
 	while (current->buffer[i] && current->buffer[i] != '\n')
 		i++;
 	if (current->buffer[i] && current->buffer[i] == '\n')
@@ -104,21 +105,21 @@ void	ft_bzero(void *s, int n)
 	}
 }
 
-int	main()
-{
-	int	fd = open("file.txt", O_RDONLY);
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	close(fd);
-	return (0);
-}
+// int	main()
+// {
+// 	int	fd = open("file.txt", O_RDONLY);
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	close(fd);
+// 	return (0);
+// }

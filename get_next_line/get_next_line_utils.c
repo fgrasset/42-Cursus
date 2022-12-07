@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/12/03 15:13:48 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/07 20:14:51 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,11 @@ void	list_get(t_Node **head, char *line)
 		i = 0;
 		while (current->buffer[i] != '\0')
 		{
-			line[j++] = current->buffer[i++];
+			line[j] = current->buffer[i];
 			if (current->buffer[i] == '\n')
 				return ;
+			i++;
+			j++;
 		}
 		current = current->next;
 	}
@@ -122,12 +124,12 @@ int	enter(t_Node **head)
 	if (*head == NULL)
 		return (0);
 	current = *head;
+	// if (current->buffer == NULL)
+	// 	return (0);
+	// if (current->buffer[0] == '\0')
+	// 	return (0);
 	while (current && current->next)
 		current = current->next;
-	if (current->buffer == NULL)
-		return (0);
-	if (current->buffer[0] == '\0')
-		return (0);
 	while (current->buffer[i])
 	{
 		if (current->buffer[i] == '\n')
