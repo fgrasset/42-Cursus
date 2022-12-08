@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/07 20:17:09 by fabien           ###   ########.fr       */
+/*   Updated: 2022/12/08 16:53:31 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-// void	print_list(t_Node **head)
-// {
-// 	t_Node *current;
-
-// 	current = *head;
-// 	while (current)
-// 	{
-// 		printf("current.buffer: %s\n", current->buffer);
-// 		current = current->next;
-// 	}
-// }
 
 char	*get_next_line(int fd)
 {
@@ -40,7 +28,6 @@ char	*get_next_line(int fd)
 		if (reading == -1)
 		{
 			list_free(&head);
-			// free(head);
 			return NULL;
 		}
 	}
@@ -71,7 +58,10 @@ void	stash_make(t_Node **head)
 	current = *head;
 	stash = malloc(sizeof(t_Node));
 	if (!stash)
+	{
+		free(stash);
 		return ;
+	}
 	i = 0;
 	j = 0;
 	while (current->next != NULL)
@@ -82,11 +72,14 @@ void	stash_make(t_Node **head)
 		i++;
 	stash->buffer = malloc(sizeof(char) * (BUFFER_SIZE - i) + 1);
 	if (!stash->buffer)
+	{
+		free(stash->buffer);
+		free(stash);
 		return ;
+	}
 	while (current->buffer[i])
 		stash->buffer[j++] = current->buffer[i++];
 	stash->buffer[j] = '\0';
-	// printf("stash: %s\n", stash->buffer);
 	stash->next = NULL;
 	list_free(head);
 	*head = stash;
@@ -108,12 +101,6 @@ void	ft_bzero(void *s, int n)
 // int	main()
 // {
 // 	int	fd = open("file.txt", O_RDONLY);
-// 	printf("%s\n", get_next_line(fd));
-// 	printf("%s\n", get_next_line(fd));
-// 	printf("%s\n", get_next_line(fd));
-// 	printf("%s\n", get_next_line(fd));
-// 	printf("%s\n", get_next_line(fd));
-// 	printf("%s\n", get_next_line(fd));
 // 	printf("%s\n", get_next_line(fd));
 // 	printf("%s\n", get_next_line(fd));
 // 	printf("%s\n", get_next_line(fd));

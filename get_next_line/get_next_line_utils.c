@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/12/07 20:14:51 by fabien           ###   ########.fr       */
+/*   Updated: 2022/12/08 17:03:50 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int	enter(t_Node **head)
 	// 	return (0);
 	// if (current->buffer[0] == '\0')
 	// 	return (0);
-	while (current && current->next)
+	while (current->next)
 		current = current->next;
 	while (current->buffer[i])
 	{
