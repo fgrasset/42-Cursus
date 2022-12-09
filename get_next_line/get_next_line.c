@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/08 16:53:31 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/09 14:11:30 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,18 @@ char	*get_next_line(int fd)
 	int				reading;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, &line, 0) < 0)
+	{
+		line = list_free(&head, 1);
+		head = NULL;
 		return (NULL);
+	}
 	line = NULL;
 	reading = 1;
-	while (reading != 0 && !enter(&head))
+	while (!enter(&head) && reading != 0)
 	{
 		reading = list_add(&head, fd);
 		if (reading == -1)
-		{
-			list_free(&head);
-			return NULL;
-		}
+			return (list_free(&head, 1));
 	}
 	line = malloc(sizeof(char) * (list_len(&head) + 1));
 	if (!line)
@@ -39,9 +40,8 @@ char	*get_next_line(int fd)
 	stash_make(&head);
 	if (line[0] == '\0')
 	{
-		list_free(&head);
 		free(line);
-		return (NULL);
+		return (list_free(&head, 1));
 	}
 	return (line);
 }
@@ -54,14 +54,12 @@ void	stash_make(t_Node **head)
 	t_Node	*stash;
 	int		i;
 	int		j;
+	char	*f;
 
 	current = *head;
 	stash = malloc(sizeof(t_Node));
 	if (!stash)
-	{
-		free(stash);
 		return ;
-	}
 	i = 0;
 	j = 0;
 	while (current->next != NULL)
@@ -81,7 +79,7 @@ void	stash_make(t_Node **head)
 		stash->buffer[j++] = current->buffer[i++];
 	stash->buffer[j] = '\0';
 	stash->next = NULL;
-	list_free(head);
+	f = list_free(head, 0);
 	*head = stash;
 }
 

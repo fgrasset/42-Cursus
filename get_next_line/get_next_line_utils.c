@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/12/08 17:03:50 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/09 10:50:15 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	list_get(t_Node **head, char *line)
 }
 
 /* frees the linked list entirely */
-void	list_free(t_Node **head)
+char	*list_free(t_Node **head, int flag)
 {
 	t_Node	*current;
 	t_Node	*stock;
@@ -112,6 +112,9 @@ void	list_free(t_Node **head)
 		free(current->buffer);
 		free(current);
 	}
+	if (flag == 1)
+		return (NULL);
+	return (NULL);
 }
 
 /* returns 1 if \n in buffer, 0 otherwise */
