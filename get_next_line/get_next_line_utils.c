@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:09:02 by fabien            #+#    #+#             */
-/*   Updated: 2022/12/09 10:50:15 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/10 18:43:01 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,15 @@ int	list_add(t_Node **head, int fd)
 	{
 		free(new_node->buffer);
 		free(new_node);
-		return(-1);
+		return (-1);
 	}
 	new_node->buffer[reading] = '\0';
-	if (*head == NULL)
-	{
-		*head = new_node;
-		return (reading);
-	}
 	while (current && current->next)
 		current = current->next;
-	current->next = new_node;
+	if (*head == NULL)
+		*head = new_node;
+	else
+		current->next = new_node;
 	return (reading);
 }
 
@@ -59,7 +57,7 @@ int	list_len(t_Node **head)
 		i = 0;
 		while (current->buffer[i])
 		{
-			if(current->buffer[i] == '\n')
+			if (current->buffer[i] == '\n')
 			{
 				len++;
 				break ;
@@ -112,6 +110,7 @@ char	*list_free(t_Node **head, int flag)
 		free(current->buffer);
 		free(current);
 	}
+	*head = NULL;
 	if (flag == 1)
 		return (NULL);
 	return (NULL);
@@ -124,13 +123,9 @@ int	enter(t_Node **head)
 	int		i;
 
 	i = 0;
-	if (*head == NULL)
-		return (0);
 	current = *head;
-	// if (current->buffer == NULL)
-	// 	return (0);
-	// if (current->buffer[0] == '\0')
-	// 	return (0);
+	if (current == NULL)
+		return (0);
 	while (current->next)
 		current = current->next;
 	while (current->buffer[i])

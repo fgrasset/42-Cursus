@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:14:17 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/09 10:45:35 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/10 18:52:05 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct t_Node{
 char	*get_next_line(int fd);
 void	stash_make(t_Node **head);
 void	ft_bzero(void *s, int n);
+char	*return_error(t_Node **head, int flag, char *line);
 
 int		list_add(t_Node **head, int fd);
 int		list_len(t_Node **head);
