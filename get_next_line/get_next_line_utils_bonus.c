@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 22:33:52 by fabien            #+#    #+#             */
-/*   Updated: 2022/12/10 22:34:21 by fabien           ###   ########.fr       */
+/*   Updated: 2022/12/12 10:00:31 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,20 @@ int	list_add(t_Node **head, int fd)
 	int		reading;
 
 	new_node = malloc(sizeof(t_Node));
-	new_node->buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!new_node || !new_node->buffer)
+	write(1, "test", 4);
+	new_node->buffer[fd] = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!new_node || !new_node->buffer[fd])
 		return (-1);
 	current = *head;
 	new_node->next = NULL;
-	reading = read(fd, new_node->buffer, BUFFER_SIZE);
+	reading = read(fd, new_node->buffer[fd], BUFFER_SIZE);
 	if ((*head == NULL && reading == 0) || reading == -1)
 	{
-		free(new_node->buffer);
+		free(new_node->buffer[fd]);
 		free(new_node);
 		return (-1);
 	}
-	new_node->buffer[reading] = '\0';
+	new_node->buffer[fd][reading] = '\0';
 	while (current && current->next)
 		current = current->next;
 	if (*head == NULL)
@@ -44,7 +45,7 @@ int	list_add(t_Node **head, int fd)
 }
 
 /* returns the length of all the buffers in the linked list */
-int	list_len(t_Node **head)
+int	list_len(t_Node **head, int fd)
 {
 	t_Node	*current;
 	int		len;
@@ -55,9 +56,9 @@ int	list_len(t_Node **head)
 	while (current)
 	{
 		i = 0;
-		while (current->buffer[i])
+		while (current->buffer[fd][i])
 		{
-			if (current->buffer[i] == '\n')
+			if (current->buffer[fd][i] == '\n')
 			{
 				len++;
 				break ;
@@ -71,7 +72,7 @@ int	list_len(t_Node **head)
 }
 
 /* fills res with contents of buffer in the linked lists until the \n */
-void	list_get(t_Node **head, char *line)
+void	list_get(t_Node **head, char *line, int fd)
 {
 	t_Node	*current;
 	int		i;
@@ -84,10 +85,10 @@ void	list_get(t_Node **head, char *line)
 	while (current != NULL)
 	{
 		i = 0;
-		while (current->buffer[i] != '\0')
+		while (current->buffer[fd][i] != '\0')
 		{
-			line[j] = current->buffer[i];
-			if (current->buffer[i] == '\n')
+			line[j] = current->buffer[fd][i];
+			if (current->buffer[fd][i] == '\n')
 				return ;
 			i++;
 			j++;
@@ -97,7 +98,7 @@ void	list_get(t_Node **head, char *line)
 }
 
 /* frees the linked list entirely */
-char	*list_free(t_Node **head, int flag)
+char	*list_free(t_Node **head, int flag, int fd)
 {
 	t_Node	*current;
 	t_Node	*stock;
@@ -107,7 +108,7 @@ char	*list_free(t_Node **head, int flag)
 	{
 		current = stock;
 		stock = stock->next;
-		free(current->buffer);
+		free(current->buffer[fd]);
 		free(current);
 	}
 	*head = NULL;
@@ -117,7 +118,7 @@ char	*list_free(t_Node **head, int flag)
 }
 
 /* returns 1 if \n in buffer, 0 otherwise */
-int	enter(t_Node **head)
+int	enter(t_Node **head, int fd)
 {
 	t_Node	*current;
 	int		i;
@@ -128,9 +129,9 @@ int	enter(t_Node **head)
 		return (0);
 	while (current->next)
 		current = current->next;
-	while (current->buffer[i])
+	while (current->buffer[fd][i])
 	{
-		if (current->buffer[i] == '\n')
+		if (current->buffer[fd][i] == '\n')
 			return (1);
 		i++;
 	}
