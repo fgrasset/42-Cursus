@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:13:28 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/17 14:38:34 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/17 15:01:08 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	sigusr_handler(int sig)
 	}
 }
 
-/* takes the 8-bit integer and prints it, then resets the character variable */
+/* takes the 8-bit integer and prints it */
 void	print_bit()
 {
 	int	i;
