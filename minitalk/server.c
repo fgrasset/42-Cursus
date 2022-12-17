@@ -6,29 +6,74 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:13:28 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/16 15:29:00 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/17 14:38:34 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-/* handler for SIGUSR1, return bit 0 */
-void	sigusr1_handler(int sig)
-{
+int	bits[8];
 
+/* handler for SIGUSR, return bit 1 if SIGUSR1 and bit 0 if SIGUSR2 */
+void	sigusr_handler(int sig)
+{
+	static int index;
+
+	if (!index || index == 8)
+		index = 0;
+	
+	if (sig == SIGUSR1)
+	{
+		bits[index] = 1;
+		index++;
+	}
+	else if (sig == SIGUSR2)
+	{
+		bits[index] = 0;
+		index++;
+	}
 }
 
-/* handler for SIGUSR2, return bit 1 */
-void	sigusr2_handler(int sig)
+/* takes the 8-bit integer and prints it, then resets the character variable */
+void	print_bit()
 {
+	int	i;
+	int	to_print;
 
+	i = 0;
+	to_print = 0;
+	while (i < 8)
+	{
+		to_print += bits[i] * (1 << i);
+		i++;
+	}
+	write(1, &to_print, 1);
 }
 
-/* main function, launches the server until signal is revceived */
-int	main(int ac, char **av)
+/* main function, launches the server until signal is received */
+int	main()
 {
+	struct sigaction action;
+	int	i;
+
+	printf("Process ID: %d\n", getpid());
+	action.sa_handler = &sigusr_handler;
+	i = 0;
+	if (sigaction(SIGUSR1, &action, NULL) || sigaction(SIGUSR2, &action, NULL))
+	{
+		if (i == 8)
+		{
+			print_bit();
+			
+			i = 0;
+		}
+		i++;
+	}
+
 	while(1)
 	{
 		pause();
 	}
+
+	return 0;
 }

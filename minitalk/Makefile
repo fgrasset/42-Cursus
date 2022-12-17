@@ -4,7 +4,7 @@ OBJS	= ${SRCS:.c=.o}
 
 NAME	= minitalk.a
 
-PRINTF	= printf
+PRINTF	= ../ft_printf
 
 CC 		= gcc
 
