@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:13:44 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/17 13:26:36 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/18 14:18:33 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ int	main(int ac, char **av)
 		send('\n', pid);
 	}
 	else
-		printf("Please write only the PID and the string you want to send\n");
+		printf("Please write only the PID of the server and the string you want to send\n");
 }

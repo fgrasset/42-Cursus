@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:13:28 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/17 15:01:08 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/18 14:18:58 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	sigusr_handler(int sig)
 {
 	static int index;
 
-	if (!index || index == 8)
+	if (!index || index == 7)
 		index = 0;
 	
 	if (sig == SIGUSR1)
@@ -59,12 +59,15 @@ int	main()
 	printf("Process ID: %d\n", getpid());
 	action.sa_handler = &sigusr_handler;
 	i = 0;
-	if (sigaction(SIGUSR1, &action, NULL) || sigaction(SIGUSR2, &action, NULL))
+	sigaction(SIGUSR1, &action, NULL);
+	sigaction(SIGUSR2, &action, NULL);
+	if (!sigaction(SIGUSR1, &action, NULL) || !sigaction(SIGUSR2, &action, NULL))
 	{
-		if (i == 8)
+		write(1,"test",4);
+		if (i == 7)
 		{
 			print_bit();
-			
+
 			i = 0;
 		}
 		i++;
