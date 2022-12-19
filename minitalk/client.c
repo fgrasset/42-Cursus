@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:13:44 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/18 14:18:33 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/19 16:46:35 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@
 void	send(char c, int pid)
 {
 	int	i;
-	// int	value;
-	// value = (c >> 1) & 1;
+	int	bit;
 
-	i = 8;
-	while (i > 0)
+	i = 0;
+	bit = 0;
+	while (i < 8)
 	{
-		kill(pid, (((c >> i) & 1) % 2 == 0) ? SIGUSR2 : SIGUSR1);
-		i--;
+		// kill(pid, (((c >> i) & 1) % 2 == 0) ? SIGUSR2 : SIGUSR1);
+		bit = (c & (1 << i)) != 0;
+		kill(pid, (bit % 2) == 0 ? SIGUSR2 : SIGUSR1);
+		printf("%d\n", (bit % 2) == 0 ? 0 : 1);
+		usleep(100);
+		i++;
 	}
 }
 
