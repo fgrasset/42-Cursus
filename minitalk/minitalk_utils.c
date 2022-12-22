@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:27:23 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/19 13:41:02 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:00:44 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_node	*get_last(t_node *head)
 	return current;
 }
 
-/* adds en alement at the end of the list */
+/* adds en alement at the end of the list */a
 void	add_element(t_node *head, char data)
 {
 	t_node	*current;

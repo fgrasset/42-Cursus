@@ -1,12 +1,16 @@
-SOURCES = server.c client.c
+SOURCES = server.c client.c server_bonus.c client_bonus.c
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 
-all: server client
+all: server client server_bonus client_bonus
 
-bonus: server client
+server_bonus: server_bonus.o ft_printf/libftprintf.a
+	$(CC) -o $@ $^
+
+client_bonus: client_bonus.o ft_printf/libftprintf.a
+	$(CC) -o $@ $^
 
 server: server.o ft_printf/libftprintf.a
 	$(CC) -o $@ $^
@@ -25,7 +29,7 @@ clean:
 	@make -C ft_printf clean
 
 fclean: clean
-	rm -f server client ft_printf/libftprintf.a
+	rm -f server client server_bonus client_bonus ft_printf/libftprintf.a
 
 re: fclean all
 
