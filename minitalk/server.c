@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:13:28 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/21 15:44:37 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/21 20:04:20 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-/* function that returns the power of nb */
+/* function that returns nb at the power power */
 int	ft_pow(int nb, int power)
 {
 	int	res;
@@ -51,12 +51,13 @@ char	*ft_strchar(char *s1, char c)
 }
 
 /* handler for SIGUSR, return bit 1 if SIGUSR1 and bit 0 if SIGUSR2
-   and tranforms the result in ASCII character */
+   and tranforms the result in ASCII character to stock it in a 
+   string */
 void	sigusr_handler(int sig)
 {
 	static int	result;
 	static int	bit_count;
-	static char	*str;
+	// static char	*str;
 
 	if (sig == SIGUSR1)
 	{
@@ -68,20 +69,20 @@ void	sigusr_handler(int sig)
 
 	if (bit_count == 8)
 	{
-		// ft_printf("%c", result);
-		if (!str)
-		{
-			str = malloc(sizeof(char) * 1);
-			str[0] = result;
-		}
-		else
-			str = ft_strchar(str, result);
-		if (result == 10)
-		{
-			ft_printf("%s\n", str);
-			free(str);
-			str = NULL;
-		}
+		ft_printf("%c", result);
+		// if (!str)
+		// {
+		// 	str = malloc(sizeof(char) * 1);
+		// 	str[0] = result;
+		// }
+		// else
+		// 	str = ft_strchar(str, result);
+		// if (result == 10)
+		// {
+		// 	ft_printf("%s\n", str);
+		// 	free(str);
+		// 	str = NULL;
+		// }
 		bit_count = 0;
 		result = 0;
 	}

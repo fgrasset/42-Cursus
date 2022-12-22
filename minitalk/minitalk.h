@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:32:00 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/19 13:49:15 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/21 19:53:16 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
 
-#include "../ft_printf/ft_printf.h"
+#include "ft_printf/ft_printf.h"
 #include <unistd.h>
 #include <signal.h>
 
