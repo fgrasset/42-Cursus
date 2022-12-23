@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:13:28 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/22 17:04:17 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:22:52 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,14 @@ void	sigusr_handler(int sig)
 			str = malloc(sizeof(char) * 1);
 			str[0] = 0;
 		}
-		str = ft_strchar(str, result);
 		if (result == 0)
 		{
 			ft_printf("%s\n", str);
 			free(str);
 			str = NULL;
 		}
+		else
+			str = ft_strchar(str, result);
 		bit_count = 0;
 		result = 0;
 	}
@@ -81,23 +82,21 @@ void	sigusr_handler(int sig)
 
 /* main function, launches the server, prints the pid
    and waits until signal is received */
-int	main()
+int	main(void)
 {
-	struct sigaction action;
+	struct sigaction	action;
 
 	ft_printf("Process ID: %d\n", getpid());
-
 	action.sa_handler = &sigusr_handler;
 	action.sa_flags = SA_NODEFER;
-
 	if (sigaction(SIGUSR1, &action, NULL) || sigaction(SIGUSR2, &action, NULL))
 	{
 		ft_printf("Error using handler\n");
-		return 1;
+		return (1);
 	}
 	while (1)
 	{
 		pause();
 	}
-	return 0;
+	return (0);
 }
