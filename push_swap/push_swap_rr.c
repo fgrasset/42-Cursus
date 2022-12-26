@@ -6,20 +6,20 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/26 14:20:06 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/26 15:58:47 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* last eleement of stack A becomes first
+/* last element of stack A becomes first
    and all the elements go down one place */
 void	rra(t_list *headA)
 {
 
 }
 
-/* last eleement of stack B becomes first
+/* last element of stack B becomes first
    and all the elements go down one place */
 void	rrb(t_list *headB)
 {
