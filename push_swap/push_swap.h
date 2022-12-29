@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/28 14:44:59 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:33:26 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ typedef struct t_list
 # include "ft_printf/ft_printf.h"
 
 //linked_list
-int	add_int(t_list *head, int nb);
+void	add_int(t_list *head, int nb);
 t_list	*get_first(t_list *head);
 t_list	*get_last(t_list *head);
 void	list_free(t_list *head);
-int	check_head(t_list *head);
+int		check_head(t_list *head);
 
 
 

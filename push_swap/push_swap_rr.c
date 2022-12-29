@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/28 14:55:56 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:52:13 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,41 @@
    and all the elements go down one place */
 void	rra(t_list *head_a)
 {
+	t_list	*first;
+	t_list	*last;
+	t_list	*pre_last;
 
+	first = head_a;
+	last = get_last(head_a);
+	pre_last = last->previous;
+	head_a = last;
+	pre_last->next = NULL;
+	last->previous = NULL;
+	last->next = first;
+	first->previous = last;
 }
 
 /* last element of stack B becomes first
    and all the elements go down one place */
 void	rrb(t_list *head_b)
 {
+	t_list	*first;
+	t_list	*last;
+	t_list	*pre_last;
 
+	first = head_b;
+	last = get_last(head_b);
+	pre_last = last->previous;
+	head_b = last;
+	pre_last->next = NULL;
+	last->previous = NULL;
+	last->next = first;
+	first->previous = last;
 }
 
 /* executes rra and rrb */
 void	rrr(t_list *head_a, t_list *head_b)
 {
-
+	rra(head_a);
+	rrb(head_b);
 }
