@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/29 17:33:26 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/30 14:08:23 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 typedef struct t_list
 {
-	int				*data;
+	float			data;
+	int				flag;
 	struct t_list	*next;
 	struct t_list	*previous;
 }	t_list;

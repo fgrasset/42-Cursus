@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:39:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/29 17:52:35 by fgrasset         ###   ########.fr       */
+/*   Updated: 2022/12/30 10:20:17 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	add_int(t_list *head, int nb)
 	new_node = malloc(sizeof(t_list));
 	new_node->data = malloc(sizeof(int) * 1);
 	new_node->data = nb;
+	new_node->flag = 0;
 	new_node->next = NULL;
 	new_node->previous = current;
 	if (current == head)
