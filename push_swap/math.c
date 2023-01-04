@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:50:01 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/30 14:45:54 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:31:47 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,44 +25,47 @@ void	normalize(t_list *head, int flag)
 	current = head;
 	if (!max && !min)
 	{
-		max = max_min(head, 1);
-		min = max_min(head, 0);
+		max = max_min(head, 1, list_size(head));
+		min = max_min(head, 0, list_size(head));
 		if (min == max)
 			return ;
 	}
 	while (current)
 	{
 		if (flag == 0)
-			current->data = (current->data - min) / (max - min);
+			*(float *)current->data = (*(float *)current->data - min) \
+			/ (max - min);
 		else
-			current->data = (current->data * (max - min)) + min;
+			*(float *)current->data = (*(float *)current->data * \
+			(max - min)) + min;
 		current = current->next;
 	}
 }
 
 /* returns max of list if flag == 1,
-   returns min if flag == 0 */
-int	max_min(t_list *head, int flag)
+   returns min if flag == 0 up ot len */
+int	max_min(t_list *head, int flag, int len)
 {
-	int	 	result;
-	int		tmp;
+	int		count;
+	float	tmp;
 	t_list	*current;
 
-	result = 0;
+	count = 0;
 	tmp = 0;
-	while (current)
+	while (current && count <= len)
 	{
 		if (flag == 0)
 		{
 			tmp = 1;
-			if (current->data < tmp)
-				tmp = current->data;
+			if (*(float *)current->data < tmp)
+				tmp = *(float *)current->data;
 		}
 		else
 		{
-			if (current->data > tmp)
-				tmp = current->data;
+			if (*(float *)current->data > tmp)
+				tmp = *(float *)current->data;
 		}
+		count++;
 		current = current->next;
 	}
 	return (tmp);

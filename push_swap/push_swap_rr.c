@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/12/29 15:52:13 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:44:52 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	rra(t_list *head_a)
 	pre_last = last->previous;
 	head_a = last;
 	pre_last->next = NULL;
-	last->previous = NULL;
+	last->previous = pre_last;
 	last->next = first;
 	first->previous = last;
 }
@@ -43,7 +43,7 @@ void	rrb(t_list *head_b)
 	pre_last = last->previous;
 	head_b = last;
 	pre_last->next = NULL;
-	last->previous = NULL;
+	last->previous = pre_last;
 	last->next = first;
 	first->previous = last;
 }
