@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:50:01 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/04 11:31:47 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:10:04 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,42 @@ int	max_min(t_list *head, int flag, int len)
 		current = current->next;
 	}
 	return (tmp);
+}
+
+/* returns the max of the list */
+int	get_max(t_list *head)
+{
+	t_list *current;
+	int	max;
+
+	if (!head)
+		return (0);
+	current = head;
+	max = current->data;
+	while (current)
+	{
+		if (current->data > max)
+			max = current->data;
+		current = current->next;
+	}
+	return (max);
+}
+
+/* returns the min of the list */
+int	get_min(t_list *head)
+{
+	t_list *current;
+	int	min;
+
+	if (!head)
+		return (0);
+	current = head;
+	min = current->data;
+	while (current)
+	{
+		if (current->data < min)
+			min = current->data;
+		current = current->next;
+	}
+	return (min);
 }

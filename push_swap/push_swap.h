@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/04 11:24:51 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:24:39 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 typedef struct t_list
 {
-	float			*data;
+	int				*data;
 	int				flag;
 	struct t_list	*next;
 	struct t_list	*previous;
@@ -45,6 +45,8 @@ int		check_head(t_list *head);
 //math
 void	normalize(t_list *head, int flag);
 int		max_min(t_list *head, int flag, int len);
+int		get_max(t_list *head);
+int		get_min(t_list *head);
 
 //push_swap_utils
 int		list_size(t_list *head);
