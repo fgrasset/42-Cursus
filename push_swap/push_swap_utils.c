@@ -6,18 +6,18 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/04 10:47:10 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:12:38 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* returns the middle element in the list
-   up to size, and up to max if size = 0*/
-int	get_middle(t_list *head, int size)
-{
+// /* returns the middle element in the list
+//    up to size, and up to max if size = 0*/
+// int	get_middle(t_list *head, int size)
+// {
 
-}
+// }
 
 /* returns length of linked list */
 int	list_size(t_list *head)

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:39:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/05 13:25:20 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/09 13:41:09 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ void	add_int(t_list *head, int nb)
 	t_list	*new_node;
 	t_list	*current;
 
-	if (check_head(head))
-		current = get_last(head);
+	current = get_last(head);
 	new_node = malloc(sizeof(t_list));
-	new_node->data = malloc(sizeof(int) * 1);
 	new_node->data = nb;
 	new_node->flag = 0;
 	new_node->next = NULL;
@@ -35,8 +33,7 @@ t_list	*get_first(t_list *head)
 {
 	t_list	*first;
 
-	if (check_head(head))
-		first = head;
+	first = head;
 	return (first);
 }
 
@@ -45,8 +42,7 @@ t_list	*get_last(t_list *head)
 {
 	t_list	*last;
 
-	if (check_head(head))
-		last = head;
+	last = head;
 	while (last)
 		last = last->next;
 	return (last);
@@ -63,11 +59,9 @@ void	list_free(t_list *head)
 	{
 		current = stock;
 		stock = stock->next;
-		free(current->data);
 		free(current);
 	}
 	head = NULL;
-	return (NULL);
 }
 
 /* checks if head exists, returns true

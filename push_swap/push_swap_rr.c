@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/04 11:44:52 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/09 13:03:57 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	rra(t_list *head_a)
 	last->previous = pre_last;
 	last->next = first;
 	first->previous = last;
+	ft_printf("rra\n");
 }
 
 /* last element of stack B becomes first
@@ -46,6 +47,7 @@ void	rrb(t_list *head_b)
 	last->previous = pre_last;
 	last->next = first;
 	first->previous = last;
+	ft_printf("rrb\n");
 }
 
 /* executes rra and rrb */
@@ -53,4 +55,5 @@ void	rrr(t_list *head_a, t_list *head_b)
 {
 	rra(head_a);
 	rrb(head_b);
+	ft_printf("rrr\n");
 }
