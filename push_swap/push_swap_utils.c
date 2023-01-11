@@ -6,18 +6,26 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/09 14:12:38 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/11 11:32:57 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// /* returns the middle element in the list
-//    up to size, and up to max if size = 0*/
-// int	get_middle(t_list *head, int size)
-// {
+/* returns false if strings are the same */
+int ft_strcmp(char *str1, char *str2)
+{
+	int	i;
 
-// }
+	i = 0;
+	while (str1[i] || str2[i])
+	{
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
+	}
+	return (0);
+}
 
 /* returns length of linked list */
 int	list_size(t_list *head)

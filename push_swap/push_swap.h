@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/09 14:11:38 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:39:23 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		get_max(t_list *head);
 int		get_min(t_list *head);
 
 //push_swap_utils
+int ft_strcmp(char *str1, char *str2);
 int		list_size(t_list *head);
 int		position(t_list *head, int number);
 
