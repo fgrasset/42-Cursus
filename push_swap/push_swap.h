@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/11 14:39:23 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:28:56 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ int		get_max(t_list *head);
 int		get_min(t_list *head);
 
 //push_swap_utils
-int ft_strcmp(char *str1, char *str2);
+int 	ft_strcmp(char *str1, char *str2);
 int		list_size(t_list *head);
 int		position(t_list *head, int number);
+int 	ismaxmin(int nb);
+int		isanumber(int nb);
 
 //r
 void	ra(t_list *head_a);

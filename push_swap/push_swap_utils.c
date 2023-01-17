@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/11 11:32:57 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:29:58 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,27 @@ int	position(t_list *head, int number)
 		current = current->next;
 	}
 	return (position);
+}
+
+/* checks if nb is in int scope false if not */
+int	ismaxmin(int nb)
+{
+	if (nb > 2147483647)
+		return 0;
+	else if (nb < -2147483648)
+		return 0;
+	else
+		return 1;
+}
+
+/* returns true if it is a number, false otherwise */
+int	isanumber(int nb)
+{
+	while (nb != 0)
+	{
+		if (!isdigit(nb % 10))
+			return (0);
+		nb /= 10;
+	}
+	return (1);
 }

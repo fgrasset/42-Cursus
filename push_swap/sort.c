@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 09:35:59 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/11 13:40:12 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:08:05 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char	***actions(char *str, char stack)
 
 	if (stack == 'A')
 	{
-		// actions[0][1][index_a] = str;
 		i = -1;
 		while (str[++i])
 		{
@@ -61,7 +60,6 @@ char	***actions(char *str, char stack)
 	}
 	else if (stack == 'B')
 	{
-		// actions[1][1][index_b] = str;
 		i = -1;
 		while (str[++i])
 		{
