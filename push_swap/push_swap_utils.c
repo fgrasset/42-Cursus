@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/17 19:29:58 by fabien           ###   ########.fr       */
+/*   Updated: 2023/01/18 14:34:00 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,29 @@ int	ismaxmin(int nb)
 }
 
 /* returns true if it is a number, false otherwise */
-int	isanumber(int nb)
+int	isanumber(char *str)
 {
-	while (nb != 0)
+	int	i;
+
+	i = 0;
+	while (str[i])
 	{
-		if (!isdigit(nb % 10))
+		if (!ft_isadigit(str[i]))
 			return (0);
-		nb /= 10;
+		i++;
 	}
 	return (1);
+}
+
+/* prints the element of the list */
+void	print_list(t_list *head)
+{
+	t_list *current;
+
+	current = get_last(head);
+	while (current)
+	{
+		ft_printf("%d\n", current->data);
+		current = current->next;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 09:35:59 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/17 19:08:05 by fabien           ###   ########.fr       */
+/*   Updated: 2023/01/18 10:27:19 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	sort(t_list *head_a, t_list *head_b)
 
 /* stocks the actions to perform, put them in A or B
    depending on parameter stack (A, B)
-   if stack == C returns the lsit of actions */
+   if stack == C returns the list of actions */
 char	***actions(char *str, char stack)
 {
 	static char	***actions;

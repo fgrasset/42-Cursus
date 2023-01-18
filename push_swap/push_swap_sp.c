@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:54:59 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/09 13:04:56 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:31:35 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	pa(t_list *head_a, t_list *head_b)
 	t_list	*ele_a;
 	t_list	*ele_b;
 
-	if (!head_a || !head_b)
-		return ;
+	// if (!head_a || !head_b)
+	// 	return ;
 	ele_a = head_a;
 	ele_b = head_b;
 	head_b = ele_b->next;
@@ -85,8 +85,8 @@ void	pb(t_list *head_b, t_list *head_a)
 	t_list	*ele_a;
 	t_list	*ele_b;
 
-	if (!head_a || !head_b)
-		return ;
+	// if (!head_a || !head_b)
+	// 	return ;
 	ele_a = head_a;
 	ele_b = head_b;
 	head_a = ele_a->next;

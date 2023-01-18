@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/17 19:28:56 by fabien           ###   ########.fr       */
+/*   Updated: 2023/01/18 14:34:11 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-typedef struct t_list
-{
+typedef struct t_list {
 	int				data;
 	int				flag;
 	struct t_list	*next;
@@ -56,7 +55,8 @@ int 	ft_strcmp(char *str1, char *str2);
 int		list_size(t_list *head);
 int		position(t_list *head, int number);
 int 	ismaxmin(int nb);
-int		isanumber(int nb);
+int		isanumber(char *str);
+void	print_list(t_list *head);
 
 //r
 void	ra(t_list *head_a);
