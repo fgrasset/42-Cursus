@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/18 14:34:11 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:41:05 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct t_list {
 int	add_to_stack(t_list *head, char *str);
 
 //linked_list
-void	add_int(t_list *head, int nb);
+void	add_int(t_list **head, int nb);
 t_list	*get_first(t_list *head);
 t_list	*get_last(t_list *head);
 void	list_free(t_list *head);
