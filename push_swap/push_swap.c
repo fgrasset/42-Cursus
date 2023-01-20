@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:14 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/19 16:06:51 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:00:46 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,17 @@ int	isdouble(t_list **head, int nb)
 }
 
 /* moves half of stack A to stack B */
-void	half_to_b(t_list *head_a, t_list *head_b)
+void	half_to_b(t_list **head_a, t_list **head_b)
 {
 	int	halfa;
 	int	i;
 
-	halfa = list_size(head_a) / 2;
+	halfa = list_size(*head_a) / 2;
 	i = 0;
 	while (i < halfa)
 	{
 		pb(head_b, head_a);
+		write(1, "test", 4);
 		i++;
 	}
 }
@@ -82,11 +83,11 @@ int	main(int ac, char **av)
 		if (!array_to_add(av, &head_a))
 			return (ft_putstr_fd("Error\n", 2));
 	}
-	// half_to_b(head_a, head_b);
+	head_a->previous = get_last(&head_a);
+	half_to_b(&head_a, &head_b);
 	print_list(head_a);
 	write(1, "\n", 1);
 	print_list(head_b);
-	write(1, "test", 4);
 	// sort(head_a, head_b);
 	return (0);
 }

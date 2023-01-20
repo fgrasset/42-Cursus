@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/19 15:41:05 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:12:44 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	add_to_stack(t_list *head, char *str);
 //linked_list
 void	add_int(t_list **head, int nb);
 t_list	*get_first(t_list *head);
-t_list	*get_last(t_list *head);
+t_list	*get_last(t_list **head);
 void	list_free(t_list *head);
 int		check_head(t_list *head);
 
@@ -59,25 +59,25 @@ int		isanumber(char *str);
 void	print_list(t_list *head);
 
 //r
-void	ra(t_list *head_a);
-void	rb(t_list *head_b);
-void	rr(t_list *head_a, t_list *head_b);
+void	ra(t_list **head_a);
+void	rb(t_list **head_b);
+void	rr(t_list **head_a, t_list **head_b);
 
 //rr
-void	rra(t_list *head_a);
-void	rrb(t_list *head_b);
-void	rrr(t_list *head_a, t_list *head_b);
+void	rra(t_list **head_a);
+void	rrb(t_list **head_b);
+void	rrr(t_list **head_a, t_list **head_b);
 
 //sp
-void	sa(t_list *head_a);
-void	sb(t_list *head_b);
-void	ss(t_list *head_a, t_list *head_b);
-void	pa(t_list *head_a, t_list *head_b);
-void	pb(t_list *head_b, t_list *head_a);
+void	sa(t_list **head_a);
+void	sb(t_list **head_b);
+void	ss(t_list **head_a, t_list **head_b);
+void	pa(t_list **head_a, t_list **head_b);
+void	pb(t_list **head_b, t_list **head_a);
 
 //sort
-void	sort(t_list *head_a, t_list *head_b);
+void	sort(t_list **head_a, t_list **head_b);
 char	***actions(char *str, char stack);
-void	combine(char ***actions, t_list *head_a, t_list *head_b);
+void	combine(char ***actions, t_list **head_a, t_list **head_b);
 
 #endif

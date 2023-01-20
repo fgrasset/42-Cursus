@@ -6,33 +6,33 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 09:35:59 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/18 10:27:19 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:36:17 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* sorting algorithm doing both stack at once */
-void	sort(t_list *head_a, t_list *head_b)
+void	sort(t_list **head_a, t_list **head_b)
 {
 	int	max_a;
 	int	min_a;
 	int	max_b;
 	int	min_b;
 
-	max_a = get_max(head_a);
-	min_a = get_min(head_a);
-	max_b = get_max(head_b);
-	min_b = get_min(head_b);
-	while (head_a->data != min_a && head_a->previous->data != max_a)
+	max_a = get_max(*head_a);
+	min_a = get_min(*head_a);
+	max_b = get_max(*head_b);
+	min_b = get_min(*head_b);
+	while ((*head_a)->data != min_a && (*head_a)->previous->data != max_a)
 	{
-		if (head_a->next->data < head_a->data && head_a->data != max_a)
+		if ((*head_a)->next->data < (*head_a)->data && (*head_a)->data != max_a)
 				actions("sa", 'A');
 		actions ("ra", 'A');
 	}
-	while (head_b->data != min_b && head_b->previous->data != max_b)
+	while ((*head_b)->data != min_b && (*head_b)->previous->data != max_b)
 	{
-		if (head_b->next->data < head_b->data && head_b->data != max_b)
+		if ((*head_b)->next->data < (*head_b)->data && (*head_b)->data != max_b)
 				actions("sb", 'B');
 		actions ("rb", 'B');
 	}
@@ -75,7 +75,7 @@ char	***actions(char *str, char stack)
 }
 
 /* combines the actions and executes them */
-void	combine(char ***actions, t_list *head_a, t_list *head_b)
+void	combine(char ***actions, t_list **head_a, t_list **head_b)
 {
 	static int j;
 

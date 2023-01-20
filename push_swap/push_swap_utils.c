@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/19 14:32:37 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/20 10:52:09 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,9 @@ void	print_list(t_list *head)
 	t_list *current;
 
 	current = head;
-	printf("printlist: %d\n", head->data);
 	while (current != NULL)
 	{
-		write(1, "test", 4);
-		ft_printf("%d\n", current->data);
+		ft_printf("%d", current->data);
 		current = current->next;
 	}
 }
