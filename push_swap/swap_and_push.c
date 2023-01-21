@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_sp.c                                     :+:      :+:    :+:   */
+/*   swap_push.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:54:59 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/20 15:09:02 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:57:24 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,35 @@ void	ss(t_list **head_a, t_list **head_b)
    A is NULL */
 void	pa(t_list **head_a, t_list **head_b)
 {
-	t_list	*ele_a;
+	// t_list	*ele_a;
+	// t_list	*ele_b;
+
+	// // if (!head_a || !head_b)
+	// // 	return ;
+	// ele_a = *head_a;
+	// ele_b = *head_b;
+	// *head_b = ele_b->next;
+	// ele_b->next->previous = ele_b->previous;
+	// ele_b->next = ele_a;
+	// ele_b->previous = get_last(head_a);
+	// ele_a->previous = ele_b;
+	// *head_a = ele_b;
+	// ft_printf("pa\n");
 	t_list	*ele_b;
 
-	// if (!head_a || !head_b)
-	// 	return ;
-	ele_a = *head_a;
-	ele_b = *head_b;
-	*head_b = ele_b->next;
-	ele_b->next->previous = ele_b->previous;
-	ele_b->next = ele_a;
-	ele_b->previous = get_last(head_a);
-	ele_a->previous = ele_b;
-	*head_a = ele_b;
-	ft_printf("pa\n");
+	if(*head_b)
+	{
+		ele_b = *head_b;
+		*head_b = ele_b->next;
+		if (*head_b)
+			(*head_b)->previous = NULL;
+		ele_b->previous = NULL;
+		ele_b->next = *head_a;
+		if (*head_a)
+			(*head_a)->previous = ele_b;
+		*head_a = ele_b;
+		ft_printf("pa\n");
+	}
 }
 
 /* puts first element of list A and puts it
@@ -82,24 +97,41 @@ void	pa(t_list **head_a, t_list **head_b)
    B is NULL */
 void	pb(t_list **head_b, t_list **head_a)
 {
-	t_list	*ele_a;
-	t_list	*ele_b;
+	// t_list	*ele_a;
+	// t_list	*ele_b;
 
-	ele_a = *head_a;
-	ele_a->next->previous = ele_a->previous;
-	if (!head_b)
+	// ele_a = *head_a;
+	// ele_a->next->previous = ele_a->previous;
+	// if (!head_b)
+	// {
+	// 	*head_b = ele_a;
+	// 	*head_a = ele_a->next;
+	// 	ele_a->next = NULL;
+	// 	ele_a->previous = ele_a;
+	// 	write(1, "head", 4);
+	// 	return ;
+	// }
+	// ele_b = *head_b;
+	// *head_a = ele_a->next;
+	// ele_a->next = ele_b;
+	// ele_a->previous = ele_b->previous;
+	// write(1, "haha", 4);
+	// *head_b = ele_a;
+	// ele_b->previous = ele_a;
+	// ft_printf("pb\n");
+	t_list *ele_a;
+
+	if (*head_a)
 	{
-		*head_b = ele_a;
+		ele_a = *head_a;
 		*head_a = ele_a->next;
-		ele_a->next = NULL;
-		return ;
-	}
-	ele_b = *head_b;
-	*head_a = ele_a->next;
-	ele_a->next = ele_b;
-	ele_a->previous = ele_b->previous;
-	*head_b = ele_a;
-	ele_b->previous = ele_a;
-	write(1, "haha", 4);
-	ft_printf("pb\n");
+		if (*head_a)
+			(*head_a)->previous = NULL;
+		ele_a->previous = NULL;
+		ele_a->next = *head_b;
+		if (*head_b)
+			(*head_b)->previous = ele_a;
+		*head_b = ele_a;
+		ft_printf("pb\n");
+}
 }

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:39:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/20 14:49:28 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:20:37 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	add_int(t_list **head, int nb)
 
 	new_node = (t_list *) malloc(sizeof(t_list));
 	new_node->data = nb;
-	new_node->flag = 0;
+	new_node->index = index_calcuation(head, new_node->data);
 	new_node->next = NULL;
 	if (*head == NULL)
 	{
@@ -53,7 +53,7 @@ t_list	*get_last(t_list **head)
 	if (!*head)
 		return (NULL);
 	last = *head;
-	while (last && last->next)
+	while (last->next)
 		last = last->next;
 	return (last);
 }

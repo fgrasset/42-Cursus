@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_r.c                                      :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:13 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/20 13:34:39 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/21 19:00:05 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+// t_list	*last;
+// t_list	*first;
+
+// first = *head_a;
+// last = get_last(head_a);
+// if (!last || !first)
+// 	return ;
+// head_a = &first->next;
+// (*head_a)->previous = first;
+// first->previous = last;
+// first->next = NULL;
+// last->next = first;
 
 /* first element of stack A becomes last
    and all the others gain one place */
 void	ra(t_list **head_a)
 {
 	t_list	*last;
-	t_list	*first;
 
-	first = *head_a;
 	last = get_last(head_a);
-	if (!last || !first)
-		return ;
-	head_a = &first->next;
-	(*head_a)->previous = first;
-	first->previous = last;
-	first->next = NULL;
-	last->next = first;
+	last->next = *head_a;
+	(*head_a)->next->previous = last;
+	(*head_a)->previous = (*head_a)->next;
+	*head_a = (*head_a)->next;
+	last->next->next = NULL;
 	ft_printf("ra\n");
 }
 /* first element of stack B becomes last

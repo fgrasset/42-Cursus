@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/20 10:52:09 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:08:29 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ int ft_strcmp(char *str1, char *str2)
 }
 
 /* returns length of linked list */
-int	list_size(t_list *head)
+int	list_size(t_list **head)
 {
 	t_list	*current;
 	int		count;
 
-	if (head == NULL)
-		return (0);
 	count = 0;
-	current = head;
+	current = *head;
 	while (current)
 	{
 		count++;
@@ -91,16 +89,31 @@ int	isanumber(char *str)
 }
 
 /* prints the element of the list */
-void	print_list(t_list *head)
+void	print_list(t_list **head)
 {
 	t_list *current;
 
-	current = head;
+	current = *head;
 	while (current != NULL)
 	{
-		ft_printf("%d", current->data);
+		ft_printf("%d ", current->data);
 		current = current->next;
 	}
+	write(1, "\n", 1);
+}
+
+/*prints the index */
+void	print_list_index(t_list **head)
+{
+	t_list *current;
+
+	current = *head;
+	while (current != NULL)
+	{
+		ft_printf("%d ", current->index);
+		current = current->next;
+	}
+	write(1, "\n", 1);
 }
 
 // void print(t_list *head) {

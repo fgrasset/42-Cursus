@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:14 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/20 15:00:46 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/21 18:54:27 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ void	half_to_b(t_list **head_a, t_list **head_b)
 	int	halfa;
 	int	i;
 
-	halfa = list_size(*head_a) / 2;
+	halfa = list_size(head_a) / 2;
 	i = 0;
 	while (i < halfa)
 	{
 		pb(head_b, head_a);
-		write(1, "test", 4);
 		i++;
 	}
+	(*head_a)->previous = get_last(head_a);
+	(*head_b)->previous = get_last(head_b);
 }
 
 /* adds an array to the stack A
@@ -66,8 +67,8 @@ int	array_to_add(char **nb, t_list **head)
 /* launches the program */
 int	main(int ac, char **av)
 {
-	static t_list	*head_a;
-	static t_list	*head_b;
+	t_list	*head_a;
+	t_list	*head_b;
 
 	head_a = NULL,
 	head_b = NULL;
@@ -84,10 +85,13 @@ int	main(int ac, char **av)
 			return (ft_putstr_fd("Error\n", 2));
 	}
 	head_a->previous = get_last(&head_a);
-	half_to_b(&head_a, &head_b);
-	print_list(head_a);
-	write(1, "\n", 1);
-	print_list(head_b);
-	// sort(head_a, head_b);
+	print_list(&head_a);
+	printf("max: %d\n", get_max(&head_a));
+	printf("min: %d\n", get_min(&head_a));
+	printf("size: %d\n", list_size(&head_a));
+	// print_list_index(&head_a);
+	// printf("head_a.previous: %d\n head_b.previous: %d\n", head_a->previous->data, head_b->previous->data);
+	sort(&head_a, &head_b);
+	print_list(&head_a);
 	return (0);
 }
