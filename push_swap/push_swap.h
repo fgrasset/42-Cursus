@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/21 17:08:35 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:15:40 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct t_list {
 //linked_list
 void	add_int(t_list **head, int nb);
 t_list	*get_first(t_list *head);
-t_list	*get_last(t_list **head);
+t_list	*get_last(t_list *head);
 void	list_free(t_list *head);
 int		check_head(t_list *head);
 

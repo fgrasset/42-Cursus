@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 09:35:59 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/21 18:57:35 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:16:14 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ int	isordered(t_list **head)
 	min = 0;
 	while (current)
 	{
+		write(1, "test", 4);
 		if (current->index != min)
 			return (0);
 		++min;
@@ -190,28 +191,33 @@ void	sort(t_list **head_a, t_list **head_b)
 {
 	static int	bit_position;
 	t_list		*current;
+	// t_list		*listb;
 
 	while (!isordered(head_a))
 	{
 		current = *head_a;
 		sleep(1);
+		write(1, "---------------\n", 16);
+		write(1, "list A: ", 8);
 		print_list(head_a);
 		while (current)
 		{
 			if (to_push(current->index, bit_position))
 				pb(head_b, head_a);
-			ra(head_a);
+			else
+				ra(head_a);
 			current = current->next;
 		}
-		write(1, "test", 4);
-		current = *head_b;
+		// listb = *head_b;
+		write(1, "list B: ", 8);
 		print_list(head_b);
-		while (current)
+		while (head_b)
 		{
 			pa(head_a, head_b);
-			current = current->next;
+			// listb = listb->next;
 		}
 		++bit_position;
+		printf("bit_positioin: %d\n", bit_position);
 	}
 }
 

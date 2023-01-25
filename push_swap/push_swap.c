@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:14 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/21 18:54:27 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:12:59 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,21 @@ int	isdouble(t_list **head, int nb)
 }
 
 /* moves half of stack A to stack B */
-void	half_to_b(t_list **head_a, t_list **head_b)
-{
-	int	halfa;
-	int	i;
+// void	half_to_b(t_list **head_a, t_list **head_b)
+// {
+// 	int	halfa;
+// 	int	i;
 
-	halfa = list_size(head_a) / 2;
-	i = 0;
-	while (i < halfa)
-	{
-		pb(head_b, head_a);
-		i++;
-	}
-	(*head_a)->previous = get_last(head_a);
-	(*head_b)->previous = get_last(head_b);
-}
+// 	halfa = list_size(head_a) / 2;
+// 	i = 0;
+// 	while (i < halfa)
+// 	{
+// 		pb(head_b, head_a);
+// 		i++;
+// 	}
+// 	(*head_a)->previous = get_last(head_a);
+// 	(*head_b)->previous = get_last(head_b);
+// }
 
 /* adds an array to the stack A
 	returns false if error, true otherwise */
@@ -84,12 +84,13 @@ int	main(int ac, char **av)
 		if (!array_to_add(av, &head_a))
 			return (ft_putstr_fd("Error\n", 2));
 	}
-	head_a->previous = get_last(&head_a);
+	// head_a->previous = get_last(&head_a);
 	print_list(&head_a);
 	printf("max: %d\n", get_max(&head_a));
 	printf("min: %d\n", get_min(&head_a));
 	printf("size: %d\n", list_size(&head_a));
-	// print_list_index(&head_a);
+	print_list_index(&head_a);
+	// ra(&head_a);
 	// printf("head_a.previous: %d\n head_b.previous: %d\n", head_a->previous->data, head_b->previous->data);
 	sort(&head_a, &head_b);
 	print_list(&head_a);
