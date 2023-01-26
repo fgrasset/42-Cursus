@@ -6,11 +6,30 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:13 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/25 16:15:18 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:36:46 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/* first element of stack A becomes last
+   and all the others gain one place */
+void	ra(t_list **head_a)
+{
+	t_list	*last;
+	t_list	*second;
+	t_list	*first;
+
+	second = (*head_a)->next;
+	last = get_last(*head_a);
+	first = *head_a;
+
+	last->next = first;
+	last->next->next = NULL;
+	*head_a = second;
+	ft_printf("ra\n");
+}
+
 // t_list	*last;
 // t_list	*first;
 
@@ -23,24 +42,6 @@
 // first->previous = last;
 // first->next = NULL;
 // last->next = first;
-
-/* first element of stack A becomes last
-   and all the others gain one place */
-void	ra(t_list **head_a)
-{
-	t_list	*last;
-	t_list	*second;
-
-	second = (*head_a)->next;
-	last = get_last(*head_a);
-	(*head_a)->next = NULL;
-	last->next = (*head_a);
-	// (*head_a)->next->previous = last;
-	// (*head_a)->previous = (*head_a)->next;
-	*head_a = second;
-	// first->next = NULL;
-	ft_printf("ra\n");
-}
 
 // void ra(t_list **head)
 // {

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:50:01 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/21 14:24:02 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:12:45 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,36 +71,36 @@
 // 	return (tmp);
 // }
 
-/* returns the max of the list */
-int	get_max(t_list **head)
-{
-	t_list	*current;
-	int		max;
+// /* returns the max of the list */
+// int	get_max(t_list **head)
+// {
+// 	t_list	*current;
+// 	int		max;
 
-	current = *head;
-	max = current->data;
-	while (current)
-	{
-		if (current->data > max)
-			max = current->data;
-		current = current->next;
-	}
-	return (max);
-}
+// 	current = *head;
+// 	max = current->data;
+// 	while (current)
+// 	{
+// 		if (current->data > max)
+// 			max = current->data;
+// 		current = current->next;
+// 	}
+// 	return (max);
+// }
 
-/* returns the min of the list */
-int	get_min(t_list **head)
-{
-	t_list	*current;
-	int		min;
+// /* returns the min of the list */
+// int	get_min(t_list **head)
+// {
+// 	t_list	*current;
+// 	int		min;
 
-	current = *head;
-	min = current->data;
-	while (current)
-	{
-		if (current->data < min)
-			min = current->data;
-		current = current->next;
-	}
-	return (min);
-}
+// 	current = *head;
+// 	min = current->data;
+// 	while (current)
+// 	{
+// 		if (current->data < min)
+// 			min = current->data;
+// 		current = current->next;
+// 	}
+// 	return (min);
+// }

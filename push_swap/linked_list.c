@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:39:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/25 10:49:59 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:13:22 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,6 @@ void	add_int(t_list **head, int nb)
     // new_node->previous = current;
 }
 
-/* gets the first element of the linked list */
-t_list	*get_first(t_list *head)
-{
-	t_list	*first;
-
-	if (!head)
-		return(head);
-	first = head;
-	return (first);
-}
 
 /* gets last element of the linked list */
 t_list	*get_last(t_list *head)
@@ -59,12 +49,12 @@ t_list	*get_last(t_list *head)
 }
 
 /*frees list entirely */
-void	list_free(t_list *head)
+void	list_free(t_list **head)
 {
 	t_list	*current;
 	t_list	*stock;
 
-	stock = head;
+	stock = *head;
 	while (stock != NULL)
 	{
 		current = stock;
@@ -72,14 +62,25 @@ void	list_free(t_list *head)
 
 		free(current);
 	}
-	head = NULL;
+	*head = NULL;
 }
 
-/* checks if head exists, returns true
-	if it does, false otherwise */
-int	check_head(t_list *head)
-{
-	if (head == 0)
-		return (0);
-	return (1);
-}
+// /* checks if head exists, returns true
+// 	if it does, false otherwise */
+// int	check_head(t_list *head)
+// {
+// 	if (head == 0)
+// 		return (0);
+// 	return (1);
+// }
+
+// /* gets the first element of the linked list */
+// t_list	*get_first(t_list *head)
+// {
+// 	t_list	*first;
+
+// 	if (!head)
+// 		return(head);
+// 	first = head;
+// 	return (first);
+// }

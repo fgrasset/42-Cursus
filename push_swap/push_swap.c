@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:14 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/25 11:12:59 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:39:07 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,6 @@ int	isdouble(t_list **head, int nb)
 	}
 	return (0);
 }
-
-/* moves half of stack A to stack B */
-// void	half_to_b(t_list **head_a, t_list **head_b)
-// {
-// 	int	halfa;
-// 	int	i;
-
-// 	halfa = list_size(head_a) / 2;
-// 	i = 0;
-// 	while (i < halfa)
-// 	{
-// 		pb(head_b, head_a);
-// 		i++;
-// 	}
-// 	(*head_a)->previous = get_last(head_a);
-// 	(*head_b)->previous = get_last(head_b);
-// }
 
 /* adds an array to the stack A
 	returns false if error, true otherwise */
@@ -69,6 +52,7 @@ int	main(int ac, char **av)
 {
 	t_list	*head_a;
 	t_list	*head_b;
+	// t_list	*current;
 
 	head_a = NULL,
 	head_b = NULL;
@@ -85,14 +69,45 @@ int	main(int ac, char **av)
 			return (ft_putstr_fd("Error\n", 2));
 	}
 	// head_a->previous = get_last(&head_a);
-	print_list(&head_a);
-	printf("max: %d\n", get_max(&head_a));
-	printf("min: %d\n", get_min(&head_a));
-	printf("size: %d\n", list_size(&head_a));
-	print_list_index(&head_a);
+	write(1, "stack A:", 8);
+	print_list(head_a);
+	write(1, "index A:", 8);
+
+	// print_list_index(head_a);
 	// ra(&head_a);
-	// printf("head_a.previous: %d\n head_b.previous: %d\n", head_a->previous->data, head_b->previous->data);
+	// pb(&head_b, &head_a);
+	// printf("head.a: %d\nhead_a.next: %d\nhead_a.next.next: %d\n", head_a->data, head_a->next->data, head_a->next->next->data);
+	// current = head_a;
+	// pa(&head_a, &head_b);
+	// printf("head.a: %d\nhead_a.next: %d\nhead_a.next.next: %d\n", head_a->data, head_a->next->data, head_a->next->next->data);
+
 	sort(&head_a, &head_b);
-	print_list(&head_a);
+	write(1, "stack A:", 8);
+
+	// while (current)
+	// {
+	// 	printf("%d", current->data);
+	// 	current = current->next;
+	// }
+	// write(1, "\n", 1);
+
+	print_list(head_a);
 	return (0);
 }
+
+/* moves half of stack A to stack B */
+// void	half_to_b(t_list **head_a, t_list **head_b)
+// {
+// 	int	halfa;
+// 	int	i;
+
+// 	halfa = list_size(head_a) / 2;
+// 	i = 0;
+// 	while (i < halfa)
+// 	{
+// 		pb(head_b, head_a);
+// 		i++;
+// 	}
+// 	(*head_a)->previous = get_last(head_a);
+// 	(*head_b)->previous = get_last(head_b);
+// }

@@ -6,11 +6,99 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 09:35:59 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/25 16:16:14 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:46:39 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+
+/* returns the index of the number and actualize the others */
+int	index_calcuation(t_list **head, int nb)
+{
+	t_list	*current;
+	int		i;
+
+	i = 0;
+	if (!head)
+		return (0);
+	current = *head;
+	while (current)
+	{
+		if (current->data > nb)
+			current->index += 1;
+		else
+			i++;
+		current = current->next;
+	}
+	return	(i);
+}
+
+/* returns true if numbers needs to be pushed
+   meaning that the bit == 0 */
+int	to_push(int nb, int i)
+{
+	if ((nb >> i) & 1)
+		return (0);
+	return (1);
+}
+
+/* returns true if list is ordered */
+int	isordered(t_list *head)
+{
+	t_list	*current;
+	int		min;
+
+	current = head;
+	min = 0;
+	while (current)
+	{
+		if (current->index != min)
+			return (0);
+		++min;
+		current = current->next;
+	}
+	return(1);
+}
+
+/* sorting algorithm */
+void	sort(t_list **head_a, t_list **head_b)
+{
+	static int	bit_position;
+	t_list		*current;
+	int			size;
+	int			i;
+
+	while (!isordered(*head_a))
+	{
+		size = list_size(*head_a);
+		i = -1;
+		current = *head_a;
+		sleep(1);
+		write(1, "---------------\n", 16);
+		write(1, "list A: ", 8);
+		print_list(*head_a);
+		while (++i < size)
+		{
+			current = *head_a;
+			if (to_push(current->index, bit_position))
+				pb(head_b, head_a);
+			else
+				ra(head_a);
+			current = current->next;
+		}
+		size = list_size(*head_b);
+		write(1, "list B: ", 8);
+		print_list(*head_b);
+		while (--size >= 0)
+		{
+			pa(head_a, head_b);
+		}
+		write(1, "test", 4);
+		++bit_position;
+		printf("bit_positioin: %d\n", bit_position);
+	}
+}
 
 // /* sorting algorithm doing both stack at once */
 // void	sort(t_list **head_a, t_list **head_b)
@@ -136,90 +224,6 @@
 // 		current = current->next;
 // 	}
 // }
-
-/* returns the index of the number and actualize the others */
-int	index_calcuation(t_list **head, int nb)
-{
-	t_list	*current;
-	int		i;
-
-	i = 0;
-	if (!head)
-		return (0);
-	current = *head;
-	while (current)
-	{
-		if (current->data > nb)
-			current->index += 1;
-		else
-			i++;
-		current = current->next;
-	}
-	return	(i);
-}
-
-/* returns true if numbers needs to be pushed
-   meaning that the bit == 0 */
-int	to_push(int nb, int i)
-{
-	if ((nb >> i) & 1)
-		return (0);
-	return (1);
-}
-
-/* returns true if list is ordered */
-int	isordered(t_list **head)
-{
-	t_list	*current;
-	int		min;
-
-	current = *head;
-	min = 0;
-	while (current)
-	{
-		write(1, "test", 4);
-		if (current->index != min)
-			return (0);
-		++min;
-		current = current->next;
-	}
-	return(1);
-}
-
-/* sorting algorithm */
-void	sort(t_list **head_a, t_list **head_b)
-{
-	static int	bit_position;
-	t_list		*current;
-	// t_list		*listb;
-
-	while (!isordered(head_a))
-	{
-		current = *head_a;
-		sleep(1);
-		write(1, "---------------\n", 16);
-		write(1, "list A: ", 8);
-		print_list(head_a);
-		while (current)
-		{
-			if (to_push(current->index, bit_position))
-				pb(head_b, head_a);
-			else
-				ra(head_a);
-			current = current->next;
-		}
-		// listb = *head_b;
-		write(1, "list B: ", 8);
-		print_list(head_b);
-		while (head_b)
-		{
-			pa(head_a, head_b);
-			// listb = listb->next;
-		}
-		++bit_position;
-		printf("bit_positioin: %d\n", bit_position);
-	}
-}
 
 // void sort(t_list **head_a, t_list **head_b)
 // {
