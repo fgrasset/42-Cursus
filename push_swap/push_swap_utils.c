@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/28 12:48:15 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/30 10:37:36 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	isanumber(char *str)
 /* prints the element of the list */
 void	print_list(t_list *head)
 {
-	t_list *current;
+	t_list	*current;
 
 	current = head;
 	while (current != NULL)
@@ -46,7 +46,7 @@ void	print_list(t_list *head)
 /*prints the index */
 void	print_list_index(t_list *head)
 {
-	t_list *current;
+	t_list	*current;
 
 	current = head;
 	while (current != NULL)
@@ -71,4 +71,22 @@ int	list_size(t_list *head)
 		current = current->next;
 	}
 	return (count);
+}
+
+/* free the split and returns the flag int
+   if condition == "f", frees otherwise not */
+int	free_split(char **tofree, int flag, char condition)
+{
+	int	i;
+
+	if (condition == 'f')
+	{
+		i = -1;
+		while (tofree[++i])
+		{
+			free(tofree[i]);
+		}
+		free(tofree);
+	}
+	return (flag);
 }

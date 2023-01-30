@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:39:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/28 12:47:51 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/30 09:33:19 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ void	add_int(t_list **head, int nb)
 		return ;
 	}
 	current = get_last(*head);
-    current->next = new_node;
+	current->next = new_node;
 }
-
 
 /* returns last element of the linked list */
 t_list	*get_last(t_list *head)

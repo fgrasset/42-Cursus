@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:49:48 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/28 14:41:26 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/30 14:06:28 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sort_3(t_list **head)
 	if ((*head)->index == 0 & (*head)->next->index == 2)
 	{
 		sa(head);
-		rra(head);
+		ra(head);
 	}
 	else if ((*head)->index == 1 & (*head)->next->index == 0)
 		sa(head);
@@ -58,6 +58,8 @@ void	sort_5(t_list **head_a, t_list **head_b)
 {
 	t_list	*current;
 
+	print_list_index(*head_a);
+	current = *head_a;
 	while ((*head_a)->index != 0)
 		ra(head_a);
 	pb(head_b, head_a);

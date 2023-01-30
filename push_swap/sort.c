@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 09:35:59 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/28 13:09:57 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/30 09:34:46 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	index_calcuation(t_list **head, int nb)
 			i++;
 		current = current->next;
 	}
-	return	(i);
+	return (i);
 }
 
 /* returns true if numbers needs to be pushed
@@ -57,7 +57,7 @@ int	isordered(t_list *head)
 		++min;
 		current = current->next;
 	}
-	return(1);
+	return (1);
 }
 
 /* sorting algorithm */
@@ -72,7 +72,6 @@ void	sort(t_list **head_a, t_list **head_b)
 	{
 		size = list_size(*head_a);
 		i = -1;
-		current = *head_a;
 		while (++i < size)
 		{
 			current = *head_a;
@@ -80,7 +79,6 @@ void	sort(t_list **head_a, t_list **head_b)
 				pb(head_b, head_a);
 			else
 				ra(head_a);
-			current = current->next;
 		}
 		size = list_size(*head_b);
 		while (--size >= 0)

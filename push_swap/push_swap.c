@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:14 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/28 14:58:17 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/30 14:53:27 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,14 @@ int	isoutrange(char *nb)
 	int			i;
 
 	number = 0;
-	i = 0;
+	i = -1;
 	len = ft_strlen(nb);
 	sgn = 1;
 	if (nb[0] == '-')
+	{
 		sgn = -1;
-	if (nb[0] != '-')
-		i = -1;
+		i++;
+	}
 	while (++i < len)
 	{
 		if (!ft_isadigit(nb[i]))
@@ -58,8 +59,9 @@ int	isoutrange(char *nb)
 }
 
 /* adds an array to the stack A
-	returns false if error, true otherwise */
-int	array_to_add(char **nb, t_list **head, int flag)
+	returns false if error, true otherwise
+	condition free if split, none otherwise */
+int	array_to_add(char **nb, t_list **head, int flag, char condition)
 {
 	int	i;
 
@@ -69,14 +71,14 @@ int	array_to_add(char **nb, t_list **head, int flag)
 	while (nb[++i])
 	{
 		if (isoutrange(nb[i]))
-			return (0);
+			return (free_split(nb, 0, condition));
 		if (!isanumber(nb[i]))
-			return (0);
+			return (free_split(nb, 0, condition));
 		if (isdouble(head, ft_atoi(nb[i])))
-			return (0);
+			return (free_split(nb, 0, condition));
 		add_int(head, ft_atoi(nb[i]));
 	}
-	return (1);
+	return (free_split(nb, 1, condition));
 }
 
 /* choses the good sorting algorithm
@@ -86,7 +88,9 @@ void	choose_sorting(t_list **head_a, t_list **head_b)
 	int	size;
 
 	size = list_size(*head_a);
-	if (size <= 2)
+	if (size <= 1)
+		return ;
+	else if (size == 2)
 	{
 		if (!isordered(*head_a))
 			sa(head_a);
@@ -107,16 +111,16 @@ int	main(int ac, char **av)
 	static t_list	*head_a;
 	static t_list	*head_b;
 
-	if (ac == 1)
+	if (ac == 1 || av[1] == NULL)
 		return (0);
 	else if (ac == 2)
 	{
-		if (!array_to_add(ft_split(av[1], ' '), &head_a, 0))
+		if (!array_to_add(ft_split(av[1], ' '), &head_a, 0, 'f'))
 			return (ft_putstr_fd("Error\n", 2));
 	}
 	else
 	{
-		if (!array_to_add(av, &head_a, 1))
+		if (!array_to_add(av, &head_a, 1, ' '))
 			return (ft_putstr_fd("Error\n", 2));
 	}
 	choose_sorting(&head_a, &head_b);

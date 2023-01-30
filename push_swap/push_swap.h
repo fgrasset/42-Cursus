@@ -6,24 +6,22 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/28 14:40:31 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/30 10:38:09 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdlib.h>
+# include <unistd.h>
+# include "ft_printf/ft_printf.h"
+
 typedef struct t_list {
 	int				data;
 	int				index;
 	struct t_list	*next;
 }	t_list;
-
-
-# include <stdlib.h>
-# include <unistd.h>
-# include "ft_printf/ft_printf.h"
-
 
 //linked_list
 void	add_int(t_list **head, int nb);
@@ -35,6 +33,7 @@ int		list_size(t_list *head);
 int		isanumber(char *str);
 void	print_list(t_list *head);
 void	print_list_index(t_list *head);
+int		free_split(char **tofree, int flag, char condition);
 
 //rotate
 void	ra(t_list **head_a);
@@ -57,6 +56,5 @@ int		isordered(t_list *head);
 void	sort_3(t_list **head);
 void	sort_4(t_list **head_a, t_list **head_b);
 void	sort_5(t_list **head_a, t_list **head_b);
-
 
 #endif

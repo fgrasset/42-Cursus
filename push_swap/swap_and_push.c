@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:54:59 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/28 13:34:51 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/30 09:35:04 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	pa(t_list **head_a, t_list **head_b)
 {
 	t_list	*ele_b;
 
-	if(*head_b)
+	if (*head_b)
 	{
 		ele_b = *head_b;
 		*head_b = ele_b->next;
@@ -34,7 +34,7 @@ void	pa(t_list **head_a, t_list **head_b)
    B is NULL */
 void	pb(t_list **head_b, t_list **head_a)
 {
-	t_list *ele_a;
+	t_list	*ele_a;
 
 	if (*head_a)
 	{
