@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/30 09:13:58 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/30 20:16:27 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	rra(t_list **head_a)
 	pre_last->next = NULL;
 	last->next = first;
 	*head_a = last;
-	ft_printf("ra\n");
+	ft_printf("rra\n");
 }

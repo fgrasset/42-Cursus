@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/30 10:38:09 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:58:27 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		to_push(int nb, int i);
 int		isordered(t_list *head);
 
 //sort small
+int		position(t_list *head, int nb);
 void	sort_3(t_list **head);
 void	sort_4(t_list **head_a, t_list **head_b);
 void	sort_5(t_list **head_a, t_list **head_b);
