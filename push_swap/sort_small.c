@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:49:48 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/30 20:16:17 by fabien           ###   ########.fr       */
+/*   Updated: 2023/02/02 16:28:15 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,62 +31,49 @@ int	position(t_list *head, int nb)
 }
 
 /* sorting algorithm for 3 numbers */
-void	sort_3(t_list **head)
+void	sort_3(t_list **head, int base)
 {
-	print_list_index(*head);
-	printf("head.index: %d\nhead.next.index: %d\n", (*head)->index, (*head)->next->index);
 	if (isordered(*head))
 		return ;
-	if ((*head)->index == 0 && (*head)->next->index == 2)
+	if ((*head)->index == base && (*head)->next->index == base + 2)
 	{
 		sa(head);
 		ra(head);
 	}
-	else if ((*head)->index == 1 && (*head)->next->index == 0)
+	else if ((*head)->index == base + 1 && (*head)->next->index == base)
 		sa(head);
-	else if ((*head)->index == 1 && (*head)->next->index == 2)
+	else if ((*head)->index == base + 1 && (*head)->next->index == base + 2)
 		rra(head);
-	else if ((*head)->index == 2 && (*head)->next->index == 1)
+	else if ((*head)->index == base + 2 && (*head)->next->index == base + 1)
 	{
 		ra(head);
 		sa(head);
 	}
-	else if ((*head)->index == 2 && (*head)->next->index == 0)
+	else if ((*head)->index == base + 2 && (*head)->next->index == base)
 		ra(head);
 }
 
 /* sorting algorithm for 4 numbers */
-void	sort_4(t_list **head_a, t_list **head_b)
+void	sort_4(t_list **head_a, t_list **head_b, int base)
 {
-	t_list	*current;
-
-	if (position(*head_a, 0) < 2)
+	if (position(*head_a, base) < 2)
 	{
-		while ((*head_a)->index != 0)
+		while ((*head_a)->index != base)
 			ra(head_a);
 	}
 	else
 	{
-		while ((*head_a)->index != 0)
+		while ((*head_a)->index != base)
 			rra(head_a);
 	}
 	pb(head_b, head_a);
-	current = *head_a;
-	while (current)
-	{
-		current->index -= 1;
-		current = current->next;
-	}
-	sort_3(head_a);
+	sort_3(head_a, base + 1);
 	pa(head_a, head_b);
 }
 
 /* sorting algorithm for 5 numbers */
 void	sort_5(t_list **head_a, t_list **head_b)
 {
-	t_list	*current;
-
-	current = *head_a;
 	if (position(*head_a, 0) < 3)
 	{
 		while ((*head_a)->index != 0)
@@ -98,12 +85,6 @@ void	sort_5(t_list **head_a, t_list **head_b)
 			rra(head_a);
 	}
 	pb(head_b, head_a);
-	current = *head_a;
-	while (current)
-	{
-		current->index -= 1;
-		current = current->next;
-	}
-	sort_4(head_a, head_b);
+	sort_4(head_a, head_b, 1);
 	pa(head_a, head_b);
 }

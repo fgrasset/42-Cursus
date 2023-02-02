@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "push_swap.h"
+// #include "push_swap.h"
 
 /* checks if nb is in int scope false if not */
 int	ismaxmin(int nb)
@@ -29,13 +29,17 @@ int	isanumber(int nb)
 	return (1);
 }
 
+int	to_push(int nb, int i)
+{
+	if ((nb >> i) & 1)
+		return (0);
+	return (1);
+}
+
 int	main(int ac, char **av)
 {
 	(void) ac;
+	(void) av;
 
-	printf("%d\n", atoi(av[1]));
-	if (isanumber(atoi(av[1])))
-		printf("%s\n", "true");
-	else
-		printf("%s\n", "false");
+	printf("%d\n", to_push(48, 3));
 }

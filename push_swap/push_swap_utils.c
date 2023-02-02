@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:55:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/30 10:37:36 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/02 16:31:15 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	isanumber(char *str)
 	int	i;
 
 	i = 0;
-	if (str[0] == '-')
+	if (str[0] == '-' && ft_isadigit(str[1]))
 		i++;
 	while (str[i])
 	{

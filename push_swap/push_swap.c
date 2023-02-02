@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:14 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/01/30 20:06:34 by fabien           ###   ########.fr       */
+/*   Updated: 2023/02/02 16:28:27 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* returns true if nb is a double, false otherwise */
-int	isdouble(t_list **head, int nb)
+int	isdouble(t_list *head, int nb)
 {
 	t_list	*current;
 
-	if (!head)
-		return (1);
-	current = *head;
+	current = head;
 	while (current)
 	{
 		if (current->data == nb)
@@ -74,7 +72,7 @@ int	array_to_add(char **nb, t_list **head, int flag, char condition)
 			return (free_split(nb, 0, condition));
 		if (!isanumber(nb[i]))
 			return (free_split(nb, 0, condition));
-		if (isdouble(head, ft_atoi(nb[i])))
+		if (isdouble(*head, ft_atoi(nb[i])))
 			return (free_split(nb, 0, condition));
 		add_int(head, ft_atoi(nb[i]));
 	}
@@ -96,9 +94,9 @@ void	choose_sorting(t_list **head_a, t_list **head_b)
 			sa(head_a);
 	}
 	else if (size == 3)
-		sort_3(head_a);
+		sort_3(head_a, 0);
 	else if (size == 4)
-		sort_4(head_a, head_b);
+		sort_4(head_a, head_b, 0);
 	else if (size == 5)
 		sort_5(head_a, head_b);
 	else
