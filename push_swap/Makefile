@@ -4,7 +4,9 @@ OBJECTS = $(SOURCES:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 
-all: push_swap
+NAME = push_swap
+
+all: ${NAME}
 
 push_swap: *.o ft_printf/libftprintf.a
 	$(CC) -o $@ $^

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 13:40:14 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/02 16:28:27 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/08 08:52:53 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,21 @@ void	choose_sorting(t_list **head_a, t_list **head_b)
 	int	size;
 
 	size = list_size(*head_a);
-	if (size <= 1)
-		return ;
-	else if (size == 2)
+	if (!isordered(*head_a))
 	{
-		if (!isordered(*head_a))
-			sa(head_a);
+		if (size <= 1)
+			return ;
+		else if (size == 2)
+				sa(head_a);
+		else if (size == 3)
+			sort_3(head_a, 0);
+		else if (size == 4)
+			sort_4(head_a, head_b, 0);
+		else if (size == 5)
+			sort_5(head_a, head_b);
+		else
+			sort(head_a, head_b);
 	}
-	else if (size == 3)
-		sort_3(head_a, 0);
-	else if (size == 4)
-		sort_4(head_a, head_b, 0);
-	else if (size == 5)
-		sort_5(head_a, head_b);
-	else
-		sort(head_a, head_b);
 }
 
 /* launches the program */
