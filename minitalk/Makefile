@@ -6,30 +6,30 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 all: server client server_bonus client_bonus
 
-server_bonus: server_bonus.o ft_printf/libftprintf.a
+server_bonus: server_bonus.o libft/libft.a
 	$(CC) -o $@ $^
 
-client_bonus: client_bonus.o ft_printf/libftprintf.a
+client_bonus: client_bonus.o libft/libft.a
 	$(CC) -o $@ $^
 
-server: server.o ft_printf/libftprintf.a
+server: server.o libft/libft.a
 	$(CC) -o $@ $^
 
-client: client.o ft_printf/libftprintf.a
-	$(CC) -o $@ $^ 
+client: client.o libft/libft.a
+	$(CC) -o $@ $^
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $?
 
-ft_printf/libftprintf.a:
-	@make -C ft_printf
+libft/libft.a:
+	@make -C libft
 
 clean:
 	rm -f $(OBJECTS)
-	@make -C ft_printf clean
+	@make -C libft clean
 
 fclean: clean
-	rm -f server client server_bonus client_bonus ft_printf/libftprintf.a
+	rm -f server client server_bonus client_bonus libft/libft.a
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:12:03 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/14 12:52:26 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:00:17 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include "Libft/libft.h"
+# include "../libft.h"
 
 int	ft_printf(const char *string, ...);
 int	printf_c(char c);

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:08:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/07 12:59:05 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:07:16 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # include <string.h>
 # include <stdio.h>
 # include <ctype.h>
-# include <stdlib.h> 
-# include <unistd.h> 
+# include <stdlib.h>
+# include <unistd.h>
+# include "ft_printf/ft_printf.h"
+# include "get_next_line/get_next_line.h"
 
 size_t	ft_strlen(const char *s);
 void	*ft_memset(void *b, int c, size_t len);
