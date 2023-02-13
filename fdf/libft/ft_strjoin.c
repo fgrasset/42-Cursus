@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/13 15:12:47 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/10/31 16:56:45 by fgrasset          #+#    #+#             */
+/*   Updated: 2022/11/07 13:02:20 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "mlx/mlx.h"
-# include <math.h>
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	i;
+	char	*ptr;
 
-/* struct to get the data fo fdf */
-typedef struct s_data {
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-	int		**map;
-}				t_data;
-
-/* struct to create a matrix */
-typedef struct s_matrix {
-	int	i;
-	int	j;
-}				t_matrix;
-
-#endif
+	i = -1;
+	ptr = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
+	while (s1[++i])
+		ptr[i] = s1[i];
+	i--;
+	while (s2[++i - ft_strlen(s1)])
+		ptr[i] = s2[i - ft_strlen(s1)];
+	ptr[i] = '\0';
+	return (ptr);
+}

@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/13 15:12:47 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/10/31 14:33:50 by fgrasset          #+#    #+#             */
+/*   Updated: 2022/11/07 13:01:58 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "mlx/mlx.h"
-# include <math.h>
-
-/* struct to get the data fo fdf */
-typedef struct s_data {
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-	int		**map;
-}				t_data;
-
-/* struct to create a matrix */
-typedef struct s_matrix {
+void	ft_putstr_fd(char *s, int fd)
+{
 	int	i;
-	int	j;
-}				t_matrix;
 
-#endif
+	i = -1;
+	while (s[++i])
+		ft_putchar_fd(s[i], fd);
+}

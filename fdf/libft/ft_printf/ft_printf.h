@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/13 15:12:47 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/11/10 15:12:03 by fgrasset          #+#    #+#             */
+/*   Updated: 2023/02/10 14:00:17 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-# include "mlx/mlx.h"
-# include <math.h>
+# include <stdarg.h>
+# include "../libft.h"
 
-/* struct to get the data fo fdf */
-typedef struct s_data {
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-	int		**map;
-}				t_data;
-
-/* struct to create a matrix */
-typedef struct s_matrix {
-	int	i;
-	int	j;
-}				t_matrix;
+int	ft_printf(const char *string, ...);
+int	printf_c(char c);
+int	printf_s(char *s);
+int	printf_d(int n);
+int	printf_u(unsigned int n);
+int	printf_x(unsigned int n);
+int	printf_xx(unsigned int n);
+int	printf_p(unsigned long cpy);
 
 #endif

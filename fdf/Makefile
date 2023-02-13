@@ -1,32 +1,75 @@
-SOURCES = $(wildcard *.c)
-OBJECTS = $(SOURCES:.c=.o)
+# SOURCES = $(wildcard */*.c *.c)
+# OBJECTS = $(SOURCES:.c=.o)
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Imlx $< -o $@
+# CC = gcc
+# CFLAGS = -Wall -Wextra -g
 
-NAME = push_swap
+# NAME = fdf.a
 
-${NAME}: ${OBJ}
-	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o ${NAME}
+# all: ${NAME}
 
-all: ${NAME}
+# fdf: $(OBJECTS) libft/libft.a mlx/libmlx.a
+# 	$(CC) -o $@ $^
 
-push_swap: *.o ft_printf/libftprintf.a
-	$(CC) -o $@ $^
+# %.o: %.c
+# 	$(CC) -c $(CFLAGS) $< -o $@
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $?
+# ${NAME}: ${OBJECTS}
+# 	$(CC) $^ -lmlx -lXext -lX11 -o ${NAME}
 
-ft_printf/libftprintf.a:
-	@make -C ft_printf
+# libft/libft.a:
+# 	@make -C libft libft.a
+
+# mlx/libmlx.a:
+# 	@make -C mlx libmlx.a
+
+# clean:
+# 	rm -f $(OBJECTS)
+# 	@make -C libft clean
+# 	@make -C mlx clean
+
+# fclean: clean
+# 	rm -f fdf libft/libft.a mlx/libmlx.a
+
+# re: fclean all
+
+# .PHONY: all bonus clean fclean re
+
+SRCS	= $(wildcard *.c)
+
+OBJS	= $(SRCS:%.c=%.o)
+
+NAME	= fdf
+
+CC		= gcc -g
+RM		= rm -f
+
+CFLAGS 	= -Wall -Wextra -Werror #-fsanitize=address
+
+all:		${NAME}
+
+%.o:	%.c
+		${CC} ${CFLAGS} -Ilibft -I./mlx -c $? -o $@
+
+${NAME}:		${OBJS}
+		@make -C libft
+		@make -C mlx
+		${CC} ${CFLAGS} $^ -Llibft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit -o ${NAME}
+
+libft:
+		make -C libft
+
+mlx:
+		make -C mlx
 
 clean:
-	rm -f $(OBJECTS)
-	@make -C ft_printf clean
+			make clean -C libft
+			make clean -C mlx
+			${RM} ${OBJS}
 
-fclean: clean
-	rm -f push_swap ft_printf/libftprintf.a
+fclean:		clean
+			${RM} ${NAME}
 
-re: fclean all
+re:			fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY:		libft all bonus clean fclean re

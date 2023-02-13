@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/13 15:12:47 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/10/31 14:50:10 by fgrasset          #+#    #+#             */
+/*   Updated: 2022/11/07 13:01:55 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "mlx/mlx.h"
-# include <math.h>
-
-/* struct to get the data fo fdf */
-typedef struct s_data {
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-	int		**map;
-}				t_data;
-
-/* struct to create a matrix */
-typedef struct s_matrix {
-	int	i;
-	int	j;
-}				t_matrix;
-
-#endif
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n == -2147483648)
+		write(fd, "-2147483648", 11);
+	else
+	{
+		if (n < 0)
+		{
+			n *= -1;
+			ft_putchar_fd('-', fd);
+		}
+		if (n <= 9)
+			ft_putchar_fd(n + '0', fd);
+		if (n > 9)
+		{
+			ft_putnbr_fd(((n / 10)), fd);
+			ft_putnbr_fd(((n % 10)), fd);
+		}
+	}
+}

@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   printf_d.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/13 15:12:47 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/11/11 16:32:45 by fgrasset          #+#    #+#             */
+/*   Updated: 2022/11/11 16:50:10 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "ft_printf.h"
 
-# include "mlx/mlx.h"
-# include <math.h>
+int	printf_d(int n)
+{
+	char	*nbr;
+	int		len;
 
-/* struct to get the data fo fdf */
-typedef struct s_data {
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-	int		**map;
-}				t_data;
-
-/* struct to create a matrix */
-typedef struct s_matrix {
-	int	i;
-	int	j;
-}				t_matrix;
-
-#endif
+	nbr = ft_itoa(n);
+	ft_putstr_fd(nbr, 1);
+	len = ft_strlen(nbr);
+	free(nbr);
+	return (len);
+}

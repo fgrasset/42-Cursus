@@ -1,35 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   printf_x.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/13 15:12:47 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/11/12 13:09:07 by fgrasset          #+#    #+#             */
+/*   Updated: 2022/11/14 11:26:39 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "ft_printf.h"
 
-# include "mlx/mlx.h"
-# include <math.h>
-
-/* struct to get the data fo fdf */
-typedef struct s_data {
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-	int		**map;
-}				t_data;
-
-/* struct to create a matrix */
-typedef struct s_matrix {
+static int	count(unsigned int n)
+{
 	int	i;
-	int	j;
-}				t_matrix;
 
-#endif
+	i = 0;
+	if (n == 0)
+		return (1);
+	while (n != '\0')
+	{
+		n = n / 16;
+		i++;
+	}
+	return (i);
+}
+
+int	printf_x(unsigned int n)
+{
+	if (n >= 16)
+	{
+		printf_x(n / 16);
+		printf_x(n % 16);
+	}
+	else
+	{
+		if (n <= 9)
+			ft_putchar_fd(n + '0', 1);
+		else
+			ft_putchar_fd((n - 10) + 'a', 1);
+	}
+	return (count(n));
+}

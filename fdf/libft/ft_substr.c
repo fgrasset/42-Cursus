@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/13 15:12:47 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/10/31 15:56:55 by fgrasset          #+#    #+#             */
+/*   Updated: 2022/11/07 13:03:02 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "libft.h"
 
-# include "mlx/mlx.h"
-# include <math.h>
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*ptr;
+	int		i;
 
-/* struct to get the data fo fdf */
-typedef struct s_data {
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-	int		**map;
-}				t_data;
-
-/* struct to create a matrix */
-typedef struct s_matrix {
-	int	i;
-	int	j;
-}				t_matrix;
-
-#endif
+	i = 0;
+	if (start >= ft_strlen(s))
+		len = 0;
+	if ((ft_strlen(s) - start) < len)
+		len = ft_strlen(s) - start;
+	ptr = (char *)malloc((len + 1) * sizeof(char));
+	if (ptr == (NULL))
+		return (NULL);
+	while (len > 0)
+	{
+		ptr[i] = s[start + i];
+		i++;
+		len --;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}
