@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/15 10:27:30 by fgrasset         ###   ########.fr       */
+/*   Created: 2023/02/15 10:28:32 by fgrasset          #+#    #+#             */
+/*   Updated: 2023/02/15 10:37:36 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "fdf.h"
 
-# include "mlx/mlx.h"
-# include <math.h>
+/* adds point (x, y, z) to the matrix at position i, j */
+void	add_point(t_matrix *matrix, int x, int y, int z)
+{
 
-/* struct to get the data fo fdf */
-typedef struct s_data {
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-	int		**map;
-}				t_data;
+}
 
-/* struct to create a matrix */
-typedef struct s_matrix {
-	// position in matrix
-	int	i;
-	int	j;
-	// value (x, y, z)
-	int	x;
-	int	y;
-	int	z;
-}				t_matrix;
+/* multiply the matrix given by the rotation matrix */
+void	transform(t_matrix *matrix)
+{
 
-#endif
+}

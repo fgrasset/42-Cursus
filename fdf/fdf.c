@@ -6,12 +6,13 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:39:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/13 14:35:16 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/15 10:42:10 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/* draws a pixel at (x, y) in color */
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;

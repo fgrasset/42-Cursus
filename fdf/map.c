@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/15 10:27:30 by fgrasset         ###   ########.fr       */
+/*   Created: 2023/02/15 10:24:10 by fgrasset          #+#    #+#             */
+/*   Updated: 2023/02/15 10:55:17 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "fdf.h"
 
-# include "mlx/mlx.h"
-# include <math.h>
+/* reads the map and adds it into a matrix */
+void	map_get(t_data *data, int map)
+{
+	/* use GNL to retrieve data then put
+	 them in a matrix using split, getting first
+	 line as y = 0, x = 1 to end of split
+	 and y = value of the number at ench split */
+}
 
-/* struct to get the data fo fdf */
-typedef struct s_data {
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-	int		**map;
-}				t_data;
 
-/* struct to create a matrix */
-typedef struct s_matrix {
-	// position in matrix
-	int	i;
-	int	j;
-	// value (x, y, z)
-	int	x;
-	int	y;
-	int	z;
-}				t_matrix;
-
-#endif

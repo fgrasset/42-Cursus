@@ -1,40 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/15 10:27:30 by fgrasset         ###   ########.fr       */
+/*   Created: 2023/02/15 10:21:33 by fgrasset          #+#    #+#             */
+/*   Updated: 2023/02/16 15:25:10 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "fdf.h"
 
-# include "mlx/mlx.h"
-# include <math.h>
+/* draws a line from (x0, y0) to (x1,, y1) */
+void	line(t_data *data, int x0, int y0, int x1, int y1)
+{
 
-/* struct to get the data fo fdf */
-typedef struct s_data {
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-	int		**map;
-}				t_data;
-
-/* struct to create a matrix */
-typedef struct s_matrix {
-	// position in matrix
-	int	i;
-	int	j;
-	// value (x, y, z)
-	int	x;
-	int	y;
-	int	z;
-}				t_matrix;
-
-#endif
+}
