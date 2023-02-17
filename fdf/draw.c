@@ -6,14 +6,14 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:21:33 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/16 15:25:10 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/17 10:27:36 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /* draws a line from (x0, y0) to (x1,, y1) */
-void	line(t_data *data, int x0, int y0, int x1, int y1)
+void	line(t_data *data, float x0, int y0, int x1, int y1)
 {
 
 }

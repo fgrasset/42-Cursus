@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:39:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/15 10:42:10 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/17 10:37:45 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ void	line_x(t_data *data, int y, int start, int end, int color)
 		my_mlx_pixel_put(data, x, y, color);
 		x++;
 	}
+}
+
+/* initialisation of struct data */
+void	initialisation(t_data *data)
+{
+
 }
 
 /* executes the program */
