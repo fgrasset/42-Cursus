@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:39:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/18 12:52:34 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:12:15 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,27 @@
 /* initialisation of struct data */
 void	initialisation(t_data *data)
 {
-
+	data->x_max = 0;
 }
 
 /* executes the program */
 int main(int ac, char **ag)
 {
-	void	*mlx;
-	void	*mlx_win;
+	// void	*mlx;
+	// void	*mlx_win;
 	t_data	data;
 
-	(void) ac;
-	(void) ag;
-
-
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	data.img = mlx_new_image(mlx, 1920, 1080);
-	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_len,
-								&data.endian);
-	line(&data, 0, 0, 100, 100, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, data.img, 0, 0);
-	mlx_loop(mlx);
+	if (ac != 2)
+		check_error(" ", 2);
+	data.filename = ag[1];
+	initialisation(&data);
+	map_get(&data);
+	// mlx = mlx_init();
+	// mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	// data.img = mlx_new_image(mlx, 1920, 1080);
+	// data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_len,
+	// 							&data.endian);
+	// line(&data, 0, 0, 100, 100, 0x00FF0000);
+	// mlx_put_image_to_window(mlx, mlx_win, data.img, 0, 0);
+	// mlx_loop(mlx);
 }
