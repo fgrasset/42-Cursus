@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:39:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/20 15:12:15 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:13:32 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int main(int ac, char **ag)
 	data.filename = ag[1];
 	initialisation(&data);
 	map_get(&data);
+	print_map(&data);
 	// mlx = mlx_init();
 	// mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
 	// data.img = mlx_new_image(mlx, 1920, 1080);

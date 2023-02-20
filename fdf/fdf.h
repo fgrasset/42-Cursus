@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/20 14:56:36 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/20 19:57:28 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	map_borders(t_data *data);
 void	map_malloc(t_data *data, int y_pos,  int flag);
 void	add_line(t_data *data, char *line, int y_pos);
 void	map_get(t_data *data);
+void	print_map(t_data *data);
 
 //errors-free.c
 

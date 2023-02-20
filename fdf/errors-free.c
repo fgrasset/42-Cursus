@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors-free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:17:53 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/20 14:48:32 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:00:48 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	check_error(char *line, int flag)
 	{
 		if (line[0] == '\0')
 			perror("Empty map");
+		else
+			return ;
 	}
 	else if (flag == 1)
 	{
@@ -32,6 +34,7 @@ void	check_error(char *line, int flag)
 		perror("Error in the arguments");
 	}
 	exit(0);
+
 }
 
 /* depending on flag, frees the correct given data
