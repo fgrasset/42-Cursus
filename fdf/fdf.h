@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/22 14:27:49 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:00:22 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@
 typedef struct s_v3d {
 	float	x;
 	float	y;
-	int		color;
 }				t_v3d;
 
 /* struct to get the data fo fdf */
 typedef struct s_data {
+	void		*mlx;
+	void		*mlx_win;
 	void		*img;
 	void		*addr;
 	char		*filename;
@@ -61,8 +62,10 @@ void	proj(t_data *data);
 void	print_fmap(t_data *data);
 
 //errors-free.c
-
 void	check_error(char *line, int flag);
 void	to_free(t_data *data, char flag);
+
+//graphic.c
+void	make_window(t_data	*data);
 
 #endif
