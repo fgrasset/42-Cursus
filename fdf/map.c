@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:24:10 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/20 22:21:28 by fabien           ###   ########.fr       */
+/*   Updated: 2023/02/22 13:44:35 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	map_get(t_data *data)
 		line = get_next_line(fd);
 		y_pos++;
 	}
+	free(line);
 	close(fd);
 }
 
@@ -98,7 +99,7 @@ void	print_map(t_data *data)
 	int j;
 
 	i = 0;
-	while (i < data->y_max)
+	while (i < data->y_max - 1)
 	{
 		j = 0;
 		while (j < data->x_max)
@@ -110,4 +111,3 @@ void	print_map(t_data *data)
 		i++;
 	}
 }
-

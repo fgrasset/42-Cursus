@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors-free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:17:53 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/20 20:00:48 by fabien           ###   ########.fr       */
+/*   Updated: 2023/02/22 14:15:32 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	check_error(char *line, int flag)
 	{
 		perror("Error in the arguments");
 	}
-	exit(0);
+	exit(1);
 
 }
 
