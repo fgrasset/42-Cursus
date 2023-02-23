@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/22 16:00:22 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:13:15 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,31 @@ typedef struct s_v3d {
 	float	y;
 }				t_v3d;
 
+typedef struct s_img {
+	void	*img;
+	void	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_img;
+
 /* struct to get the data fo fdf */
 typedef struct s_data {
 	void		*mlx;
 	void		*mlx_win;
-	void		*img;
-	void		*addr;
 	char		*filename;
-	int			bits_per_pixel;
-	int			line_len;
-	int			endian;
 	int			**map;
 	int			x_max;
 	int			y_max;
 	float		dx;
 	float		dy;
 	float		rad;
+	t_img		img;
 	t_v3d		**f_map;
 }				t_data;
 
 // draw.c
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	line(t_data *data);
 
 //map.c
 void	map_borders(t_data *data);
@@ -67,5 +70,6 @@ void	to_free(t_data *data, char flag);
 
 //graphic.c
 void	make_window(t_data	*data);
+void	line(t_data *data, int x0, int y0, int x1, int y1);
 
 #endif

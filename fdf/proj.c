@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proj.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:37:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/22 15:35:14 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/22 19:51:59 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	print_fmap(t_data *data)
 			printf("(%f, %f) ", data->f_map[i][j].x, data->f_map[i][j].y);
 			j++;
 		}
-		// write(1, "\n", 1);
 		printf("\n");
 		i++;
 	}
