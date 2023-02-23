@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proj.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:37:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/22 19:51:59 by fabien           ###   ########.fr       */
+/*   Updated: 2023/02/23 16:24:21 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,10 @@
 /* malloc of my float map */
 void	float_malloc(t_data *data)
 {
-	// int	i;
-
-	// i = -1;
-	// data->f_map = malloc(sizeof(t_v3d) * (data->y_max));
-	// if (!data->f_map)
-	// 	check_error(" ", 1);
-	// while (++i < data->x_max)
-	// {
-	// 	data->f_map[i] = malloc(sizeof(t_v3d) * data->x_max);
-	// 	if (!data->f_map[i])
-	// 		check_error(" ", 1);
-	// }
 	int	i;
 
 	i = -1;
-	data->f_map = malloc(sizeof(t_v3d*) * (data->y_max));
+	data->f_map = malloc(sizeof(t_v3d *) * (data->y_max));
 	if (!data->f_map)
 		check_error(" ", 1);
 	while (++i < data->y_max)
@@ -46,8 +34,10 @@ t_v3d	calculate(t_data *data, int x, int y)
 {
 	t_v3d	point;
 
-	point.x = (x * cosf(data->rad)) + (x * cosf(data->rad + 2)) + (data->map[y][x] * cosf(data->rad - 2));
-	point.y = (y * sinf(data->rad)) + (x * sinf(data->rad + 2)) + (data->map[y][x] * sinf(data->rad - 2));
+	point.x = (x * cosf(data->rad)) + (x * cosf(data->rad + 2)) \
+	+ (data->map[y][x] * cosf(data->rad - 2));
+	point.y = (y * sinf(data->rad)) + (x * sinf(data->rad + 2)) \
+	+ (data->map[y][x] * sinf(data->rad - 2));
 	return (point);
 }
 

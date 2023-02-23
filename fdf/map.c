@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:24:10 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/22 15:20:08 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:23:15 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	map_borders(t_data *data)
 }
 
 /* malloc the map, flag=0 for Y and flag=1 for X */
-void	map_malloc(t_data *data, int y_pos,  int flag)
+void	map_malloc(t_data *data, int y_pos, int flag)
 {
 	if (flag == 0)
 	{
@@ -71,7 +71,7 @@ void	add_line(t_data *data, char *line, int y_pos)
 	free(buffer);
 }
 
-/* reads the map and adds it into a matrix */
+/* reads the map.fdf and adds it into a map */
 void	map_get(t_data *data)
 {
 	int			fd;
@@ -96,8 +96,8 @@ void	map_get(t_data *data)
 /* prints the map in the data struct */
 void	print_map(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < data->y_max)
