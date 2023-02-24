@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/23 16:25:30 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:27:32 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "libft/libft.h"
 # include <math.h>
 
-# define WIN_H 1920
-# define WIN_W 1080
+# define WIN_W 1920
+# define WIN_H 1080
 
 /* struct to create a 3D vector in float */
 typedef struct s_v3d {
@@ -28,7 +28,7 @@ typedef struct s_v3d {
 
 typedef struct s_img {
 	void	*img;
-	void	*addr;
+	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -42,6 +42,7 @@ typedef struct s_data {
 	int			**map;
 	int			x_max;
 	int			y_max;
+	int			disp;
 	float		dx;
 	float		dy;
 	float		rad;
@@ -54,6 +55,7 @@ typedef struct s_data {
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	line(t_data *data, float x0, float y0, float x1, float y1);
 void	draw(t_data *data);
+void	limits(t_data *data, int i, int j);
 
 //map.c
 
@@ -76,6 +78,6 @@ void	to_free(t_data *data, char flag);
 
 //graphic.c
 
-void	make_window(t_data	*data);
+void	make_window(t_data	*data, int flag);
 
 #endif

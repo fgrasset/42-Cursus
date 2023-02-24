@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:21:33 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/23 16:22:41 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:30:33 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x > WIN_W && y < WIN_H)
-	{
-		dst = data->img.addr + (y * data->img.line_length + \
-		x * (data->img.bits_per_pixel / 8));
-		*(unsigned int *)dst = color;
-	}
+	dst = data->img.addr + (y * data->img.line_length + \
+	x * (data->img.bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
 /* draws a line from (x0, y0) to (x1, y1) */
@@ -42,11 +39,38 @@ void	line(t_data *data, float x0, float y0, float x1, float y1)
 	i = 1;
 	while (i <= step)
 	{
-		my_mlx_pixel_put(data, -x0 + (WIN_W / 3), \
-		-y0 + (WIN_H / 3), 0x0000FF00);
+		my_mlx_pixel_put(data, x0 + (WIN_W / 2), \
+		y0 + (WIN_H / 2), 0x0000FF00);
 		x0 += data->dx;
 		y0 += data->dy;
 		i++;
+	}
+}
+
+/* decides which lines to draw depending on the
+	position of the point */
+void	limits(t_data *data, int i, int j)
+{
+	if (i < data->y_max - 1 && j < data->x_max - 1)
+	{
+		line(data, data->f_map[i][j].x, data->f_map[i][j].y, \
+			data->f_map[i][j + 1].x, data->f_map[i][j + 1].y);
+		line(data, data->f_map[i][j].x, data->f_map[i][j].y, \
+			data->f_map[i + 1][j].x, data->f_map[i + 1][j].y);
+	}
+	else if (i < data->y_max - 1 && j == data->x_max - 1)
+	{
+		line(data, data->f_map[i][j].x, data->f_map[i][j].y, \
+			data->f_map[i + 1][j].x, data->f_map[i + 1][j].y);
+	}
+	else if (i == data->y_max - 1 && j < data->x_max - 1)
+	{
+		line(data, data->f_map[i][j].x, data->f_map[i][j].y, \
+			data->f_map[i][j + 1].x, data->f_map[i][j + 1].y);
+	}
+	else
+	{
+		return ;
 	}
 }
 
@@ -60,12 +84,9 @@ void	draw(t_data *data)
 	while (i < data->y_max)
 	{
 		j = 0;
-		while (j < data->x_max)
+		while (j < data->x_max / 2)
 		{
-			line(data, data->f_map[i][j].x, data->f_map[i][j].y, \
-			data->f_map[i][j + 1].x, data->f_map[i][j + 1].y);
-			line(data, data->f_map[i][j].x, data->f_map[i][j].y, \
-			data->f_map[i + 1][j].x, data->f_map[i + 1][j].y);
+			limits(data, i , j);
 			j++;
 		}
 		i++;

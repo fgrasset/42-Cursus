@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:37:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/23 16:24:21 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:47:57 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,15 @@ t_v3d	calculate(t_data *data, int x, int y)
 	t_v3d	point;
 
 	point.x = (x * cosf(data->rad)) + (x * cosf(data->rad + 2)) \
-	+ (data->map[y][x] * cosf(data->rad - 2));
+	+ (-data->map[y][x] * cosf(data->rad - 2));
 	point.y = (y * sinf(data->rad)) + (x * sinf(data->rad + 2)) \
-	+ (data->map[y][x] * sinf(data->rad - 2));
+	+ (-data->map[y][x] * sinf(data->rad - 2));
+
+	// point.x = (x - data->map[y][x]) / sqrtf(2);
+	// point.y = (x + 2 * y + data->map[y][x]) / sqrtf(6);
+
+	point.x *= -data->disp;
+	point.y *= data->disp;
 	return (point);
 }
 
