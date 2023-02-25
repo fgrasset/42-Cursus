@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:21:33 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/24 15:30:33 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/25 13:39:23 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->img.addr + (y * data->img.line_length + \
-	x * (data->img.bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	if (x >= 0 && x < WIN_W && y >= 0 && y < WIN_H)
+	{
+		dst = data->img.addr + (y * data->img.line_length + \
+		x * (data->img.bits_per_pixel / 8));
+		*(unsigned int *)dst = color;
+	}
 }
 
 /* draws a line from (x0, y0) to (x1, y1) */
@@ -40,7 +43,7 @@ void	line(t_data *data, float x0, float y0, float x1, float y1)
 	while (i <= step)
 	{
 		my_mlx_pixel_put(data, x0 + (WIN_W / 2), \
-		y0 + (WIN_H / 2), 0x0000FF00);
+		y0 + (WIN_H / 2), 0x0000FFFF);
 		x0 += data->dx;
 		y0 += data->dy;
 		i++;
@@ -84,7 +87,7 @@ void	draw(t_data *data)
 	while (i < data->y_max)
 	{
 		j = 0;
-		while (j < data->x_max / 2)
+		while (j < data->x_max)
 		{
 			limits(data, i , j);
 			j++;

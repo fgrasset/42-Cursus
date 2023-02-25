@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/24 15:27:32 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/25 11:11:17 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_data {
 	int			**map;
 	int			x_max;
 	int			y_max;
-	int			disp;
+	int			scale;
 	float		dx;
 	float		dy;
 	float		rad;

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:37:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/24 15:47:57 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/25 13:00:17 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,48 @@ void	float_malloc(t_data *data)
 	}
 }
 
+/* returns the average height of the map */
+int	average(t_data *data)
+{
+	float	average;
+	int	i;
+	int	j;
+
+	average = 0;
+	i = 0;
+	while(i < data->y_max)
+	{
+		j = 0;
+		while (j < data->x_max)
+		{
+			average += data->map[i][j];
+			j++;
+		}
+		i++;
+	}
+	average /= (i * j);
+	return (average);
+}
+
 /* creates a new float point, calculates it and returns it */
 t_v3d	calculate(t_data *data, int x, int y)
 {
 	t_v3d	point;
+	float	av;
 
-	point.x = (x * cosf(data->rad)) + (x * cosf(data->rad + 2)) \
-	+ (-data->map[y][x] * cosf(data->rad - 2));
-	point.y = (y * sinf(data->rad)) + (x * sinf(data->rad + 2)) \
-	+ (-data->map[y][x] * sinf(data->rad - 2));
+	// x *= data->scale;
+	// y *= data->scale;
+	av = average(data);
+	point.x = (x * cosf(data->rad)) + (y * cosf(data->rad + 2)) \
+	+ (data->map[y][x] / av * cosf(data->rad - 2));
+	point.y = (x * sinf(data->rad)) + (y * sinf(data->rad + 2)) \
+	+ (data->map[y][x] / av * sinf(data->rad - 2));
 
 	// point.x = (x - data->map[y][x]) / sqrtf(2);
 	// point.y = (x + 2 * y + data->map[y][x]) / sqrtf(6);
 
-	point.x *= -data->disp;
-	point.y *= data->disp;
+	point.x *= data->scale;
+	point.y *= data->scale;
 	return (point);
 }
 

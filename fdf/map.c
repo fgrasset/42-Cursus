@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:24:10 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/23 16:23:15 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/25 12:57:11 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	map_borders(t_data *data)
 	{
 		if (buf[i] == ' ')
 			data->x_max++;
+		while (buf[i] == ' ' && buf[i])
+			i++;
 	}
 	data->x_max++;
 	buf = get_next_line(fd);
