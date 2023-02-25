@@ -3,19 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:39:59 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/25 13:22:13 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/25 22:15:33 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/* close the window and exit the program */
 int	destroy(int keycode, t_data *data)
 {
 	(void) keycode;
 	mlx_destroy_window(data->mlx, data->mlx_win);
+	to_free(data, 'M');
+	to_free(data, 'F');
+	exit(1);
 	return (0);
 }
 
@@ -35,7 +39,8 @@ void	make_window(t_data	*data, int flag)
 	else if (flag == 1)
 	{
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img, 0, 0);
-		// mlx_hook(data->mlx_win, 17, 0, close, data);
+		mlx_hook(data->mlx_win, EVENT_DESTROY, 0, &destroy, data);
+		// mlx_key_hook(data->mlx_win, destroy, data);
 		mlx_loop(data->mlx);
 	}
 }

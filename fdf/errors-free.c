@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors-free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:17:53 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/23 16:26:05 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/25 22:13:46 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,23 @@ void	check_error(char *line, int flag)
 }
 
 /* depending on flag, frees the correct given data
-	M - frees map*/
+	M - frees map
+	F - frees fmap */
 void	to_free(t_data *data, char flag)
 {
 	int	i;
-	int	j;
 
-	i = 0;
+	i = -1;
 	if (flag == 'M')
 	{
-		while (data->map[i] != NULL)
-		{
-			j = 0;
-			while (data->map[i])
-			{
-				free(data->map[i]);
-				j++;
-			}
-			i++;
-		}
+		while (++i < data->y_max)
+			free(data->map[i]);
 		free(data->map);
+	}
+	else if (flag == 'F')
+	{
+		while (++i < data->y_max)
+			free(data->f_map[i]);
+		free(data->f_map);
 	}
 }

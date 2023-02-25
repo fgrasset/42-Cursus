@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/25 11:11:17 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/25 22:00:30 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,19 @@
 # include "libft/libft.h"
 # include <math.h>
 
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 1000
+# define WIN_H 800
+# define ESC 65307
+
+enum {
+	EVENT_KEYDOWN = 2,
+	EVENT_KEYUP = 3,
+	EVENT_MOUSEDOWN = 4,
+	EVENT_MOUSEUP = 5,
+	EVENT_MOUSEMOVE = 6,
+	EVENT_EXPOSE = 12,
+	EVENT_DESTROY = 17
+} ;
 
 /* struct to create a 3D vector in float */
 typedef struct s_v3d {
