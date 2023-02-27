@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:21:33 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 16:10:54 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:20:03 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	line(t_data *data, float x0, float y0, float x1, float y1)
 	while (i <= step)
 	{
 		my_mlx_pixel_put(data, x0 + (WIN_W / 2) + data->mv_w, \
-		y0 + (WIN_H / 2) + data->mv_h, 0x0000FFFF);
+		y0 + (WIN_H / 2) + data->mv_h, colors(data, x0, y0));
 		x0 += data->dx;
 		y0 += data->dy;
 		i++;

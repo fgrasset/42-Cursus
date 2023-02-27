@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proj.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:37:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 16:10:22 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 23:18:00 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,25 @@ void	float_malloc(t_data *data)
 }
 
 /* returns the average height of the map */
-int	average(t_data *data)
+void	get_z(t_data *data)
 {
-	float	average;
 	int		i;
 	int		j;
 
-	average = 0;
-	i = 0;
-	while (i < data->y_max)
+	i = -1;
+	data->z_max = data->map[0][0];
+	data->z_min = data->map[0][0];
+	while (++i < data->y_max)
 	{
-		j = 0;
-		while (j < data->x_max)
+		j = -1;
+		while (++j < data->x_max)
 		{
-			average += data->map[i][j];
-			j++;
+			if (data->map[i][j] > data->z_max)
+				data->z_max = data->map[i][j];
+			else if (data->map[i][j] < data->z_min)
+				data->z_min = data->map[i][j];
 		}
-		i++;
 	}
-	average /= (i * j);
-	return (average);
 }
 
 /* creates a new float point, calculates it and returns it */
@@ -74,6 +73,7 @@ void	proj(t_data *data)
 	int		y;
 
 	y = 0;
+	get_z(data);
 	float_malloc(data);
 	while (y < data->y_max)
 	{
@@ -87,21 +87,20 @@ void	proj(t_data *data)
 	}
 }
 
-void	print_fmap(t_data *data)
-{
-	int	i;
-	int	j;
 
-	i = 0;
-	while (i < data->y_max)
-	{
-		j = 0;
-		while (j < data->x_max)
-		{
-			printf("(%f, %f) ", data->f_map[i][j].x, data->f_map[i][j].y);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
+/* creates the different shades of colors */
+int	colors(t_data *data, float x, float y)
+{
+	int blue_value = 128; // example integer value
+	float norm = 0.5f; // example normalized color value
+
+	// Scale the normalized value to the range 0-255 and pack it into a 32-bit color value
+	int red = (int)(norm * 127.5f + 127.5f);
+	int green = 0;
+	int blue = blue_value;
+	int color = (red << 16) | (green << 8) | blue;
+	(void) data;
+	(void) x;
+	(void) y;
+	return(color);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 16:07:55 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 23:15:08 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # define SNOW 0xfffafa
 # define CYAN 0x00ffff
+# define BLUE 0x0000ff
 
 enum {
 	EVENT_KEYDOWN = 2,
@@ -58,6 +59,8 @@ typedef struct s_data {
 	int			**map;
 	int			x_max;
 	int			y_max;
+	int			z_min;
+	int			z_max;
 	int			scale;
 	int			mv_w;
 	int			mv_h;
@@ -91,6 +94,9 @@ void	print_map(t_data *data);
 void	float_malloc(t_data *data);
 void	proj(t_data *data);
 void	print_fmap(t_data *data);
+void	get_z(t_data *data);
+int	colors(t_data *data, float x, float y);
+int	average(t_data *data);
 
 //errors-free.c
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:39:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 16:04:19 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:27:04 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	initialisation(t_data *data)
 	data->y_max = 0;
 	data->rad = 19.3;
 	data->scale = 20;
-	data->attitude = 0.1;
+	data->attitude = 1;
 	data->mv_h = 0;
 	data->mv_w = 0;
 }
