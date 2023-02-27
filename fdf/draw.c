@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:21:33 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/25 13:39:23 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:16:39 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	line(t_data *data, float x0, float y0, float x1, float y1)
 	i = 1;
 	while (i <= step)
 	{
-		my_mlx_pixel_put(data, x0 + (WIN_W / 2), \
-		y0 + (WIN_H / 2), 0x0000FFFF);
+		my_mlx_pixel_put(data, x0 + (WIN_W / 2) + data->mv_w, \
+		y0 + (WIN_H / 2) + data->mv_h, 0x0000FFFF);
 		x0 += data->dx;
 		y0 += data->dy;
 		i++;
@@ -93,5 +93,22 @@ void	draw(t_data *data)
 			j++;
 		}
 		i++;
+	}
+}
+
+/* draws the background of the map */
+void	background(t_data *data)
+{
+	int	height;
+	int	width;
+
+	height = -1;
+	while (++height < WIN_H)
+	{
+		width = -1;
+		while (++width < WIN_W)
+		{
+			my_mlx_pixel_put(data, width, height, SNOW);
+		}
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/25 22:00:30 by fabien           ###   ########.fr       */
+/*   Updated: 2023/02/27 13:54:20 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@
 
 # define WIN_W 1000
 # define WIN_H 800
-# define ESC 65307
+# define MOVE 10
+# define ELEVATION 0.1
+# define ZOOM 2
+
+# define SNOW 0xfffafa
+# define CYAN 0x00ffff
 
 enum {
 	EVENT_KEYDOWN = 2,
@@ -54,6 +59,9 @@ typedef struct s_data {
 	int			x_max;
 	int			y_max;
 	int			scale;
+	int			mv_w;
+	int			mv_h;
+	float		attitude;
 	float		dx;
 	float		dy;
 	float		rad;
@@ -67,6 +75,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	line(t_data *data, float x0, float y0, float x1, float y1);
 void	draw(t_data *data);
 void	limits(t_data *data, int i, int j);
+void	background(t_data *data);
 
 //map.c
 
@@ -89,6 +98,15 @@ void	to_free(t_data *data, char flag);
 
 //graphic.c
 
-void	make_window(t_data	*data, int flag);
+void	make_window(t_data	*data);
+void	graphical_interface(t_data *data);
+int		display(t_data *data);
+
+//hooks.c
+
+int		destroy(t_data *data);
+int		keypress(int keycode, t_data *data);
+int		zoom(int keycode, int x, int y, t_data *data);
+void	automation(t_data *data);
 
 #endif

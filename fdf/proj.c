@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:37:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/25 13:00:17 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:38:18 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,11 @@ int	average(t_data *data)
 t_v3d	calculate(t_data *data, int x, int y)
 {
 	t_v3d	point;
-	float	av;
 
-	// x *= data->scale;
-	// y *= data->scale;
-	av = average(data);
 	point.x = (x * cosf(data->rad)) + (y * cosf(data->rad + 2)) \
-	+ (data->map[y][x] / av * cosf(data->rad - 2));
+	+ (data->map[y][x] * data->attitude * cosf(data->rad - 2));
 	point.y = (x * sinf(data->rad)) + (y * sinf(data->rad + 2)) \
-	+ (data->map[y][x] / av * sinf(data->rad - 2));
-
-	// point.x = (x - data->map[y][x]) / sqrtf(2);
-	// point.y = (x + 2 * y + data->map[y][x]) / sqrtf(6);
+	+ (data->map[y][x] * data->attitude * sinf(data->rad - 2));
 
 	point.x *= data->scale;
 	point.y *= data->scale;

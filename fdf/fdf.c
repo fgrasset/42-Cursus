@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:39:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/25 13:03:54 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:35:05 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ void	initialisation(t_data *data)
 {
 	data->x_max = 0;
 	data->y_max = 0;
-	data->rad = 26;
+	data->rad = 19.3;
 	data->scale = 20;
+	data->attitude = 0.5;
+	data->mv_h = 0;
+	data->mv_w = 0;
 }
 
 /* executes the program */
@@ -34,8 +37,6 @@ int	main(int ac, char **ag)
 	// print_map(&data);
 	proj(&data);
 	// print_fmap(&data);
-	printf("x_max: %d, y_max: %d\n", data.x_max, data.y_max);
-	make_window(&data, 0);
+	make_window(&data);
 	draw(&data);
-	make_window(&data, 1);
 }
