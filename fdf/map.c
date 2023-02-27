@@ -6,11 +6,22 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:24:10 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 14:45:09 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:10:30 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+/* returns the file name and ensures it can be opened */
+int	get_fd(t_data *data)
+{
+	int	fd;
+
+	fd = open(data->filename, O_RDONLY);
+	if (!fd)
+		check_error(" ", 0);
+	return (fd);
+}
 
 /* gets the x_max and y_max of the given map */
 void	map_borders(t_data *data)
@@ -20,7 +31,7 @@ void	map_borders(t_data *data)
 	char	*buf;
 
 	i = -1;
-	fd = open(data->filename, O_RDONLY);
+	fd = get_fd(data);
 	buf = get_next_line(fd);
 	while (buf[++i])
 	{
@@ -70,7 +81,10 @@ void	add_line(t_data *data, char *line, int y_pos)
 	buffer = ft_split(line, ' ');
 	map_malloc(data, y_pos, 1);
 	while (buffer[++x_pos])
+	{
 		data->map[y_pos][x_pos] = ft_atoi(buffer[x_pos]);
+		free(buffer[x_pos]);
+	}
 	free(buffer);
 }
 
@@ -83,7 +97,7 @@ void	map_get(t_data *data)
 
 	map_borders(data);
 	map_malloc(data, y_pos, 0);
-	fd = open(data->filename, O_RDONLY);
+	fd = get_fd(data);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -94,24 +108,4 @@ void	map_get(t_data *data)
 		y_pos++;
 	}
 	close(fd);
-}
-
-/* prints the map in the data struct */
-void	print_map(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < data->y_max)
-	{
-		j = 0;
-		while (j < data->x_max)
-		{
-			ft_printf("%d ", data->map[i][j]);
-			j++;
-		}
-		write(1, "\n", 1);
-		i++;
-	}
 }

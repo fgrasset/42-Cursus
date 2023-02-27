@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:37:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 13:38:18 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:10:22 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	float_malloc(t_data *data)
 int	average(t_data *data)
 {
 	float	average;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	average = 0;
 	i = 0;
-	while(i < data->y_max)
+	while (i < data->y_max)
 	{
 		j = 0;
 		while (j < data->x_max)
@@ -61,7 +61,6 @@ t_v3d	calculate(t_data *data, int x, int y)
 	+ (data->map[y][x] * data->attitude * cosf(data->rad - 2));
 	point.y = (x * sinf(data->rad)) + (y * sinf(data->rad + 2)) \
 	+ (data->map[y][x] * data->attitude * sinf(data->rad - 2));
-
 	point.x *= data->scale;
 	point.y *= data->scale;
 	return (point);

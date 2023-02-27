@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:21:33 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 14:51:45 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:10:54 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	draw(t_data *data)
 		j = 0;
 		while (j < data->x_max)
 		{
-			limits(data, i , j);
+			limits(data, i, j);
 			j++;
 		}
 		i++;

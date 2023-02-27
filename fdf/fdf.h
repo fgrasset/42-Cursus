@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 14:37:30 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:07:55 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	background(t_data *data);
 
 //map.c
 
+int		get_fd(t_data *data);
 void	map_borders(t_data *data);
 void	map_malloc(t_data *data, int y_pos, int flag);
 void	add_line(t_data *data, char *line, int y_pos);

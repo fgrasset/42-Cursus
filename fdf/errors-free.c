@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors-free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:17:53 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/25 22:13:46 by fabien           ###   ########.fr       */
+/*   Updated: 2023/02/27 15:54:51 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,12 @@ void	to_free(t_data *data, char flag)
 		while (++i < data->y_max)
 			free(data->f_map[i]);
 		free(data->f_map);
+	}
+	else if (flag == 'X')
+	{
+		free(data->mlx);
+		free(data->mlx_win);
+		free(data->img.addr);
+		free(data->img.img);
 	}
 }

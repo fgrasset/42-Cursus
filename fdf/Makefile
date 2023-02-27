@@ -52,8 +52,8 @@ all:		${NAME}
 		${CC} ${CFLAGS} -Ilibft -I./mlx -c $? -o $@
 
 ${NAME}:		${OBJS}
-		@make -C libft
-		@make -C mlx
+		@$(MAKE) -C libft
+		@$(MAKE) -C mlx
 		${CC} ${CFLAGS} $^ -Llibft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit -o ${NAME}
 
 libft:

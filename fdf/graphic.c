@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:39:59 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 14:04:58 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:02:45 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	make_window(t_data	*data)
 	data->img.addr = mlx_get_data_addr(data->img.img, \
 	&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
 	graphical_interface(data);
+	mlx_loop(data->mlx);
 }
 
 /* launches the graphical interface and keeps it updated */
@@ -30,7 +31,6 @@ void	graphical_interface(t_data *data)
 	mlx_mouse_hook(data->mlx_win, zoom, data);
 	mlx_hook(data->mlx_win, 17, 0, destroy, data);
 	mlx_loop_hook(data->mlx, display, data);
-	mlx_loop(data->mlx);
 }
 
 /* updates the displayed image */
