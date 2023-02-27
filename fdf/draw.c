@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:21:33 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 13:16:39 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:51:45 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	draw(t_data *data)
 		}
 		i++;
 	}
+	to_free(data, 'F');
 }
 
 /* draws the background of the map */

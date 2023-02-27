@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 13:42:21 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 14:03:13 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:49:09 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	destroy(t_data *data)
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	to_free(data, 'M');
 	to_free(data, 'F');
-	exit(1);
+	exit(0);
 	return (0);
 }
 
@@ -49,17 +49,4 @@ int	zoom(int keycode, int x, int y, t_data *data)
 	else if (keycode == 5)
 		data->scale -= ZOOM;
 	return (0);
-}
-
-void	automation(t_data *data)
-{
-	int	i;
-
-	i = -1;
-	while (++i < 10)
-	{
-		zoom(5, 1, 1, data);
-		keypress(125, data);
-		sleep(1);
-	}
 }

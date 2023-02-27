@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 13:54:20 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:37:30 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,5 @@ int		display(t_data *data);
 int		destroy(t_data *data);
 int		keypress(int keycode, t_data *data);
 int		zoom(int keycode, int x, int y, t_data *data);
-void	automation(t_data *data);
 
 #endif

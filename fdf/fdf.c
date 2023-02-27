@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:39:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 13:35:05 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:35:22 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ int	main(int ac, char **ag)
 	data.filename = ag[1];
 	initialisation(&data);
 	map_get(&data);
-	// print_map(&data);
 	proj(&data);
-	// print_fmap(&data);
 	make_window(&data);
 	draw(&data);
 }
