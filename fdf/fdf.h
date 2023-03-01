@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/28 18:46:29 by fabien           ###   ########.fr       */
+/*   Updated: 2023/03/01 14:28:25 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include "libft/libft.h"
 # include <math.h>
 
-# define WIN_W 1000
-# define WIN_H 800
+# define WIN_W 1920
+# define WIN_H 1080
 # define MOVE 10
-# define ELEVATION 0.4
+# define ELEVATION 0.2
 # define ZOOM 2
 # define ROTATION 0.1
 
@@ -70,13 +70,15 @@ typedef struct s_data {
 	float		dy;
 	float		rad;
 	t_img		img;
+	t_v3d		start;
+	t_v3d		end;
 	t_v3d		**f_map;
 }				t_data;
 
 // draw.c
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	line(t_data *data, float x0, float y0, float x1, float y1);
+void	line(t_data *data, t_v3d *start, t_v3d *end);
 void	draw(t_data *data);
 void	limits(t_data *data, int i, int j);
 void	background(t_data *data);
@@ -96,8 +98,7 @@ void	float_malloc(t_data *data);
 void	proj(t_data *data);
 void	print_fmap(t_data *data);
 void	get_z(t_data *data);
-int	colors(t_data *data, float x, float y);
-int	average(t_data *data);
+int		average(t_data *data);
 
 //errors-free.c
 

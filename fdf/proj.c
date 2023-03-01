@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proj.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:37:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/28 18:48:54 by fabien           ###   ########.fr       */
+/*   Updated: 2023/03/01 11:04:38 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,4 @@ void	proj(t_data *data)
 		}
 		y++;
 	}
-}
-
-/* creates the different shades of colors */
-int	colors(t_data *data, float x, float y)
-{
-	(void) data;
-	(void) x;
-	(void) y;
-	return (0x00ffff);
 }
