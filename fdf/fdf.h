@@ -6,7 +6,7 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 23:15:08 by fabien           ###   ########.fr       */
+/*   Updated: 2023/02/28 18:46:29 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 # define WIN_W 1000
 # define WIN_H 800
 # define MOVE 10
-# define ELEVATION 0.1
+# define ELEVATION 0.4
 # define ZOOM 2
+# define ROTATION 0.1
 
 # define SNOW 0xfffafa
 # define CYAN 0x00ffff

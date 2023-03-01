@@ -6,7 +6,7 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 13:42:21 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 22:22:56 by fabien           ###   ########.fr       */
+/*   Updated: 2023/02/28 18:46:24 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ int	keypress(int keycode, t_data *data)
 		data->mv_h -= MOVE;
 	else if (keycode == 53)
 		destroy(data);
+	else if (keycode == 14)
+		data->rad -= ROTATION;
+	else if (keycode == 15)
+		data->rad += ROTATION;
+	else if (keycode == 4)
+		data->attitude += ELEVATION;
+	else if (keycode == 37)
+		data->attitude -= ELEVATION;
 	return (0);
 }
 

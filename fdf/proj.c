@@ -6,7 +6,7 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:37:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 23:18:00 by fabien           ###   ########.fr       */
+/*   Updated: 2023/02/28 18:48:54 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,20 +87,11 @@ void	proj(t_data *data)
 	}
 }
 
-
 /* creates the different shades of colors */
 int	colors(t_data *data, float x, float y)
 {
-	int blue_value = 128; // example integer value
-	float norm = 0.5f; // example normalized color value
-
-	// Scale the normalized value to the range 0-255 and pack it into a 32-bit color value
-	int red = (int)(norm * 127.5f + 127.5f);
-	int green = 0;
-	int blue = blue_value;
-	int color = (red << 16) | (green << 8) | blue;
 	(void) data;
 	(void) x;
 	(void) y;
-	return(color);
+	return (0x00ffff);
 }
