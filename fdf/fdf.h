@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/01 14:28:25 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/06 20:13:49 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	proj(t_data *data);
 void	print_fmap(t_data *data);
 void	get_z(t_data *data);
 int		average(t_data *data);
+void	assign(t_data *data, t_v3d *end, int i, int j);
 
 //errors-free.c
 

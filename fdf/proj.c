@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proj.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:37:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/01 11:04:38 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/06 20:13:21 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,11 @@ void	proj(t_data *data)
 		}
 		y++;
 	}
+}
+
+/* assigns the value of (x1, y1) */
+void	assign(t_data *data, t_v3d *end, int i, int j)
+{
+	end->x = data->f_map[i][j].x;
+	end->y = data->f_map[i][j].y;
 }
