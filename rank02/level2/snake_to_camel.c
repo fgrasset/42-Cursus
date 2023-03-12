@@ -1,44 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   snake_to_camel.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 17:23:51 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/08 19:31:06 by fabien           ###   ########.fr       */
+/*   Created: 2023/03/08 19:50:50 by fabien            #+#    #+#             */
+/*   Updated: 2023/03/08 19:57:38 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	isachar(char c)
+#include <unistd.h>
+
+void	ft_putchar(char c)
 {
-	if (c >= 'a' && c <= 'z')
-		return (1);
-	if (c >= 'A' && c <= 'Z')
-		return (1);
-	return (0);
+	write(1, &c, 1);
 }
 
-int	ft_atoi(const char *str)
+int	main(int ac, char **ag)
 {
-	int	i = 0;
-	int	sgn = 1;
-	int	atoi = 0;
-
-	while (str[i])
+	if (ac == 2)
 	{
-		if (str[i] == '+' || str[i] == ' ')
-			i++;
-		if (str[i] == '-')
-			sgn = -1;
-		if (isachar(str[i]))
+		int	i = 0;
+
+		while (ag[1][i])
 		{
-			while (str[i] && isachar(str[i]))
+			if (ag[1][i] == '_')
 			{
-				atoi = (atoi * 10) + (str[i] + '0');
+				ft_putchar(ag[1][i+1] - 32);
 				i++;
 			}
-			return(atoi * sgn);
+			else
+				write(1, &ag[1][i], 1);
+			i++;
 		}
 	}
+	write(1, "\n", 1);
+	return (0);
 }
