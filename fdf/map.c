@@ -6,7 +6,7 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:24:10 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/12 15:13:25 by fabien           ###   ########.fr       */
+/*   Updated: 2023/03/12 15:20:10 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ void	map_get(t_data *data)
 	line = get_next_line(fd);
 	while (line)
 	{
-		// check_error(line, 0);
 		add_line(data, line, y_pos);
 		free(line);
 		line = get_next_line(fd);
