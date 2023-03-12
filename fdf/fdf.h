@@ -6,7 +6,7 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/06 20:13:49 by fabien           ###   ########.fr       */
+/*   Updated: 2023/03/12 15:12:34 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	assign(t_data *data, t_v3d *end, int i, int j);
 
 //errors-free.c
 
-void	check_error(char *line, int flag);
+void	check_error(int flag);
 void	to_free(t_data *data, char flag);
 
 //graphic.c

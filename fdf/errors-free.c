@@ -3,27 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   errors-free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:17:53 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 15:54:51 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/12 15:12:23 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /* depending on flag, prints the error message and exits program
-	0 - file is empty
+	0 - error opening file
 	1 - malloc failed
-	2 - arguments error */
-void	check_error(char *line, int flag)
+	2 - arguments error
+	3 - file is empty */
+void	check_error(int flag)
 {
 	if (flag == 0)
 	{
-		if (line[0] == '\0')
-			perror("Empty map");
-		else
-			return ;
+		perror("Empty map");
 	}
 	else if (flag == 1)
 	{
@@ -32,6 +30,10 @@ void	check_error(char *line, int flag)
 	else if (flag == 2)
 	{
 		perror("Error in the arguments");
+	}
+	else if (flag == 3)
+	{
+		perror("File is empty");
 	}
 	exit(1);
 }

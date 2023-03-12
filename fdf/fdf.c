@@ -6,7 +6,7 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:39:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 20:27:04 by fabien           ###   ########.fr       */
+/*   Updated: 2023/03/12 15:13:35 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **ag)
 	t_data	data;
 
 	if (ac != 2)
-		check_error(" ", 2);
+		check_error(2);
 	data.filename = ag[1];
 	initialisation(&data);
 	map_get(&data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 10:24:10 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/27 16:10:30 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/12 15:13:25 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 /* returns the file name and ensures it can be opened */
 int	get_fd(t_data *data)
 {
-	int	fd;
+	int		fd;
+	char	*line;
 
 	fd = open(data->filename, O_RDONLY);
-	if (!fd)
-		check_error(" ", 0);
+	if (fd < 0)
+		check_error(0);
+	line = get_next_line(fd);
+	if (!line)
+		check_error(3);
+	free(line);
 	return (fd);
 }
 
@@ -60,13 +65,13 @@ void	map_malloc(t_data *data, int y_pos, int flag)
 	{
 		data->map = (int **)malloc(data->y_max * sizeof(int **));
 		if (!data->map)
-			check_error(" ", 1);
+			check_error(1);
 	}
 	else if (flag == 1)
 	{
 		data->map[y_pos] = (int *)malloc(data->x_max * sizeof(int *));
 		if (!data->map[y_pos])
-			check_error(" ", 1);
+			check_error(1);
 	}
 }
 
@@ -101,7 +106,7 @@ void	map_get(t_data *data)
 	line = get_next_line(fd);
 	while (line)
 	{
-		check_error(line, 0);
+		// check_error(line, 0);
 		add_line(data, line, y_pos);
 		free(line);
 		line = get_next_line(fd);

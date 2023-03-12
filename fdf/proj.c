@@ -6,7 +6,7 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:37:37 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/06 20:13:21 by fabien           ###   ########.fr       */
+/*   Updated: 2023/03/12 15:14:30 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	float_malloc(t_data *data)
 	i = -1;
 	data->f_map = malloc(sizeof(t_v3d *) * (data->y_max));
 	if (!data->f_map)
-		check_error(" ", 1);
+		check_error(1);
 	while (++i < data->y_max)
 	{
 		data->f_map[i] = malloc(sizeof(t_v3d) * data->x_max);
 		if (!data->f_map[i])
-			check_error(" ", 1);
+			check_error(1);
 	}
 }
 
