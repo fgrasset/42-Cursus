@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors-free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:17:53 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/12 15:12:23 by fabien           ###   ########.fr       */
+/*   Updated: 2023/03/13 10:01:46 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_error(int flag)
 {
 	if (flag == 0)
 	{
-		perror("Empty map");
+		perror("Error opening file");
 	}
 	else if (flag == 1)
 	{
