@@ -1,29 +1,29 @@
-SRCS	= $(wildcard *.c)
+SRCS	= philo.c error_handling.c #$(wildcard *.c)
 
 OBJS	= $(SRCS:%.c=%.o)
 
 NAME	= philo
 
-CC		= gcc -g
+CC		= gcc
 RM		= rm -f
 
-CFLAGS 	= -Wall -Wextra -Werror# -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address
 TFLAGS	= -lpthread -fsanitize=thread
 
 all:		${NAME}
 
 %.o:	%.c
-		${CC} ${CFLAGS} -c $? -o $@
+		${CC} ${CFLAGS} -c $< -o $@
 
-${NAME}:		${OBJS}
-		${CC} ${CFLAGS} $^ ${NAME}
+${NAME}:	${OBJS}
+		${CC} ${CFLAGS} $^ -o $@
 
 clean:
-			${RM} ${OBJS}
+		${RM} ${OBJS}
 
-fclean:		clean
-			${RM} ${NAME}
+fclean:	clean
+		${RM} ${NAME}
 
-re:			fclean all
+re:		fclean all
 
 .PHONY:		all bonus clean fclean re
