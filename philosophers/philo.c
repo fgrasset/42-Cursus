@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:09 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/12 10:21:48 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/13 14:33:54 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	initialize(t_philo **philo, t_config **config, char **infos)
 	(*philo)->forks = malloc(sizeof(pthread_mutex_t) * (*philo)->nb_philo);
 	if (!(*philo)->forks)
 		return ;
+	get_time('i');
 }
 
 /* basically atoi */
