@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:09 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/13 14:33:54 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/15 11:23:28 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,14 @@ int	main(int ac, char **av)
 /* initializes the config struct based on the given infos */
 void	initialize(t_philo **philo, t_config **config, char **infos)
 {
-	/*
-	Check all the times and fill up the config struct
-	also malloc the forks mutex and the threads based on the number of philo
-	*/
 	int	i;
 
 	i = 0;
-	(*philo)->nb_philo = ft_atoi(infos[++i]); //need to make a check to be atleast one philo !!!
+	(*philo)->nb_philo = ft_atoi(infos[++i]);
+	if ((*philo)->nb_philo < 1)
+		return ;
 	(*philo)->time_die = ft_atoi(infos[++i]);
-	(*philo)->nb_time_eat = ft_atoi(infos[++i]);
+	(*philo)->time_eat = ft_atoi(infos[++i]);
 	(*philo)->time_sleep = ft_atoi(infos[++i]);
 	if (infos[++i])
 		(*philo)->nb_time_eat = ft_atoi(infos[i]);

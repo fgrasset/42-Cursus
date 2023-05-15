@@ -6,23 +6,35 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:23:51 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/13 13:57:31 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:39:14 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/* philosopher is eating */
 void	eats(t_config *config)
 {
-
+	pthread_mutex_lock(&config->forks[config->pos]);
+	pthread_mutex_lock(&config->forks[config->next_pos]);
+	log(config, FORKS);
+	log(config, EATS);
+	usleep(config->t_eat);
+	pthread_mutex_unlock(&config->forks[config->pos]);
+	pthread_mutex_unlock(&config->forks[config->next_pos]);
+	config->last_bite = get_time('n');
+	config->ate += 1;
 }
 
+/* philosopher is sleeping */
 void	sleeps(t_config *config)
 {
-
+	log(config, SLEEPS);
+	usleep(config->t_sleep);
 }
 
+/* philosopher is thinking */
 void	thinks(t_config *config)
 {
-
+	log(config, THINKS);
 }

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:21:10 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/13 13:55:12 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/15 11:14:00 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	create_philo(t_philo *philo);
 void	create_thread(t_philo *philo, int nb_philo);
-void	*philo(void	**config);
+void	*philo_day(t_config	**config);
 
 /* launches the simulation */
 void	launch_sim(t_philo **philo, t_config **config)
@@ -34,6 +34,7 @@ void	create_philo(t_philo *philo)
 	}
 }
 
+/* creates a thread for a philo and sets up the config struct */
 void	create_thread(t_philo *philo, int nb_philo)
 {
 	t_config	*config;
@@ -42,21 +43,32 @@ void	create_thread(t_philo *philo, int nb_philo)
 	if (!config)
 		return ;
 	config->pos = nb_philo + 1;
+	if (config->pos == philo->nb_philo)
+		config->next_pos = 1;
+	else
+		config->next_pos = nb_philo + 2;
 	config->t_die = philo->time_die;
 	config->t_eat = philo->time_eat;
 	config->t_sleep = philo->time_sleep;
+	config->life = 1;
+	config->ate = 0;
+	config->forks = philo->forks;
 	if (philo->nb_time_eat)
 		config->nb_t_eat = philo->nb_time_eat;
-	if (!pthread_create(philo->threads[nb_philo], NULL, philo, (void *)&config))
+	if (!pthread_create(philo->threads[nb_philo], NULL, philo_day, (void *)&config))
 		return ;
 }
 
-void	*philo(void	**config)
+/* the daily rountine of a philo */
+void	*philo_day(t_config	**config)
 {
-	int	ate;
-	int	life;
-
-	ate = 0;
-	life = 1;
-
+	if ((*config)->pos % 2 != 0)
+		usleep(2000);
+	while((*config)->life)
+	{
+		eats(&config);
+		sleeps(&config);
+		log(&config, THINKS);
+	}
+	log(&config, DIES);
 }
