@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:21:10 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/15 11:14:00 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:17:09 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	create_philo(t_philo *philo);
 void	create_thread(t_philo *philo, int nb_philo);
-void	*philo_day(t_config	**config);
+void	*philo_day(void	**config);
 
-/* launches the simulation */
-void	launch_sim(t_philo **philo, t_config **config)
-{
+// /* launches the simulation */
+// void	launch_sim(t_philo **philo, t_config **config)
+// {
 
-}
+// }
 
 /* creates each thread of each individual philo */
 void	create_philo(t_philo *philo)
@@ -55,20 +55,23 @@ void	create_thread(t_philo *philo, int nb_philo)
 	config->forks = philo->forks;
 	if (philo->nb_time_eat)
 		config->nb_t_eat = philo->nb_time_eat;
-	if (!pthread_create(philo->threads[nb_philo], NULL, philo_day, (void *)&config))
+	if (!pthread_create(&philo->threads[nb_philo], NULL, philo_day, (void *)&config))
 		return ;
 }
 
 /* the daily rountine of a philo */
-void	*philo_day(t_config	**config)
+void	*philo_day(void	**arg)
 {
+	t_config **config;
+
+	config = (t_config **)arg;
 	if ((*config)->pos % 2 != 0)
 		usleep(2000);
 	while((*config)->life)
 	{
-		eats(&config);
-		sleeps(&config);
-		log(&config, THINKS);
+		eats(*config);
+		sleeps(*config);
+		msg(*config, THINKS);
 	}
-	log(&config, DIES);
+	msg(*config, DIES);
 }

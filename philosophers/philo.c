@@ -6,13 +6,13 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:09 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/15 11:23:28 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/17 13:45:47 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	initialize(t_philo **philo, t_config **config, char **infos);
+void	initialize(t_philo **philo, char **infos);
 int		ft_atoi(const char *str);
 
 
@@ -21,16 +21,16 @@ int	main(int ac, char **av)
 	t_config	*config;
 	t_philo		*philo;
 
-	if (!my_malloc(&config, sizeof(config)) && !my_malloc(&philo, sizeof(philo)))
+	if (!my_malloc((void **)&config, sizeof(config)) && !my_malloc((void **)&philo, sizeof(philo)))
 		return (0);
 	if (!infos_check(av, ac))
 		return (0);
-	initialize(&philo, &config, av);
+	initialize(&philo, av);
 	printf("reussi!");
 }
 
 /* initializes the config struct based on the given infos */
-void	initialize(t_philo **philo, t_config **config, char **infos)
+void	initialize(t_philo **philo, char **infos)
 {
 	int	i;
 

@@ -1,4 +1,4 @@
-SRCS	= philo.c error_handling.c #$(wildcard *.c)
+SRCS	= $(wildcard *.c)
 
 OBJS	= $(SRCS:%.c=%.o)
 

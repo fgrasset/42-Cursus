@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:22 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/15 11:11:03 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/17 13:45:17 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ int			infos_check(char **infos, int nb_args);
 
 int			get_time(char c);
 
-// log
+// msg
 
-void		log(t_config *config, int state);
+void		msg(t_config *config, int state);
 
 // actions
 

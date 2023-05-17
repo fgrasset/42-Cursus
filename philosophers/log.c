@@ -6,13 +6,13 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:11:07 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/15 11:14:55 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/17 13:35:51 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	log(t_config *config, int state)
+void	msg(t_config *config, int state)
 {
 	if (state == EATS)
 		printf("%d %d is eating\n", get_time('n'), config->pos);
