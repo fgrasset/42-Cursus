@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:11:20 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/15 10:36:56 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:09:05 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ int	get_time(char c)
 	if (c == 'i')
 	{
 		gettimeofday(&tv, NULL);
-		start_time = tv.tv_usec;
+		start_time = tv.tv_usec / 1000;
 		return (0);
 	}
 	else if (c == 'n')
 	{
 		gettimeofday(&tv, NULL);
-		return (tv.tv_usec);
+		return (tv.tv_usec / 1000);
 	}
 	else
 	{
 		gettimeofday(&tv, NULL);
-		return (tv.tv_usec - start_time);
+		return ((tv.tv_usec / 1000) - start_time);
 	}
 	return (0);
 }

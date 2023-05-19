@@ -6,14 +6,14 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:39:30 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/15 10:43:54 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/19 10:59:04 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/* checks the state of the philo and the sim */
-int	state(t_config *config)
-{
+// /* checks the state of the philo and the sim */
+// int	state(t_config *config)
+// {
 
-}
+// }

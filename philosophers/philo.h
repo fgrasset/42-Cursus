@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:22 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/17 13:45:17 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:43:19 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_philo
 {
 	pthread_t		*threads;		//keep track of the threads ID
 	pthread_mutex_t	*forks;			//forks used as mutex
+	pthread_mutex_t	*life_mutex;
+	int				*life_state;
 	int				nb_philo;
 	int				time_die;
 	int				time_eat;
@@ -48,6 +50,8 @@ typedef struct s_config
 	int				life;
 	int				ate;
 	int				last_bite;
+	int				*life_state;
+	pthread_mutex_t	*life_mutex;
 	pthread_mutex_t	*forks;
 }				t_config;
 

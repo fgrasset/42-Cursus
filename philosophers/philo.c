@@ -6,13 +6,13 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:09 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/17 13:45:47 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:02:57 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	initialize(t_philo **philo, char **infos);
+void	initialize(t_philo **philo, char **settings);
 int		ft_atoi(const char *str);
 
 
@@ -29,25 +29,32 @@ int	main(int ac, char **av)
 	printf("reussi!");
 }
 
-/* initializes the config struct based on the given infos */
-void	initialize(t_philo **philo, char **infos)
+/* initializes the philo struct based on the given infos */
+void	initialize(t_philo **philo, char **settings)
 {
 	int	i;
 
 	i = 0;
-	(*philo)->nb_philo = ft_atoi(infos[++i]);
+	(*philo)->nb_philo = ft_atoi(settings[++i]);
 	if ((*philo)->nb_philo < 1)
 		return ;
-	(*philo)->time_die = ft_atoi(infos[++i]);
-	(*philo)->time_eat = ft_atoi(infos[++i]);
-	(*philo)->time_sleep = ft_atoi(infos[++i]);
-	if (infos[++i])
-		(*philo)->nb_time_eat = ft_atoi(infos[i]);
+	(*philo)->time_die = ft_atoi(settings[++i]);
+	(*philo)->time_eat = ft_atoi(settings[++i]);
+	(*philo)->time_sleep = ft_atoi(settings[++i]);
+	if (settings[++i])
+		(*philo)->nb_time_eat = ft_atoi(settings[i]);
 	(*philo)->threads = malloc(sizeof(pthread_t) * (*philo)->nb_philo);
 	if (!(*philo)->threads)
 		return ;
+	if (!pthread_mutex_init((*philo)->forks, NULL))
+		return ;
 	(*philo)->forks = malloc(sizeof(pthread_mutex_t) * (*philo)->nb_philo);
 	if (!(*philo)->forks)
+		return ;
+	if (!pthread_mutex_init((*philo)->life_mutex, NULL))
+		return ;
+	(*philo)->life_state = malloc(sizeof(int) * (*philo)->nb_philo + 1);
+	if (!(*philo)->life_state)
 		return ;
 	get_time('i');
 }

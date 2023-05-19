@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:21:10 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/17 15:17:09 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:56:26 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 void	create_philo(t_philo *philo);
 void	create_thread(t_philo *philo, int nb_philo);
-void	*philo_day(void	**config);
+void	*philo_day(void	*config);
 
-// /* launches the simulation */
-// void	launch_sim(t_philo **philo, t_config **config)
-// {
-
-// }
+/* launches the simulation */
+void	launch_sim(t_philo **philo, t_config **config)
+{
+	create_philo(*philo);
+	while (!(*philo)->life_state[0])
+	{
+		usleep(100);
+	}
+}
 
 /* creates each thread of each individual philo */
 void	create_philo(t_philo *philo)
@@ -52,26 +56,31 @@ void	create_thread(t_philo *philo, int nb_philo)
 	config->t_sleep = philo->time_sleep;
 	config->life = 1;
 	config->ate = 0;
+	config->last_bite = get_time('n');
+	config->life_state = philo->life_state;
 	config->forks = philo->forks;
 	if (philo->nb_time_eat)
 		config->nb_t_eat = philo->nb_time_eat;
-	if (!pthread_create(&philo->threads[nb_philo], NULL, philo_day, (void *)&config))
+	if (!pthread_create(&philo->threads[nb_philo], NULL, philo_day, (void *) config))
 		return ;
 }
 
 /* the daily rountine of a philo */
-void	*philo_day(void	**arg)
+void	*philo_day(void	*arg)
 {
-	t_config **config;
+	t_config *config;
 
-	config = (t_config **)arg;
-	if ((*config)->pos % 2 != 0)
+	config = (t_config *)arg;
+	if ((config)->pos % 2 != 0)
 		usleep(2000);
-	while((*config)->life)
+	while((config)->life)
 	{
-		eats(*config);
-		sleeps(*config);
-		msg(*config, THINKS);
+		eats(config);
+		if (config->life)
+			sleeps(config);
+		if (config->life)
+			msg(config, THINKS);
 	}
-	msg(*config, DIES);
+	msg(config, DIES);
+	return (0);
 }

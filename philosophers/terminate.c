@@ -6,13 +6,13 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:16:35 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/15 11:19:59 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:49:53 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	terminate(t_config *config)
-{
+// void	terminate(t_config *config)
+// {
 
-}
+// }
