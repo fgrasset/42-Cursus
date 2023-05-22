@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:22 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/19 14:43:19 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/22 10:07:22 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ void		msg(t_config *config, int state);
 void		eats(t_config *config);
 void		sleeps(t_config *config);
 
+// sim
+
+void	launch_sim(t_philo **philo);
 
 
 

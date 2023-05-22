@@ -6,82 +6,89 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:09 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/19 15:02:57 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:13:23 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	initialize(t_philo **philo, char **settings);
+void	initialize(t_philo *philo, char **settings);
 int		ft_atoi(const char *str);
 
 
 int	main(int ac, char **av)
 {
-	t_config	*config;
 	t_philo		*philo;
 
-	if (!my_malloc((void **)&config, sizeof(config)) && !my_malloc((void **)&philo, sizeof(philo)))
+	philo = malloc(sizeof(t_philo));
+	if (!philo)
 		return (0);
 	if (!infos_check(av, ac))
 		return (0);
-	initialize(&philo, av);
-	printf("reussi!");
+	initialize(philo, av);
+	launch_sim(&philo);
+	return (0);
 }
 
 /* initializes the philo struct based on the given infos */
-void	initialize(t_philo **philo, char **settings)
+void	initialize(t_philo *philo, char **settings)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	(*philo)->nb_philo = ft_atoi(settings[++i]);
-	if ((*philo)->nb_philo < 1)
-		return ;
-	(*philo)->time_die = ft_atoi(settings[++i]);
-	(*philo)->time_eat = ft_atoi(settings[++i]);
-	(*philo)->time_sleep = ft_atoi(settings[++i]);
+	philo->nb_philo = ft_atoi(settings[++i]);
+	if (philo->nb_philo < 1)
+		return;
+	philo->time_die = ft_atoi(settings[++i]);
+	philo->time_eat = ft_atoi(settings[++i]);
+	philo->time_sleep = ft_atoi(settings[++i]);
 	if (settings[++i])
-		(*philo)->nb_time_eat = ft_atoi(settings[i]);
-	(*philo)->threads = malloc(sizeof(pthread_t) * (*philo)->nb_philo);
-	if (!(*philo)->threads)
-		return ;
-	if (!pthread_mutex_init((*philo)->forks, NULL))
-		return ;
-	(*philo)->forks = malloc(sizeof(pthread_mutex_t) * (*philo)->nb_philo);
-	if (!(*philo)->forks)
-		return ;
-	if (!pthread_mutex_init((*philo)->life_mutex, NULL))
-		return ;
-	(*philo)->life_state = malloc(sizeof(int) * (*philo)->nb_philo + 1);
-	if (!(*philo)->life_state)
-		return ;
+		philo->nb_time_eat = ft_atoi(settings[i]);
+	philo->threads = malloc(sizeof(pthread_t) * philo->nb_philo);
+	if (!philo->threads)
+		return;
+
+	philo->forks = malloc(sizeof(pthread_mutex_t) * philo->nb_philo);
+	if (!philo->forks)
+		return;
+
+	for (int j = 0; j < philo->nb_philo; j++) {
+		if (pthread_mutex_init(&philo->forks[j], NULL) != 0)
+			return;
+	}
+
+	philo->life_mutex = malloc(sizeof(pthread_mutex_t));
+	if (!philo->life_mutex)
+		return;
+
+	if (pthread_mutex_init(philo->life_mutex, NULL) != 0)
+		return;
+
+	philo->life_state = malloc(sizeof(int) * philo->nb_philo);
+	if (!philo->life_state)
+		return;
+
 	get_time('i');
 }
 
+
 /* basically atoi */
-int	ft_atoi(const char *str) {
-	int sign = 1;
-	int result = 0;
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	nbr;
 
-	while (*str == ' ' || (*str >= '\t' && *str <= '\r')) {
-		str++;
+	i = 0;
+	if (str[i] == '+')
+		i++;
+	nbr = 0;
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (-1);
+		nbr *= 10;
+		nbr += str[i] - '0';
+		i++;
 	}
-	if (*str == '-' || *str == '+') {
-		sign = (*str++ == '-') ? -1 : 1;
-	}
-	while (*str >= '0' && *str <= '9') {
-		int digit = *str - '0';
-		if (sign == 1 && (result > (2147483647 - digit) / 10)) {
-			return (2147483647);
-		}else if (sign == -1 && (result > (2147483647 - digit) / 10)) {
-			return (-2147483648);
-		}
-		result = result * 10 + digit;
-		str++;
-	}
-
-	return (sign * result);
+	return (nbr);
 }
-
-
