@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:09 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/22 14:13:23 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:18:21 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ void	initialize(t_philo *philo, char **settings)
 			return;
 	}
 
-	philo->life_mutex = malloc(sizeof(pthread_mutex_t));
-	if (!philo->life_mutex)
+	philo->sim_mutex = malloc(sizeof(pthread_mutex_t));
+	if (!philo->sim_mutex)
 		return;
 
-	if (pthread_mutex_init(philo->life_mutex, NULL) != 0)
+	if (pthread_mutex_init(philo->sim_mutex, NULL) != 0)
 		return;
 
-	philo->life_state = malloc(sizeof(int) * philo->nb_philo);
-	if (!philo->life_state)
+	philo->sim_state = malloc(sizeof(int) * 2);
+	if (!philo->sim_state)
 		return;
-
+	philo->sim_state[1] = 0;
 	get_time('i');
 }
 

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:21:10 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/22 14:23:20 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:36:04 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	create_philo(t_philo *philo);
 void	create_thread(t_philo *philo, int nb_philo);
 void	*philo_day(void	*config);
-int		satiated(t_philo *philo);
 
 /* launches the simulation */
 void	launch_sim(t_philo **philo)
@@ -57,7 +56,8 @@ void	create_thread(t_philo *philo, int nb_philo)
 	config->life = 1;
 	config->ate = 0;
 	config->last_bite = get_time('n');
-	config->life_state = philo->life_state;
+	config->sim_state = philo->sim_state;
+	config->nb_philo = philo->nb_philo;
 	config->forks = philo->forks;
 	if (philo->nb_time_eat)
 		config->nb_t_eat = philo->nb_time_eat;
@@ -73,7 +73,7 @@ void	*philo_day(void	*arg)
 	config = (t_config *)arg;
 	if (config->pos % 2 != 0)
 		usleep(3000);
-	while(config->life)
+	while(state(config))
 	{
 		eats(config);
 		if (config->life)
@@ -82,21 +82,21 @@ void	*philo_day(void	*arg)
 			msg(config, THINKS);
 	}
 	msg(config, DIES);
+	free(config);
 	return (0);
 }
 
 /* checks if all the philo have eaten enough */
-int	satiated(t_philo *philo)
+int	satiated(t_config *config)
 {
 	int	i;
 
 	i = 0;
-	if (!philo->nb_time_eat)
+	if (!config->nb_t_eat)
 		return (0);
-	while (++i <= philo->nb_philo)
-	{
-		if (philo->life_state[i] == 0)
-			return (0);
-	}
-	return (1);
+	pthread_mutex_lock(&config->sim_mutex[1]);
+	if (config->sim_state[1] == config->nb_philo)
+		return (1);
+	pthread_mutex_unlock(&config->sim_mutex[1]);
+	return (0);
 }

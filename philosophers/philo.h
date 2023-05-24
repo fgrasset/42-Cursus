@@ -6,19 +6,19 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:22 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/22 10:07:22 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:39:20 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef PHILO_H
+#ifndef PHILO_H
 # define PHILO_H
 
-#include <pthread.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/time.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/time.h>
 
 # define EATS 1
 # define SLEEPS 2
@@ -30,8 +30,8 @@ typedef struct s_philo
 {
 	pthread_t		*threads;		//keep track of the threads ID
 	pthread_mutex_t	*forks;			//forks used as mutex
-	pthread_mutex_t	*life_mutex;
-	int				*life_state;
+	pthread_mutex_t	*sim_mutex;
+	int				*sim_state;
 	int				nb_philo;
 	int				time_die;
 	int				time_eat;
@@ -43,6 +43,7 @@ typedef struct s_config
 {
 	int				pos;
 	int				next_pos;
+	int				nb_philo;
 	int				t_eat;
 	int				t_die;
 	int				t_sleep;
@@ -50,8 +51,8 @@ typedef struct s_config
 	int				life;
 	int				ate;
 	int				last_bite;
-	int				*life_state;
-	pthread_mutex_t	*life_mutex;
+	int				*sim_state;
+	pthread_mutex_t	*sim_mutex;
 	pthread_mutex_t	*forks;
 }				t_config;
 
@@ -78,8 +79,11 @@ void		sleeps(t_config *config);
 
 // sim
 
-void	launch_sim(t_philo **philo);
+void		launch_sim(t_philo **philo);
+int			satiated(t_config *config);
 
+// state
 
+int			state(t_config *config);
 
-# endif
+#endif
