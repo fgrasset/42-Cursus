@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:21:10 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/24 16:36:04 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/26 13:20:00 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	create_thread(t_philo *philo, int nb_philo)
 	config->sim_state = philo->sim_state;
 	config->nb_philo = philo->nb_philo;
 	config->forks = philo->forks;
+	config->sim_mutex = philo->sim_mutex;
 	if (philo->nb_time_eat)
 		config->nb_t_eat = philo->nb_time_eat;
 	if (!pthread_create(&philo->threads[nb_philo], NULL, philo_day, (void *) config))

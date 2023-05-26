@@ -6,13 +6,14 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:09 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/24 14:18:21 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/26 13:56:53 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 void	initialize(t_philo *philo, char **settings);
+int		error_msg(char flag);
 int		ft_atoi(const char *str);
 
 
@@ -27,6 +28,7 @@ int	main(int ac, char **av)
 		return (0);
 	initialize(philo, av);
 	launch_sim(&philo);
+	terminate(philo);
 	return (0);
 }
 
@@ -48,27 +50,34 @@ void	initialize(t_philo *philo, char **settings)
 	if (!philo->threads)
 		return;
 
-	philo->forks = malloc(sizeof(pthread_mutex_t) * philo->nb_philo);
+	philo->forks = malloc(sizeof(pthread_mutex_t) * philo->nb_philo);	//fork mutex
 	if (!philo->forks)
 		return;
-
 	for (int j = 0; j < philo->nb_philo; j++) {
 		if (pthread_mutex_init(&philo->forks[j], NULL) != 0)
 			return;
 	}
 
-	philo->sim_mutex = malloc(sizeof(pthread_mutex_t));
+	philo->sim_mutex = malloc(sizeof(pthread_mutex_t));					//sim_mutex
 	if (!philo->sim_mutex)
 		return;
-
 	if (pthread_mutex_init(philo->sim_mutex, NULL) != 0)
 		return;
 
-	philo->sim_state = malloc(sizeof(int) * 2);
+	philo->sim_state = malloc(sizeof(int) * 2);							//sim_state
 	if (!philo->sim_state)
 		return;
+	philo->sim_state[0] = 1;
 	philo->sim_state[1] = 0;
 	get_time('i');
+}
+
+/* writes the error message based on the flag and returns 0 */
+int	error_msg(char flag)
+{
+	if (flag == 'M')
+		printf("There is an error in the malloc of philo\n");
+	return (0);
 }
 
 

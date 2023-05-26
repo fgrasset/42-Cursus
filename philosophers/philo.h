@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:22 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/24 16:39:20 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/26 13:48:46 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,9 @@ int			satiated(t_config *config);
 // state
 
 int			state(t_config *config);
+
+// terminate
+
+void		terminate(t_philo *philo);
 
 #endif

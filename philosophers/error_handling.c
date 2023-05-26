@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:02:11 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/12 09:40:09 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/26 13:51:12 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ int	infos_check(char **infos, int nb_args)
 	while (infos[++i])
 	{
 		if (!is_positive_number(infos[i]))
+		{
+			printf("There is an error in the given arguments\n");
 			return (0);
+		}
 	}
 	return (1);
 }
