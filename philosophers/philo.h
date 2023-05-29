@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:22 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/26 13:48:46 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/29 13:30:17 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void		msg(t_config *config, int state);
 
 void		eats(t_config *config);
 void		sleeps(t_config *config);
+void		thinks(t_config *config);
 
 // sim
 

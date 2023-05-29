@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:09 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/26 13:56:53 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/29 11:49:06 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ void	initialize(t_philo *philo, char **settings)
 	philo->nb_philo = ft_atoi(settings[++i]);
 	if (philo->nb_philo < 1)
 		return;
-	philo->time_die = ft_atoi(settings[++i]);
-	philo->time_eat = ft_atoi(settings[++i]);
-	philo->time_sleep = ft_atoi(settings[++i]);
+	philo->time_die = ft_atoi(settings[++i]) * 1000;
+	philo->time_eat = ft_atoi(settings[++i]) * 1000;
+	philo->time_sleep = ft_atoi(settings[++i]) * 1000;
 	if (settings[++i])
 		philo->nb_time_eat = ft_atoi(settings[i]);
+	else
+		philo->nb_time_eat = -1;
 	philo->threads = malloc(sizeof(pthread_t) * philo->nb_philo);
 	if (!philo->threads)
 		return;
@@ -53,7 +55,7 @@ void	initialize(t_philo *philo, char **settings)
 	philo->forks = malloc(sizeof(pthread_mutex_t) * philo->nb_philo);	//fork mutex
 	if (!philo->forks)
 		return;
-	for (int j = 0; j < philo->nb_philo; j++) {
+	for (int j = -1; j < philo->nb_philo; j++) {
 		if (pthread_mutex_init(&philo->forks[j], NULL) != 0)
 			return;
 	}

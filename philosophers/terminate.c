@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:16:35 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/26 13:57:26 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/29 11:49:16 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	terminate(t_philo *philo)
 
 	i = -1;
 	pthread_mutex_destroy(philo->sim_mutex);
-	while (++i < philo->nb_philo)
+	while (++i <= philo->nb_philo)
 	{
 		pthread_mutex_destroy(&philo->forks[i]);
-		free(philo->threads[i]);
 	}
+	free(philo->threads);
 	free(philo);
 }

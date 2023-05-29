@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:28:20 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/26 13:21:13 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/29 11:43:41 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	state(t_config *config)
 	{
 		pthread_mutex_unlock(config->sim_mutex);
 		config->life = 0;
+		msg(config, DIES);
 		return (0);
 	}
 	pthread_mutex_unlock(config->sim_mutex);
