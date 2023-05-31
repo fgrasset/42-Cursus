@@ -6,28 +6,23 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:23:51 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/29 15:27:14 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:31:54 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 int		outlive(t_config *config, int time);
-void	state_update(t_config *config, char flag);
 
 /* philosopher is eating */
 void	eats(t_config *config)
 {
-	printf("%d < %d\n", config->t_die + config->last_bite, get_time('n'));
-	if ((config->t_die + config->last_bite) < get_time('n'))		//ISSUE HERE WTF IS THAT
-	{
-		write(1, "test\n", 5);
-		state_update(config, 'L');
-		sleep(1);
+	if (!state(config))
 		return ;
-	}
 	pthread_mutex_lock(&config->forks[config->pos]);
 	msg(config, FORKS);
+	if (!state(config))
+		return ;
 	pthread_mutex_lock(&config->forks[config->next_pos]);
 	msg(config, FORKS);
 	if (!state(config))
@@ -40,7 +35,7 @@ void	eats(t_config *config)
 	if (!config->life)
 		return ;
 	config->last_bite = get_time('n');
-	// printf("config->last_bite: %d\n", config->last_bite);
+	printf("last bite: %d\n", config->last_bite);
 	if (config->nb_t_eat >= 0 && (++config->ate == config->nb_t_eat))
 		state_update(config, 'E');
 }
