@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:23:51 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/31 10:31:54 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/06/02 14:41:38 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	eats(t_config *config)
 	if (!config->life)
 		return ;
 	config->last_bite = get_time('n');
-	printf("last bite: %d\n", config->last_bite);
+	// printf("last bite: %d\n", config->last_bite);
 	if (config->nb_t_eat >= 0 && (++config->ate == config->nb_t_eat))
 		state_update(config, 'E');
 }

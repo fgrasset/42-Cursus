@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:28:20 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/31 10:39:12 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/06/02 14:40:49 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	state(t_config *config)
 		return (0);
 	}
 	// printf("%d < %d\n", config->t_die + config->last_bite, get_time('n'));
-	printf("last bite: %d\n", config->last_bite);
-	printf("config->t_die + config->last_bite: %d\n", (config->t_die/1000) + config->last_bite);
-	printf("get_time('n'): %d\n", get_time('n'));
-	if (((config->t_die / 1000) + config->last_bite) > get_time('n'))		//ISSUE HERE WTF IS THAT
+	// printf("last bite: %d\n", config->last_bite);
+	// printf("config->t_die + config->last_bite: %d\n", (config->t_die/1000) + config->last_bite);
+	// printf("get_time('n'): %d\n", get_time('n'));
+	if ((config->t_die + config->last_bite) < get_time('n'))		//ISSUE HERE WTF IS THAT
 	{
 		write(1, "test\n", 5);
 		state_update(config, 'L');
