@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:09 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/31 10:32:06 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/06/05 13:41:27 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 void	initialize(t_philo *philo, char **settings);
-int		error_msg(char flag);
 int		ft_atoi(const char *str);
 
 
@@ -41,13 +40,18 @@ void	initialize(t_philo *philo, char **settings)
 	philo->nb_philo = ft_atoi(settings[++i]);
 	if (philo->nb_philo < 1)
 		return;
-	philo->time_die = ft_atoi(settings[++i]) * 1000;
-	philo->time_eat = ft_atoi(settings[++i]) * 1000;
-	philo->time_sleep = ft_atoi(settings[++i]) * 1000;
+	philo->time_die = ft_atoi(settings[++i]);
+	philo->time_eat = ft_atoi(settings[++i]);
+	philo->time_sleep = ft_atoi(settings[++i]);
+	printf("time die: %d\n", philo->time_die);
+	printf("time eat: %d\n", philo->time_eat);
+	printf("time sleep: %d\n", philo->time_sleep);
+	printf("nb philo: %d\n", philo->nb_philo);
 	if (settings[++i])
 		philo->nb_time_eat = ft_atoi(settings[i]);
 	else
 		philo->nb_time_eat = -1;
+	printf("nb time eat: %d\n", philo->nb_time_eat);
 	philo->threads = malloc(sizeof(pthread_t) * philo->nb_philo);
 	if (!philo->threads)
 		return;
@@ -79,6 +83,8 @@ int	error_msg(char flag)
 {
 	if (flag == 'M')
 		printf("There is an error in the malloc of philo\n");
+	else if (flag == 'A')
+		printf("There is not enough arguments or they are not correctly formated\n");
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:02:11 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/26 13:51:12 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/06/05 13:21:47 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	infos_check(char **infos, int nb_args)
 
 	i = 0;
 	if (nb_args < 5 || nb_args > 6)
+	{
+		error_msg('A');
 		return (0);
+	}
 	while (infos[++i])
 	{
 		if (!is_positive_number(infos[i]))

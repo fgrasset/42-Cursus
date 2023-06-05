@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:23:51 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/06/02 14:41:38 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:58:07 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,42 +17,47 @@ int		outlive(t_config *config, int time);
 /* philosopher is eating */
 void	eats(t_config *config)
 {
+	int start;
+
 	if (!state(config))
 		return ;
-	pthread_mutex_lock(&config->forks[config->pos]);
+	while (config->life && pthread_mutex_lock(&config->forks[config->pos]))
+		state(config);
 	msg(config, FORKS);
-	if (!state(config))
-		return ;
-	pthread_mutex_lock(&config->forks[config->next_pos]);
-	msg(config, FORKS);
-	if (!state(config))
-		return ;
-	msg(config, EATS);
-	if (outlive(config, config->t_eat))
-		usleep(config->t_eat);
-	pthread_mutex_unlock(&config->forks[config->pos]);
-	pthread_mutex_unlock(&config->forks[config->next_pos]);
 	if (!config->life)
 		return ;
+	while (config->life && pthread_mutex_lock(&config->forks[config->next_pos]))
+		state(config);
+	msg(config, FORKS);
+	start = get_time('n');
+	msg(config, EATS);
 	config->last_bite = get_time('n');
-	// printf("last bite: %d\n", config->last_bite);
-	if (config->nb_t_eat >= 0 && (++config->ate == config->nb_t_eat))
+	while (config->life && (start + config->t_eat) > get_time('n'))
+		state(config);
+	pthread_mutex_unlock(&config->forks[config->pos]);
+	pthread_mutex_unlock(&config->forks[config->next_pos]);
+	if (config->life && config->nb_t_eat >= 0 && (++config->ate == config->nb_t_eat))
 		state_update(config, 'E');
 }
 
 /* philosopher is sleeping */
 void	sleeps(t_config *config)
 {
+	int	start;
+
+	state(config);
 	if (!config->life)
 		return ;
+	start = get_time('n');
 	msg(config, SLEEPS);
-	if (outlive(config, config->t_sleep))
-		usleep(config->t_sleep);
+	while (config->life && (start + config->t_sleep) > get_time('n'))
+		state(config);
 }
 
 /* philosopher is thinking */
 void	thinks(t_config *config)
 {
+	state(config);
 	if (!config->life)
 		return ;
 	msg(config, THINKS);
@@ -73,7 +78,8 @@ int	outlive(t_config *config, int time)
 
 /* updates the sim_state variable based on the flag
 	if flag == 'L', put sim_state[0] == 0
-	if flag == 'E', increases sim_state[1]++ */
+	if flag == 'E', increases sim_state[1]++
+	and check if the philos have all eaten */
 void	state_update(t_config *config, char flag)
 {
 	if (flag == 'L')
@@ -89,6 +95,8 @@ void	state_update(t_config *config, char flag)
 	{
 		pthread_mutex_lock(&config->sim_mutex[1]);
 		config->sim_state[1] += 1;
+		if (config->sim_state[1] == config->nb_t_eat)
+			state_update(config, 'L');
 		pthread_mutex_unlock(&config->sim_mutex[1]);
 	}
 	return ;

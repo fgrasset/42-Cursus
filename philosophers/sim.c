@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sim.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:21:10 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/29 14:29:19 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:09:24 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	create_thread(t_philo *philo, int nb_philo)
 	config = malloc(sizeof(t_config));
 	if (!config)
 		return ;
-	config->pos = nb_philo + 1;
-	if (config->pos == philo->nb_philo)
-		config->next_pos = 1;
+	config->pos = nb_philo;
+	if (config->pos == philo->nb_philo - 1)
+		config->next_pos = 0;
 	else
-		config->next_pos = nb_philo + 2;
+		config->next_pos = nb_philo + 1;
 	config->t_die = philo->time_die;
 	config->t_eat = philo->time_eat;
 	config->t_sleep = philo->time_sleep;
@@ -72,9 +72,19 @@ void	*philo_day(void	*arg)
 	t_config	*config;
 
 	config = (t_config *)arg;
+	// //printf to printf everything in the config struct
+	// printf("pos: %d\n", config->pos);
+	// printf("next_pos: %d\n", config->next_pos);
+	// printf("t_die: %d\n", config->t_die);
+	// printf("t_eat: %d\n", config->t_eat);
+	// printf("t_sleep: %d\n", config->t_sleep);
+	// printf("life: %d\n", config->life);
+	// printf("ate: %d\n", config->ate);
+	// printf("last_bite: %d\n", config->last_bite);
+	// printf("------------------\n");
 	if (config->pos % 2 != 0)
 		usleep(3000);
-	while (state(config))
+	while (config->life)
 	{
 		eats(config);
 		sleeps(config);
@@ -87,9 +97,6 @@ void	*philo_day(void	*arg)
 /* checks if all the philo have eaten enough */
 int	satiated(t_config *config)
 {
-	int	i;
-
-	i = 0;
 	if (config->nb_t_eat == -1)
 		return (0);
 	pthread_mutex_lock(&config->sim_mutex[1]);
