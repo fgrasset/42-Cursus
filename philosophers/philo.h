@@ -6,7 +6,7 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 10:16:22 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/06/05 13:21:36 by fabien           ###   ########.fr       */
+/*   Updated: 2023/06/07 09:18:04 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 
 typedef struct s_philo
 {
-	pthread_t		*threads;		//keep track of the threads ID
-	pthread_mutex_t	*forks;			//forks used as mutex
+	pthread_t		*threads;
+	pthread_mutex_t	*forks;
 	pthread_mutex_t	*sim_mutex;
 	int				*sim_state;
 	int				nb_philo;
@@ -56,10 +56,6 @@ typedef struct s_config
 	pthread_mutex_t	*forks;
 }				t_config;
 
-// utils
-
-int			my_malloc(void	**ptr, int size);
-
 // errors
 
 int			infos_check(char **infos, int nb_args);
@@ -71,7 +67,7 @@ int			get_time(char c);
 
 // msg
 
-void		msg(t_config *config, int state);
+void		msg(t_config *config, int status);
 
 // actions
 

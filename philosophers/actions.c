@@ -6,24 +6,26 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:23:51 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/06/05 15:58:07 by fabien           ###   ########.fr       */
+/*   Updated: 2023/06/07 09:33:58 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		outlive(t_config *config, int time);
+void	solo(t_config *config);
 
 /* philosopher is eating */
 void	eats(t_config *config)
 {
-	int start;
+	int	start;
 
 	if (!state(config))
 		return ;
 	while (config->life && pthread_mutex_lock(&config->forks[config->pos]))
 		state(config);
 	msg(config, FORKS);
+	if (config->nb_philo == 1)
+		solo(config);
 	if (!config->life)
 		return ;
 	while (config->life && pthread_mutex_lock(&config->forks[config->next_pos]))
@@ -36,7 +38,8 @@ void	eats(t_config *config)
 		state(config);
 	pthread_mutex_unlock(&config->forks[config->pos]);
 	pthread_mutex_unlock(&config->forks[config->next_pos]);
-	if (config->life && config->nb_t_eat >= 0 && (++config->ate == config->nb_t_eat))
+	if (config->life && config->nb_t_eat >= 0 \
+	&& (++config->ate == config->nb_t_eat))
 		state_update(config, 'E');
 }
 
@@ -63,19 +66,6 @@ void	thinks(t_config *config)
 	msg(config, THINKS);
 }
 
-/* true if philo outlives time he has to pass
-	else it just waits and terminate the thread */
-int	outlive(t_config *config, int time)
-{
-	if ((config->last_bite + time) < (config->last_bite + config->t_die))
-		return (1);
-	usleep((config->last_bite + config->t_die) - \
-	(config->last_bite + config->t_die));
-	state_update(config, 'L');
-	config->life = 0;
-	return (0);
-}
-
 /* updates the sim_state variable based on the flag
 	if flag == 'L', put sim_state[0] == 0
 	if flag == 'E', increases sim_state[1]++
@@ -95,9 +85,25 @@ void	state_update(t_config *config, char flag)
 	{
 		pthread_mutex_lock(&config->sim_mutex[1]);
 		config->sim_state[1] += 1;
-		if (config->sim_state[1] == config->nb_t_eat)
-			state_update(config, 'L');
+		if (config->sim_state[1] == config->nb_philo)
+		{
+			pthread_mutex_lock(&config->sim_mutex[0]);
+			config->sim_state[0] = 0;
+			pthread_mutex_unlock(&config->sim_mutex[0]);
+			config->life = 0;
+		}
 		pthread_mutex_unlock(&config->sim_mutex[1]);
 	}
 	return ;
+}
+
+void	solo(t_config *config)
+{
+	int	start;
+
+	start = get_time('n');
+	while (start + config->t_die > get_time('n'))
+		;
+	msg(config, DIES);
+	config->life = 0;
 }

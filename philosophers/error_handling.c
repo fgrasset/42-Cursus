@@ -6,7 +6,7 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:02:11 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/06/05 13:21:47 by fabien           ###   ########.fr       */
+/*   Updated: 2023/06/07 09:12:47 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@ int	is_positive_number(char *str);
 /* check that the given infos are correct, returns true if it is */
 int	infos_check(char **infos, int nb_args)
 {
-	/*
-	check that there is enough/not too much infos,
-	and that they are correctly formatted (eg. numbers only)
-	*/
 	int	i;
 
 	i = 0;

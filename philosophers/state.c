@@ -6,7 +6,7 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:28:20 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/06/05 15:48:02 by fabien           ###   ########.fr       */
+/*   Updated: 2023/06/07 09:12:03 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,7 @@ int	state(t_config *config)
 {
 	if (!config->life)
 		return (0);
-	// if (satiated(config))		//To change, needs to be in eats() function
-	// {
-	// 	config->life = 0;
-	// 	return (0);
-	// }
-	// printf("%d < %d\n", config->t_die + config->last_bite, get_time('n'));
-	// printf("last bite: %d\n", config->last_bite);
-	// printf("config->t_die + config->last_bite: %d\n", (config->t_die/1000) + config->last_bite);
-	// printf("get_time('n'): %d\n", get_time('n'));
-	if ((config->t_die + config->last_bite) < get_time('n'))		//ISSUE HERE WTF IS THAT
+	if ((config->t_die + config->last_bite) < get_time('n'))
 	{
 		state_update(config, 'L');
 		return (0);
@@ -36,7 +27,6 @@ int	state(t_config *config)
 	{
 		pthread_mutex_unlock(config->sim_mutex);
 		config->life = 0;
-		msg(config, DIES);
 		return (0);
 	}
 	pthread_mutex_unlock(config->sim_mutex);

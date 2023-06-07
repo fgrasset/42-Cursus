@@ -6,7 +6,7 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 11:11:20 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/06/05 14:00:00 by fabien           ###   ########.fr       */
+/*   Updated: 2023/06/07 09:16:07 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,13 @@ int	get_time(char c)
 	if (c == 'i')
 	{
 		gettimeofday(&start_time, NULL);
-		// start_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 		return (0);
 	}
 	else if (c == 'n')
 	{
 		gettimeofday(&tv, NULL);
-		// current_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 		return ((tv.tv_sec - start_time.tv_sec) * 1000
-		 + (tv.tv_usec - start_time.tv_usec) / 1000);
+			+ (tv.tv_usec - start_time.tv_usec) / 1000);
 	}
 	return (0);
 }
