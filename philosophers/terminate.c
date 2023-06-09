@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 11:16:35 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/29 11:49:16 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:10:02 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,8 @@ void	terminate(t_philo *philo)
 		pthread_mutex_destroy(&philo->forks[i]);
 	}
 	free(philo->threads);
+	free(philo->forks);
+	free(philo->sim_mutex);
+	free(philo->sim_state);
 	free(philo);
 }
