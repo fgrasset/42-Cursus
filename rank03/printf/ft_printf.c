@@ -8,22 +8,27 @@ void	ft_putstr(char *input, int	*len)
 	int	i;
 
 	i = -1;
+	if (!input)
+	{
+		*len += write(1, "(null)", 6);
+		return ;
+	}
 	while (input[++i])
-		len += write(1, &input[i], 1);
+		*len += write(1, &input[i], 1);
 }
 
-void	ft_putnbrs(int nbr, int base, int *len)
+void	ft_putnbrs(long long int nbr, int base, int *len)
 {
 	char	*hexa = "0123456789abcdef";
 
 	if (nbr < 0)
 	{
-		len += write(1, "-", 1);
+		*len += write(1, "-", 1);
 		nbr *= -1;
 	}
-	if (nbr > base)
+	if (nbr >= base)
 		ft_putnbrs((nbr / base), base, len);
-	len += write(1, &hexa[nbr % base], 1);
+	*len += write(1, &hexa[nbr % base], 1);
 }
 
 int	ft_printf(char *input, ...)
@@ -39,7 +44,7 @@ int	ft_printf(char *input, ...)
 	i = -1;
 	while (input[++i])
 	{
-		if (input[i] == '%')
+		if (input[i] == '%' && (input[i + 1] == 's' | input[i + 1] == 'd' | input[i + 1] == 'x'))
 		{
 			i++;
 			if (input[i] == 's')
@@ -56,10 +61,10 @@ int	ft_printf(char *input, ...)
 	return (len);
 }
 
-int	main()
-{
-	int	nb = 10;
+// int	main()
+// {
+// 	int	nb = 8;
 
-	ft_printf("salut les top %d\n", nb);
-	return (0);
-}
+// 	ft_printf("salut les top %d\n", nb);
+// 	return (0);
+// }

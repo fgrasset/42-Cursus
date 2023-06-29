@@ -1,4 +1,4 @@
-SRCS	= printf.c
+SRCS	= ft_printf.c
 
 OBJS	= ${SRCS:.c=.o}
 
