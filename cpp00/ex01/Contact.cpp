@@ -59,6 +59,7 @@ void	Contact::addContact(void)
 	std::string	nName;
 	std::string	secret;
 
+	std::cin.clear();
 	do{
 		std::cout << "Enter the first name of the contact : ";
 		std::getline(std::cin, fName);

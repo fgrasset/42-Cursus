@@ -28,8 +28,8 @@ class Contact
 		void			addNick(std::string str);
 		void			addSecret(std::string str);
 		void			addPhone(std::string nb);
-		std::string		get(int index);
 		void			addContact(void);
+		std::string		get(int index);
 
 };
 

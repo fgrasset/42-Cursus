@@ -14,7 +14,7 @@ int	main(void)
 	while (run)
 	{
 		std::cout << "Enter your input : ";
-		std::cin >> cmd;
+		std::getline(std::cin, cmd);
 		execute(cmd, &book, &run);
 	}
 }
@@ -32,14 +32,29 @@ void	execute(std::string cmd, PhoneBook *book, int *run)
 /* prints the list of contact and wait for the user to select an index to show */
 void	search(PhoneBook *book)
 {
-	int	index = 0;
+	std::string	index;
+	int			nb_i = 0;
 
 	book->printContacts();
 	do{
-		std::cout << "select the index of a contact to see his informations : ";
-		std::cin >> index;
-	} while (index > 8 || index < 1);
-	book->selectContact(index);
+		std::cout << "Select the index of a contact to see their information: ";
+		std::getline(std::cin, index);
+
+		if (std::cin.eof() || index.empty())
+			return;
+		bool validInput = true;
+		for (std::size_t i = 0; i < index.length(); ++i) {
+			if (!std::isdigit(index[i])) {
+				validInput = false;
+				continue;
+			}
+		}
+		if (!validInput) {
+			continue;
+		}
+		nb_i = std::stoi(index);
+	} while (nb_i < 1 || nb_i > book->size());
+	book->selectContact(nb_i);
 }
 
 /* EXIT command */

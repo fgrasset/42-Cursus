@@ -21,7 +21,7 @@ void	PhoneBook::printContacts(void)
 	std::cout << std::setw(10) << "last name" << "|";
 	std::cout << std::setw(10) << "nickname" << std::endl;
 
-	while (++index < _size())
+	while (++index < size())
 	{
 		std::cout << std::setw(10) << index + 1 << "|";
 		if (_book[index].get(FNAME).length() > 9)
@@ -47,7 +47,7 @@ void	PhoneBook::addContact(void)
 	if (_number < 8)
 		_number++;
 	_book[pos].addContact();
-	if (++pos == 9)
+	if (++pos == 8)
 		pos = 0;
 }
 
@@ -63,7 +63,7 @@ void	PhoneBook::selectContact(int index)
 }
 
 /* returns the number of contacts there is */
-int		PhoneBook::_size(void)
+int		PhoneBook::size(void)
 {
 	return (_number);
 }
