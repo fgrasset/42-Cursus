@@ -9,10 +9,10 @@ Weapon::~Weapon()
 }
 
 /* returns the value _type */
-std::string	*Weapon::getType(void)
+std::string	&Weapon::getType(void)
 {
 	std::string	&type = _type;
-	return (&type);
+	return (type);
 }
 
 /* sets the new given value to _type */
