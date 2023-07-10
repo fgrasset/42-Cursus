@@ -1,16 +1,37 @@
-#ifndef STR_CPP
-# define STR_CPP
+#include "Str.hpp"
 
-#include <iostream>
-#include <istream>
 
-class Str
+Str::Str()
 {
-	std::string	_s1;
-	std::string	_s2;
+}
 
-public:
+Str::~Str()
+{
+}
 
-};
+/* checks that the 2 strings are the same size and then adds them to the class */
+int		Str::addString(std::string s1, std::string s2)
+{
+	if (s1.length() != s2.length())
+		return (0);
+	_s1 = s1;
+	_s2 = s2;
+	return (1);
+}
 
-#endif
+/* retrusn teh size of the string _s1 */
+int	Str::s1Size(void)
+{
+	return (_s1.length());
+}
+
+std::string	Str::getS1(void)
+{
+	return (_s1);
+}
+
+std::string	Str::getS2(void)
+{
+	return (_s2);
+}
+
