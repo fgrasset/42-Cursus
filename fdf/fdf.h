@@ -6,7 +6,7 @@
 /*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:25:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/12 15:12:34 by fabien           ###   ########.fr       */
+/*   Updated: 2023/06/12 14:18:36 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "libft/libft.h"
 # include <math.h>
 
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 600
+# define WIN_H 500
 # define MOVE 10
 # define ELEVATION 0.2
 # define ZOOM 2
