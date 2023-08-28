@@ -13,11 +13,12 @@ class Str
 public:
 	Str();
 	~Str();
-	int			s1Size(void);
-	int			addString(std::string s1, std::string s2);
+	std::string	line;
 	std::string	getS1(void);
 	std::string	getS2(void);
-
+	int			s1Size(void);
+	void		replaceStr(void);
+	int			addString(std::string s1, std::string s2);
 };
 
 #endif
