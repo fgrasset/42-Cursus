@@ -19,7 +19,7 @@ int	main()
 	delete cat;
 
 	std::cout << "--- Failure Tests ---" << std::endl;
-	const WrongCat		*wrongCat = new WrongCat();
+	const WrongAnimal	*wrongCat = new WrongCat();
 	std::cout << wrongCat->getType() << std::endl;
 	wrongCat->makeSound();
 
