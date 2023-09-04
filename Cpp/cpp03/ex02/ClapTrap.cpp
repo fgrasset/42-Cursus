@@ -2,22 +2,27 @@
 
 ClapTrap::ClapTrap() : _Name("Player"), _Hit(10), _Energy(10), _AD(0)
 {
-	std::cout << "Constructor called" << std::endl;
+	std::cout << "Constructor ClapTrap called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string Name) : _Name(Name), _Hit(10), _Energy(10), _AD(6)
 {
-	std::cout << "Name constructor called for " << Name << std::endl;
+	std::cout << "Name ClapTrap constructor called for " << Name << std::endl;
+}
+
+ClapTrap::ClapTrap(std::string Name, unsigned int Hit, unsigned int Energy, unsigned int AD) : _Name(Name), _Hit(Hit), _Energy(Energy), _AD(AD)
+{
+	std::cout << "Full ClapTrap constructor called for " << Name << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other) : _Name(other._Name), _Hit(other._Hit), _Energy(other._Energy), _AD(other._AD)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Copy ClapTrap constructor called" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "Destructor ClapTrap called" << std::endl;
 }
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap &other)
