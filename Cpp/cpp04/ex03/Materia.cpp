@@ -1,8 +1,13 @@
 #include <Materia.hpp>
 
-AMateria::AMateria(std::string const &type) : type(type)
+AMateria::AMateria()
 {
 	std::cout << "AMateria default constructor called" << std::endl;
+}
+
+AMateria::AMateria(std::string const &type) : type(type)
+{
+	std::cout << "AMateria type constructor called" << std::endl;
 }
 
 AMateria::AMateria(const AMateria &src)
