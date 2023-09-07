@@ -1,5 +1,5 @@
-#ifndef MATERIA_HPP
-# define MATERIA_HPP
+#ifndef AMATERIA_HPP
+# define AMATERIA_HPP
 
 #include <string>
 #include <iostream>
@@ -13,7 +13,7 @@ class AMateria
 		AMateria();
 		AMateria(std::string const &type);
 		AMateria(const AMateria &src);
-		~AMateria();
+		virtual ~AMateria();
 		AMateria	&operator=(const AMateria &src);
 
 		std::string const 	&getType() const;

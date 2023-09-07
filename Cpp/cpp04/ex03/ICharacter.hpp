@@ -2,8 +2,8 @@
 # define ICHARACTER_HPP
 
 #include <string>
-#include "Materia.hpp"
 
+class AMateria;
 class ICharacter
 {
 	public:

@@ -1,11 +1,10 @@
 NAME = Interface
 
-SRCS = main.cpp \
-	Character.cpp Ice.cpp Cure.cpp Materia.cpp
+SRCS = $(wildcard *.cpp)
 
 OBJS = $(SRCS:.cpp=.o)
 
-CPP = c++
+CPP = c++ -fsanitize=address
 
 CPPFLAGS = -std=c++98 -Wall -Wextra -Werror
 

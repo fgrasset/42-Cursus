@@ -1,4 +1,4 @@
-#include <Materia.hpp>
+#include "AMateria.hpp"
 
 AMateria::AMateria()
 {
@@ -27,6 +27,16 @@ AMateria	&AMateria::operator=(const AMateria &src)
 		return *this;
 	this->type = src.type;
 	return *this;
+}
+
+AMateria			*AMateria::clone() const
+{
+	return (0);
+}
+
+void				AMateria::use(ICharacter &target)
+{
+	(void) target;
 }
 
 std::string const	&AMateria::getType() const

@@ -5,8 +5,8 @@
 
 class MateriaSource : public IMateriaSource
 {
-	AMateria		*_stock[4];
-	static int		_index;
+	AMateria	*_stock[4];
+	int			_index;
 	public:
 		MateriaSource();
 		MateriaSource(const MateriaSource &src);
@@ -17,4 +17,4 @@ class MateriaSource : public IMateriaSource
 		AMateria* createMateria(std::string const & type);
 };
 
-#endif;
+#endif
