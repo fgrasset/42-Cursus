@@ -1,7 +1,7 @@
-#ifndef PHONEBOOKCLASS_HPP
-# define PHONEBOOKCLASS_HPP
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
-#include "contactClass.hpp"
+#include "Contact.hpp"
 #include <iomanip>
 
 class PhoneBook

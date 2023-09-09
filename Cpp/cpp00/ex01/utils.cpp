@@ -1,4 +1,4 @@
-#include "phonebookClass.hpp"
+#include "PhoneBook.hpp"
 
 /* returns true if the given str is a word */
 bool	isWord(std::string str)

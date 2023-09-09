@@ -1,5 +1,5 @@
-#ifndef CONTACTCLASS_HPP
-# define CONTACTCLASS_HPP
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
 #include <string>
 #include <iostream>

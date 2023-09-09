@@ -1,4 +1,4 @@
-#include "phonebookClass.hpp"
+#include "PhoneBook.hpp"
 
 void	execute(std::string cmd, PhoneBook *book, int *run);
 void	search(PhoneBook *book);

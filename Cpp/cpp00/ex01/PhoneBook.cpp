@@ -1,4 +1,4 @@
-#include "phonebookClass.hpp"
+#include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook()
 {
@@ -33,7 +33,7 @@ void	PhoneBook::printContacts(void)
 		else if (_book[index].get(LNAME).length() < 10)
 			std::cout << std::setw(10) << _book[index].get(LNAME) << "|";
 		if (_book[index].get(NNAME).length() > 9)
-			std::cout << _book[index].get(NNAME).substr(0, 9) << "." << "|";
+			std::cout << _book[index].get(NNAME).substr(0, 9) << "." << std::endl;
 		else if (_book[index].get(NNAME).length() < 10)
 			std::cout << std::setw(10) << _book[index].get(NNAME) << std::endl;
 	}

@@ -1,6 +1,10 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie(/* args */)
+Zombie::Zombie()
+{
+}
+
+Zombie::Zombie(std::string name) : _name(name)
 {
 }
 
