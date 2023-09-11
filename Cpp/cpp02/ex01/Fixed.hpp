@@ -16,6 +16,7 @@ public:
 	Fixed(Fixed const &src);
 	~Fixed();
 
+	Fixed	&operator=(Fixed const &src);
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
 	int		getX(void) const;
@@ -23,6 +24,6 @@ public:
 	int		toInt(void) const;
 };
 
-std::ostream	&operator<<(std::ostream &o, Fixed const &rhs);
+std::ostream	&operator<<(std::ostream &out, Fixed const &in);
 
  #endif

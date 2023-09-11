@@ -14,7 +14,7 @@ Fixed::Fixed(int x) : _x(x)
 Fixed::Fixed(Fixed const &src)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	*this = src;
+	this->_x = src.getRawBits();
 
 	return ;
 }
