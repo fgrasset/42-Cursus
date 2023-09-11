@@ -26,11 +26,9 @@ void	Str::replaceStr(void)
 	while ((pos = line.find(_s1, pos)) != std::string::npos)
 	{
 		std::string sub = line.substr(pos, j);
-		std::cout << sub << std::endl;
 		line.erase(pos, j);
 		line.insert(pos, _s2);
 		pos++;
-		std::cout << "pos : " << pos << std::endl;
 	}
 }
 

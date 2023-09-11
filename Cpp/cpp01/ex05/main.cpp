@@ -13,7 +13,7 @@ int	main(void)
 	std::cout << "Warning :" << std::endl;
 	harl.complain("WARNING");
 
-	std::cout << "ERROR :" << std::endl;
+	std::cout << "Error :" << std::endl;
 	harl.complain("ERROR");
 
 	std::cout << "Inexistant level :" << std::endl;
