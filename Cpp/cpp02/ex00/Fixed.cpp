@@ -1,9 +1,8 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed()
+Fixed::Fixed() : _x(0)
 {
 	std::cout << "Constructor called" << std::endl;
-	_x = 0;
 }
 
 Fixed::Fixed(int x) : _x(x)
@@ -23,6 +22,14 @@ Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
 }
+
+Fixed	&Fixed::operator=(Fixed const &src)
+{
+	if (this != &src)
+		this->_x = src.getRawBits();
+	return *this;
+}
+
 
 int		Fixed::getRawBits(void) const
 {

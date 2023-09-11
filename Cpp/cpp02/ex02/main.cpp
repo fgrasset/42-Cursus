@@ -13,7 +13,8 @@ int	main()
 
 	std::cout << b << std::endl;
 
-	std::cout << Fixed::max(a, b) << std::endl;
+	std::cout << "The max is: " << Fixed::max(a, b) << std::endl;
+	std::cout << "The min is: " << Fixed::min(a, b) << std::endl;
 
 	return 0;
 }
