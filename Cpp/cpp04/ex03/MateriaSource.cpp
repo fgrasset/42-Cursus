@@ -66,3 +66,12 @@ AMateria*		MateriaSource::createMateria(std::string const & type)
 	}
 	return (0);
 }
+
+void			MateriaSource::printMateria()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_stock[i])
+			std::cout << "type is: " << this->_stock[i]->getType() << std::endl;
+	}
+}

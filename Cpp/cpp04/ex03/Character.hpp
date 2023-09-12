@@ -7,6 +7,7 @@ class Character : public ICharacter
 {
 	std::string const	_name;
 	AMateria			*_inventory[4];
+	AMateria			*_ground[4];
 	public:
 		Character();
 		Character(std::string name);

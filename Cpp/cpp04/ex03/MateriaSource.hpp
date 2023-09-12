@@ -5,16 +5,17 @@
 
 class MateriaSource : public IMateriaSource
 {
-	AMateria	*_stock[4];
 	int			_index;
+	AMateria	*_stock[4];
 	public:
 		MateriaSource();
 		MateriaSource(const MateriaSource &src);
 		~MateriaSource();
 
 		MateriaSource	&operator=(const MateriaSource &src);
-		void learnMateria(AMateria* materia);
-		AMateria* createMateria(std::string const & type);
+		void			learnMateria(AMateria* materia);
+		AMateria*		createMateria(std::string const & type);
+		void			printMateria();
 };
 
 #endif

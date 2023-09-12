@@ -11,6 +11,7 @@ int	main()
 	IMateriaSource	*src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
+	src->printMateria();
 
 	ICharacter	*me = new Character("me");
 
@@ -24,6 +25,11 @@ int	main()
 
 	me->use(0, *bob);
 	me->use(1, *bob);
+
+	me->unequip(0);
+	tmp = src->createMateria("test");
+	me->equip(tmp);
+	me->use(0, *bob);
 
 	delete bob;
 	delete me;
