@@ -12,8 +12,9 @@ class Cat : public Animal
 		Cat();
 		Cat(const Cat &other);
 		~Cat();
-		Cat &operator=(const Cat &other);
+		Cat		&operator=(const Cat &other);
 		void	makeSound() const;
+		Brain	*getBrain() const;
 };
 
 #endif

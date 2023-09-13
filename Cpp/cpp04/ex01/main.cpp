@@ -1,5 +1,6 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "Brain.hpp"
 
 int	main()
 {
@@ -23,4 +24,17 @@ int	main()
 	{
 		delete noe[i];
 	}
+
+	Dog	dog;
+	Dog	copy_dog;
+
+	dog.getBrain()->setIdea(0, "Main Dog Idea");
+	copy_dog = dog;
+	std::cout << "Main dog Idea: " << dog.getBrain()->getIdea(0) << std::endl;
+	std::cout << "Copy dog Idea: " << copy_dog.getBrain()->getIdea(0) << std::endl;
+
+	copy_dog.getBrain()->setIdea(0, "Fake Dog Idea");
+	std::cout << "Main dog Idea: " << dog.getBrain()->getIdea(0) << std::endl;
+	std::cout << "Copy dog Idea: " << copy_dog.getBrain()->getIdea(0) << std::endl;
+
 }

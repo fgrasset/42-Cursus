@@ -1,7 +1,6 @@
 NAME = Brain
 
-SRCS = main.cpp \
-	Animal.cpp Cat.cpp Dog.cpp Brain.cpp
+SRCS = Animal.cpp Cat.cpp Dog.cpp Brain.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
