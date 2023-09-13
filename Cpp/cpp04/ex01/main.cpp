@@ -25,6 +25,10 @@ int	main()
 		delete noe[i];
 	}
 
+	std::cout << std::endl;
+	std::cout << "---------Deep Copy proof----------" << std::endl;
+	std::cout << std::endl;
+
 	Dog	dog;
 	Dog	copy_dog;
 

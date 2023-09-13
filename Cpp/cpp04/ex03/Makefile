@@ -4,7 +4,7 @@ SRCS = $(wildcard *.cpp)
 
 OBJS = $(SRCS:.cpp=.o)
 
-CPP = c++ -fsanitize=address
+CPP = c++
 
 CPPFLAGS = -std=c++98 -Wall -Wextra -Werror
 

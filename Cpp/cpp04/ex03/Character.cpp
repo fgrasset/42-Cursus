@@ -70,7 +70,7 @@ void				Character::equip(AMateria *m)
 {
 	if (!m)
 	{
-		std::cout << "this element is not known to the player" << std::endl;
+		std::cout << "* this element is not known to the player *" << std::endl;
 		return ;
 	}
 	for (int i = 0; i < 4; i++)
@@ -81,7 +81,7 @@ void				Character::equip(AMateria *m)
 			break;
 		}
 	}
-	std::cout << this->getName() << " equipped " << m->getType() << std::endl;
+	std::cout << "* " << this->getName() << " equipped " << m->getType() << " *" << std::endl;
 }
 
 void				Character::unequip(int idx)
@@ -94,17 +94,17 @@ void				Character::unequip(int idx)
 			{
 				this->_ground[i] = this->_inventory[idx];
 				this->_inventory[idx] = nullptr;
-				std::cout << this->getName() << " unequipped " << this->_ground[i]->getType() << std::endl;
+				std::cout << "* " << this->getName() << " unequipped " << this->_ground[i]->getType() << " *" << std::endl;
 				return ;
 			}
 		}
 		delete this->_ground[0];
 		this->_ground[0] = this->_inventory[idx];
 		this->_inventory[idx]= nullptr;
-		std::cout << this->getName() << " unequipped " << this->_ground[0]->getType() << std::endl;
+		std::cout << "* " << this->getName() << " unequipped " << this->_ground[0]->getType() << " *" << std::endl;
 	}
 	else
-		std::cout << "there is no equipement in the " << idx << " inventory slot" << std::endl;
+		std::cout << "* there is no equipement in the " << idx << " inventory slot *" << std::endl;
 
 }
 
@@ -115,7 +115,7 @@ void				Character::use(int idx, ICharacter &target)
 		if (_inventory[idx] && _inventory[idx] != nullptr)
 			_inventory[idx]->use(target);
 		else
-			std::cout << "there is no equipement in the " << idx << " inventory slot" << std::endl;
+			std::cout << "* there is no equipement in the " << idx << " inventory slot *" << std::endl;
 	}
 
 }

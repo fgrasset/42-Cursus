@@ -26,9 +26,9 @@ int	main()
 	me->use(0, *bob);
 	me->use(1, *bob);
 
-	me->unequip(0);
 	tmp = src->createMateria("test");
 	me->equip(tmp);
+	me->unequip(0);
 	me->use(0, *bob);
 
 	delete bob;
