@@ -39,13 +39,13 @@ class Form
 
 		Form	&operator=(const Form &src);
 		std::string	getName() const;
-		bool		getSign();
+		bool		getState();
 		int			getGradeSigned() const;
 		int			getGradeExecute() const;
 		void		checkGrade();
 		void		beSigned(Bureaucrat &pers);
 };
 
-std::ostream	&operator<<(std::ostream &ori, const Form &src);
+std::ostream	&operator<<(std::ostream &ori, Form &src);
 
 #endif

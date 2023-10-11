@@ -39,7 +39,7 @@ std::string	Form::getName() const
 	return this->_name;
 }
 
-bool		Form::getSign()
+bool		Form::getState()
 {
 	return this->_sign;
 }
@@ -70,8 +70,14 @@ void		Form::beSigned(Bureaucrat &pers)
 		this->_sign = true;
 }
 
-std::ostream	&operator<<(std::ostream &ori, const Form &src)
+std::ostream	&operator<<(std::ostream &ori, Form &src)
 {
-	ori << src.getName() << ", forms needs grade " << src.getGradeSigned() << " to be signed" << std::endl;
+	ori << "Name of the form: " << src.getName() << std::endl;
+	ori << "Needed grade to sign: " << src.getGradeSigned() << std::endl;
+	ori << "Needed grade to execute: " << src.getGradeExecute() << std::endl;
+	if (src.getState())
+		ori << "Form has been signed" << std::endl;
+	else
+		ori << "Form is not signed" << std::endl;
 	return (ori);
 }

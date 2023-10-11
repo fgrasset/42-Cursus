@@ -1,47 +1,40 @@
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int	main()
 {
-	std::cout << "Basic first test" << std::endl;
-	try
-	{
-		Bureaucrat	prs1 = Bureaucrat("John", 150);
-		std::cout << prs1 << std::endl;
-	}
-	catch(const std::exception &e)
-	{
+
+	Bureaucrat highGradeBureaucrat("HighGradeBureaucrat", 5);
+	Bureaucrat lowGradeBureaucrat("LowGradeBureaucrat", 145);
+
+	ShrubberyCreationForm shrubberyForm("garden");
+	RobotomyRequestForm robotomyForm("target_robot");
+	PresidentialPardonForm pardonForm("criminal");
+
+	try {
+		highGradeBureaucrat.signForm(shrubberyForm);
+		highGradeBureaucrat.signForm(robotomyForm);
+		highGradeBureaucrat.signForm(pardonForm);
+
+		highGradeBureaucrat.executeForm(shrubberyForm);
+		highGradeBureaucrat.executeForm(robotomyForm);
+		highGradeBureaucrat.executeForm(pardonForm);
+	} catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << std::endl;
+	try {
+		lowGradeBureaucrat.signForm(shrubberyForm);
+		lowGradeBureaucrat.signForm(robotomyForm);
+		lowGradeBureaucrat.signForm(pardonForm);
 
-	std::cout << "Let's try a grade of 151" << std::endl;
-	try
-	{
-		Bureaucrat	prs2 = Bureaucrat(151);
-		std::cout << prs2 << std::endl;
-	}
-	catch(const std::exception &e)
-	{
+		lowGradeBureaucrat.executeForm(shrubberyForm);
+		lowGradeBureaucrat.executeForm(robotomyForm);
+		lowGradeBureaucrat.executeForm(pardonForm);
+	} catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
-
-	std::cout << std::endl;
-
-	std::cout << "Let's play with the incrementation and decrementation" << std::endl;
-	try
-	{
-		Bureaucrat	prs3 = Bureaucrat("Paul", 2);
-		std::cout << prs3 << std::endl;
-		prs3.decrement();
-		std::cout << prs3 << std::endl;
-		prs3.increment();
-		prs3.increment();
-		prs3.increment();
-	}
-	catch(const std::exception &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-
 }
