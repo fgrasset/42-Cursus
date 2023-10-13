@@ -2,6 +2,7 @@
 # define SCALARCONVERTER_HPP
 
 #include <string>
+#include <iostream>
 #define CHAR 0
 #define INT 1
 #define DOUBLE 2
@@ -15,10 +16,17 @@ class ScalarConverter
 	ScalarConverter(const ScalarConverter &src);
 
 	ScalarConverter	&operator=(const ScalarConverter &src);
-	bool			isAlpha(char c);
-	bool			isDigit(int c);
-	int				getType(std::string str);
-	void			printConversion(int type, std::string str);
+	static bool		isAlpha(char c);
+	static bool		isDigit(char c);
+	static int		getType(std::string str);
+	static void		printDouble(double nb);
+	static void		printInt(int nb);
+	static void		printFloat(float nb);
+	static void		printChar(char c);
+	static void		printAll(int nbInt, double nbDouble, float nbFloat, char nbChar);
+
+	public:
+		static void	convert(std::string str);
 };
 
 #endif
