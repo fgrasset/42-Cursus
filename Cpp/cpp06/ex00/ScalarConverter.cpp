@@ -22,6 +22,18 @@ bool				ScalarConverter::isDigit(char c)
 	return true;
 }
 
+void				ScalarConverter::printInt(int nb)
+{
+
+}
+
+void				ScalarConverter::printDouble(double nb)
+{
+
+}
+
+void				ScalarConverter::printFloat(float nb)
+
 // std::stoi() - converts a string to an integer
 // std::stof() - converts a string to a float
 // std::stod()
