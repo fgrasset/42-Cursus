@@ -7,8 +7,8 @@
 
 class Bureaucrat
 {
-	std::string	_name;
-	int			_grade;
+	const std::string	_name;
+	int					_grade;
 
 	class GradeTooLowException : public std::exception
 	{
@@ -30,7 +30,7 @@ class Bureaucrat
 	public:
 		Bureaucrat();
 		Bureaucrat(int grade);
-		Bureaucrat(std::string name, int grade);
+		Bureaucrat(const std::string name, int grade);
 		Bureaucrat(const Bureaucrat &src);
 		~Bureaucrat();
 		Bureaucrat	&operator=(const Bureaucrat &src);

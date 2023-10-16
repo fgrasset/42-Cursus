@@ -37,7 +37,7 @@ class Form
 		Form(const Form &src);
 		~Form();
 
-		Form	&operator=(const Form &src);
+		Form		&operator=(const Form &src);
 		std::string	getName() const;
 		bool		getState();
 		int			getGradeSigned() const;

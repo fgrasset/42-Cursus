@@ -10,7 +10,7 @@ Bureaucrat::Bureaucrat(int grade) : _name("None")
 	addGrade(grade);
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
+Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 {
 	addGrade(grade);
 }
@@ -20,10 +20,9 @@ Bureaucrat::~Bureaucrat()
 
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &src)
+Bureaucrat::Bureaucrat(const Bureaucrat &src) : _name(src._name)
 {
 	this->_grade = src._grade;
-	this->_name = src._name;
 }
 
 Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &src)
@@ -31,7 +30,6 @@ Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &src)
 	if (&src == this)
 		return *this;
 
-	this->_name = src._name;
 	this->_grade = src._grade;
 	return *this;
 }
