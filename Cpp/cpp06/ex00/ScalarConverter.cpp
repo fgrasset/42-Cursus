@@ -22,31 +22,16 @@ bool				ScalarConverter::isDigit(char c)
 	return true;
 }
 
-void				ScalarConverter::printInt(int nb)
-{
-
-}
-
-void				ScalarConverter::printDouble(double nb)
-{
-
-}
-
-void				ScalarConverter::printFloat(float nb)
-
-// std::stoi() - converts a string to an integer
-// std::stof() - converts a string to a float
-// std::stod()
-int					ScalarConverter::getType(std::string str)
+void				ScalarConverter::getType(std::string str)
 {
 	bool	isDouble = false;
 	bool	isFloat = false;
+	std::stringstream	ss(str);
 
 	if (str.empty())
-		return ERROR;
+		return printError();
 	if (std::isalpha(str[0]) && (str[0] != '-'))
-		return CHAR;
-	std::cout << "test" << std::endl;
+		return printChar(str[0]);
 	for(int i = 0; i < (int)str.length(); i++)
 	{
 		if ((str[0] == '-') && i == 0)
@@ -61,64 +46,113 @@ int					ScalarConverter::getType(std::string str)
 			isDouble = false;
 		}
 		else
-			return ERROR;
+			return printError();
 	}
 	if (isDouble)
-		return DOUBLE;
+	{
+		double	d;
+		ss >> d;
+		printDouble(d);
+	}
 	else if (isFloat)
-		return FLOAT;
+	{
+		float	f;
+		ss >> f;
+		printFloat(f);
+	}
 	else
 	{
-		printInt(std::stoi(str));
-		return 0;
+		int	i;
+		ss >> i;
+		printInt(i);
 	}
+}
+
+void				ScalarConverter::convertInt(int nb)
+{
+	if (nb < INT_MIN || nb > INT_MAX)
+		std::cout << "Int : impossible" << std::endl;
+	else
+		std::cout << "Int : " << nb << std::endl;
+}
+
+void				ScalarConverter::convertDouble(double nb)
+{
+	std::cout << "Double : " << std::fixed << std::setprecision(1) << nb << std::endl;
+}
+
+void				ScalarConverter::convertFloat(float nb)
+{
+	std::cout << "Float : " << std::fixed << std::setprecision(1) << nb << "f" << std::endl;
+}
+
+void				ScalarConverter::convertChar(char nb)
+{
+	if ((nb >= 0 && nb < 32) || (nb == 127))
+		std::cout << "Char : non displayable" << std::endl;
+	else if (nb < 0 || nb > 127)
+		std::cout << "Char : impossible" << std::endl;
+	else
+		std::cout << "Char : " << nb << std::endl;
 }
 
 void				ScalarConverter::printInt(int nb)
 {
-	double	nbDouble = static_cast<double>(nb);
-	float	nbFloat = static_cast<float>(nb);
-	char	nbChar = static_cast<char>(nb);
-
-	printAll(nb, nbDouble, nbFloat, nbChar);
+	convertChar(static_cast<char>(nb));
+	convertInt(nb);
+	convertDouble(static_cast<double>(nb));
+	convertFloat(static_cast<float>(nb));
 }
 
 void				ScalarConverter::printDouble(double nb)
 {
-	int		nbInt = static_cast<int>(nb);
-	float	nbFloat = static_cast<float>(nb);
-	char	nbChar = static_cast<char>(nb);
-
-	printAll(nbInt, nb, nbFloat, nbChar);
+	convertChar(static_cast<char>(nb));
+	convertInt(static_cast<int>(nb));
+	convertDouble(nb);
+	convertFloat(static_cast<float>(nb));
 }
 
 void				ScalarConverter::printFloat(float nb)
 {
-	int		nbInt = static_cast<int>(nb);
-	double	nbDouble = static_cast<double>(nb);
-	char	nbChar = static_cast<char>(nb);
-
-	printAll(nbInt, nbDouble, nb, nbChar);
+	convertChar(static_cast<char>(nb));
+	convertInt(static_cast<int>(nb));
+	convertDouble(static_cast<double>(nb));
+	convertFloat(nb);
 }
 
 void				ScalarConverter::printChar(char c)
 {
-	int		nbInt = static_cast<int>(c);
-	double	nbDouble = static_cast<double>(c);
-	float	nbFloat = static_cast<float>(c);
-
-	printAll(nbInt, nbDouble, nbFloat, c);
+	convertChar(c);
+	convertInt(static_cast<int>(c));
+	convertDouble(static_cast<double>(c));
+	convertFloat(static_cast<float>(c));
 }
 
-void				ScalarConverter::printAll(int nbInt, double nbDouble, float nbFloat, char nbChar)
+void				ScalarConverter::printError()
 {
-	std::cout << "Int : " << nbInt << std::endl;
-	std::cout << "Double : " << nbDouble << std::endl;
-	std::cout << "Float : " << nbFloat << std::endl;
-	std::cout << "Char : " << nbChar << std::endl;
+	std::cout << "This type conversion is impossible !" << std::endl;
+}
+
+void				ScalarConverter::printSpecial(std::string str)
+{
+	std::cout << "Char : impossible" << std::endl;
+	std::cout << "Int : impossible" << std::endl;
+	std::cout << "Double : " << str << std::endl;
+	std::cout << "Float : " << str << "f" << std::endl;
 }
 
 void				ScalarConverter::convert(std::string str)
 {
-	getType(str);
+	std::string	special[2][3] = {{"-inf", "+inf", "nan"}, {"-inff", "+inff", "nanf"}};
+	bool		flag_spe = false;
+	for (int i = 0; i < 3; i++)
+	{
+		if ((str == special[0][i]) || (str == special[1][i]))
+		{
+			printSpecial(special[0][i]);
+			flag_spe = true;
+		}
+	}
+	if (!flag_spe)
+		getType(str);
 }

@@ -3,11 +3,8 @@
 
 #include <string>
 #include <iostream>
-#define CHAR 0
-#define INT 1
-#define DOUBLE 2
-#define FLOAT 3
-#define ERROR 4
+#include <sstream>
+#include <iomanip>
 
 class ScalarConverter
 {
@@ -18,12 +15,17 @@ class ScalarConverter
 	ScalarConverter	&operator=(const ScalarConverter &src);
 	static bool		isAlpha(char c);
 	static bool		isDigit(char c);
-	static int		getType(std::string str);
-	static void		printDouble(double nb);
+	static void		getType(std::string str);
+	static void		convertInt(int nb);
+	static void		convertDouble(double nb);
+	static void		convertFloat(float nb);
+	static void		convertChar(char nb);
 	static void		printInt(int nb);
+	static void		printDouble(double nb);
 	static void		printFloat(float nb);
 	static void		printChar(char c);
-	static void		printAll(int nbInt, double nbDouble, float nbFloat, char nbChar);
+	static void		printError();
+	static void		printSpecial(std::string str);
 
 	public:
 		static void	convert(std::string str);
