@@ -1,8 +1,12 @@
 #ifndef A_HPP
-#	define A_HPP
+# define A_HPP
 
-class A
+#include "Base.hpp"
+class A : Base
 {
+	public:
+		A() {}
+		~A() {}
 
 };
 

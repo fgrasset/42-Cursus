@@ -7,7 +7,7 @@ Serializer::Serializer()
 
 Serializer::Serializer(const Serializer &src)
 {
-
+	(void) src;
 }
 
 Serializer::~Serializer()
@@ -17,7 +17,8 @@ Serializer::~Serializer()
 
 Serializer	&Serializer::operator=(const Serializer &src)
 {
-
+	(void) src;
+	return (*this);
 }
 
 uintptr_t	Serializer::serialize(Data *ptr)

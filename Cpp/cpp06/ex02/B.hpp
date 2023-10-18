@@ -1,9 +1,13 @@
 #ifndef B_HPP
 # define B_HPP
 
-class B
-{
+#include "Base.hpp"
 
+class B : Base
+{
+	public:
+		B() {}
+		~B() {}
 };
 
 #endif

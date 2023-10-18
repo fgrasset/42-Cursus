@@ -13,6 +13,9 @@ class Data
 		~Data();
 		Data(const Data &src);
 		Data	&operator=(const Data &src);
+		int		getX();
+		int		getY();
+		int		getZ();
 };
 
 #endif

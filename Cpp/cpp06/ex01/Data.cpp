@@ -24,6 +24,23 @@ Data::~Data()
 
 Data	&Data::operator=(const Data &src)
 {
-	Data(src);
+	this->_x = src._x;
+	this->_y = src._y;
+	this->_z = src._z;
 	return *this;
+}
+
+int		Data::getX()
+{
+	return this->_x;
+}
+
+int		Data::getY()
+{
+	return this->_y;
+}
+
+int		Data::getZ()
+{
+	return this->_z;
 }
