@@ -24,8 +24,8 @@ bool				ScalarConverter::isDigit(char c)
 
 void				ScalarConverter::getType(std::string str)
 {
-	bool	isDouble = false;
-	bool	isFloat = false;
+	bool				isDouble = false;
+	bool				isFloat = false;
 	std::stringstream	ss(str);
 
 	if (str.empty())
@@ -36,7 +36,7 @@ void				ScalarConverter::getType(std::string str)
 	{
 		if ((str[0] == '-') && i == 0)
 			i++;
-		if (isDigit(str[i]))
+		if (std::isdigit(str[i]))
 			continue;
 		else if (str[i] == '.' && !isDouble)
 			isDouble = true;
@@ -145,6 +145,12 @@ void				ScalarConverter::convert(std::string str)
 {
 	std::string	special[2][3] = {{"-inf", "+inf", "nan"}, {"-inff", "+inff", "nanf"}};
 	bool		flag_spe = false;
+
+	if (std::isalpha(str[0]) && std::isalpha(str[1]))
+	{
+		printError();
+		return ;
+	}
 	for (int i = 0; i < 3; i++)
 	{
 		if ((str == special[0][i]) || (str == special[1][i]))
