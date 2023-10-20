@@ -3,11 +3,13 @@
 
 #include "Base.hpp"
 
-class C : Base
+class C : public Base
 {
 	public:
 		C() {}
 		~C() {}
+		std::string	reveal() {return "C";}
+
 };
 
 #endif

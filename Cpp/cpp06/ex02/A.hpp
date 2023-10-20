@@ -2,11 +2,12 @@
 # define A_HPP
 
 #include "Base.hpp"
-class A : Base
+class A : public Base
 {
 	public:
 		A() {}
 		~A() {}
+		std::string	reveal() {return "A";}
 
 };
 
