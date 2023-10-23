@@ -7,15 +7,19 @@
 #include <iostream>
 #include <stdlib.h>
 
+class A;
+class B;
+class C;
+
 class Base
 {
 	public:
 		Base();
-		~Base();
+		virtual ~Base();
 
-		Base	*generate();
-		void	identify(Base *p);
-		void	identify(Base &p);
+		static Base	*generate();
+		void		identify(Base *p);
+		void		identify(Base &p);
 };
 
 #endif

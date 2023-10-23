@@ -8,8 +8,6 @@ class C : public Base
 	public:
 		C() {}
 		~C() {}
-		std::string	reveal() {return "C";}
-
 };
 
 #endif
