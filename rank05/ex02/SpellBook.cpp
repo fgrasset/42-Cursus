@@ -1,4 +1,5 @@
 #include "SpellBook.hpp"
+#include <unistd.h>
 
 SpellBook::SpellBook()
 {
@@ -33,6 +34,7 @@ void	SpellBook::forgetSpell(std::string const &spell_name)
 
 ASpell	*SpellBook::createSpell(std::string const &spell_name)
 {
+	write(1, "testing\n", 8);
 	std::map<std::string, ASpell *>::iterator it = arr_spell.find(spell_name);
 	if (it != arr_spell.end())
 		return arr_spell[spell_name];
