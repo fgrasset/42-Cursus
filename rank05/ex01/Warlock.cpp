@@ -8,6 +8,15 @@ Warlock::Warlock(std::string const &name, std::string const &title) : _name(name
 Warlock::~Warlock()
 {
 	std::cout << this->getName() << ": My job here is done!" << std::endl;
+
+	std::map<std::string, ASpell*>::iterator	it_begin = this->arr.begin();
+	std::map<std::string, ASpell*>::iterator	it_end = this->arr.end();
+	while (it_begin != it_end)
+	{
+		delete it_begin->second;
+		++it_begin;
+	}
+	this->arr.clear();
 }
 
 std::string const	&Warlock::getName() const
