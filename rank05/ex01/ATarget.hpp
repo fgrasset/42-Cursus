@@ -18,6 +18,8 @@ class ATarget
 		std::string const	&ATarget::getType() const;
 
 		void	getHitBySpell(ASpell const &spell) const;
+
+		virtual ATarget *clone() = 0;
 };
 
 #include "ASpell.hpp"
