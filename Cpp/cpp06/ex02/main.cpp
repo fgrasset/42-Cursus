@@ -26,7 +26,7 @@ int	main()
 	base->identify(rz);
 
 	Base *nullPtr = nullptr;
-	base->identify(nullptr);
+	base->identify(nullPtr);
 
 	return 0;
 }

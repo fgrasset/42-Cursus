@@ -1,15 +1,8 @@
 #ifndef BASE_HPP
 # define BASE_HPP
 
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
 #include <iostream>
 #include <stdlib.h>
-
-class A;
-class B;
-class C;
 
 class Base
 {
@@ -21,5 +14,9 @@ class Base
 		void		identify(Base *p);
 		void		identify(Base &p);
 };
+
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
 #endif
