@@ -22,6 +22,8 @@ Base	*Base::generate()
 			return static_cast<Base*>(new B());
 		case 2:
 			return static_cast<Base*>(new C());
+		default:
+			return NULL;
 	}
 }
 
