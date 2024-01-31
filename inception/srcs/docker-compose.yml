@@ -3,6 +3,7 @@ version: '3'
 services:
   nginx:
     container_name: nginx
+    build: requirements/mariadb/.
     # image: nginx:latest
     ports:
       - "443:443"
@@ -19,6 +20,7 @@ services:
 
   wordpress:
     container_name: wordpress
+    build: requirements/wordpress/.
     expose:
       - "9000"
     depends_on:
@@ -37,7 +39,7 @@ services:
     container_name: mariadb
     expose:
       - 3306
-    build:  #TODO ?
+    build: requirements/mariadb/.
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
@@ -54,14 +56,14 @@ volumes:
     driver_opts:
     type: 'none'
     o: 'bind'
-    device: '/Users/fgrasset/data/wordpress_data'
+    device: '/Users/fgrasset/data/wordpress'
 
   mariadb_data:
     driver: local
     driver_opts:
     type: 'none'
     o: 'bind'
-    device: '/Users/fgrasset/data/mariadb_data'
+    device: '/Users/fgrasset/data/mariadb'
 
 
 networks:
