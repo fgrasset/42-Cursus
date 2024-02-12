@@ -4,7 +4,11 @@ EXPOSE 3306
 
 RUN apt update -y && \
     apt upgrade -y && \
-    apt-get install mariadb-server -y
+    apt-get install -y mariadb-server \
+	mariadb-client \
+	vim
+	#&& rm -rf /var/lib/apt/lists/*
+	#TODO: check why
 
 COPY 50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY launch_mariadb.sh /mariadb/launch_mariadb.sh
