@@ -1,3 +1,5 @@
+#!/bin/bash
+
 service mysql start;
 
 mysql -e "CREATE USER IF NOT EXISTS \`${SQL_USER}\`@'localhost' IDENTIFIED BY '${SQL_PASSWORD}';"
