@@ -3,7 +3,9 @@ version: '3'
 services:
   nginx:
     container_name: nginx
-    build: requirements/mariadb/.
+    build:
+      context: requirements/nginx
+      dockerfile: Dockerfile
     # image: nginx:latest
     ports:
       - "443:443"
@@ -12,15 +14,15 @@ services:
     volumes:
       - wordpress_data:/var/www/wordpress
     networks:
-      - frontend
-    context: requirements/nginx
-    dockerfile: Dockerfile
+      - inception
     env_file: .env
     restart: on-failure
 
   wordpress:
     container_name: wordpress
-    build: requirements/wordpress/.
+    build:
+      context: requirements/wordpress
+      dockerfile: Dockerfile
     expose:
       - "9000"
     depends_on:
@@ -28,10 +30,7 @@ services:
     volumes:
       - wordpress_data:/var/www/wordpress
     networks:
-      - frontend
-      - backend
-    context: requirements/wordpress
-    dockerfile: Dockerfile
+      - inception
     env_file: .env
     restart: on-failure
 
@@ -39,13 +38,13 @@ services:
     container_name: mariadb
     expose:
       - 3306
-    build: requirements/mariadb/.
+    build:
+      context: requirements/mariadb
+      dockerfile: Dockerfile
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
-      - backend
-    context: requirements/mariadb
-    dockerfile: Dockerfile
+      - inception
     env_file: .env
     restart: unless-stopped
 
@@ -54,21 +53,18 @@ volumes:
   wordpress_data:
     driver: local
     driver_opts:
-    type: 'none'
-    o: 'bind'
-    device: '/Users/fgrasset/data/wordpress'
+      type: 'none'
+      o: 'bind'
+      device: '/Users/fgrasset/data/wordpress'
 
   mariadb_data:
     driver: local
     driver_opts:
-    type: 'none'
-    o: 'bind'
-    device: '/Users/fgrasset/data/mariadb'
+      type: 'none'
+      o: 'bind'
+      device: '/Users/fgrasset/data/mariadb'
 
 
 networks:
-  frontend:
-    driver: bridge
-
-  backend:
+  inception:
     driver: bridge
