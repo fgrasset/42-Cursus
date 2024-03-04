@@ -1,7 +1,7 @@
 FROM debian:buster
 
-RUN apt-get update \
-	apt-get upgrade
+RUN apt update -y && \
+	apt upgrade -y
 RUN apt-get -y install wget
 RUN apt-get install -y php7.3\
 	php-fpm\
@@ -19,6 +19,7 @@ RUN chmod -R 755 /var/www
 
 COPY wp.php /etc/php/7.3/fpm/pool.d/wp.php
 COPY wp_start.sh /usr/local/wp_start.sh
+RUN chmod +x /usr/local/wp_start.sh
 
 EXPOSE 9000
 

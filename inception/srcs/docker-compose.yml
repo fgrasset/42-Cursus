@@ -1,5 +1,22 @@
 version: '3'
 
+volumes:
+  wordpress_data:
+    driver: local
+    name: wordpress_data
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/Users/fgrasset/data/wordpress/'
+
+  mariadb_data:
+    driver: local
+    name: mariadb_data
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/Users/fgrasset/data/mariadb/'
+
 services:
   nginx:
     container_name: nginx
@@ -47,22 +64,6 @@ services:
       - inception
     env_file: .env
     restart: unless-stopped
-
-
-volumes:
-  wordpress_data:
-    driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: '/Users/fgrasset/data/wordpress'
-
-  mariadb_data:
-    driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: '/Users/fgrasset/data/mariadb'
 
 
 networks:
