@@ -7,8 +7,10 @@ then
   chown -R mysql:mysql /run/mysqld;
 
   # Start MariaDB in secure initialization mode
-  mysqld --initialize-insecure --user=mysql --datadir=/var/lib/mysql &
+  mysqld --initialize-insecure --user=mysql --datadir=/var/lib/mysql;
   pid=$!
+
+  mysqld --user=mysql --datadir=/var/lib/mysql &
 
   # Wait briefly for initialization
   sleep 5
@@ -25,4 +27,4 @@ then
 fi
 
 # Run MariaDB in the foreground for proper execution
-exec mysqld_safe
+exec mysqld --user=mysql --datadir=/var/lib/mysql

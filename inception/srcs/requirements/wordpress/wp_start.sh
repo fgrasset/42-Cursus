@@ -9,7 +9,7 @@ done
 
 mariadb -u $SQL_USER --password=$SQL_PASSWORD -h mariadb -P 3306 -e "SHOW DATABASES;"
 
-if [-e /var/www/wordpress/wp.php]
+if [-e /var/www/wordpress/wp-config.php]
 then echo "wp_config exists"
 else
 	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -21,7 +21,7 @@ else
 
 	wp config create --dbname=$SQL_DATABASE --dbuser=$SQL_USER --dbpass=$SQL_PASSWORD --dbhost=$WP_HOST --dbcharset="utf8" --dbcollate="utf8_general_ci" --allow-root
 	wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --skip-email --allow-root
-	wp user create $WP_USER $WP_USER_EMAIL --role=author --user_pass=$WP_USER_PASS --allow-root
+	wp user create $WP_USER $WP_USER_EMAIL --role=author --user_pass=$WP_USER_PASSWORD --allow-root
 
 fi
 

@@ -7,8 +7,6 @@ RUN apt update -y && \
     apt-get install -y mariadb-server \
 	mariadb-client \
 	vim
-	#&& rm -rf /var/lib/apt/lists/*
-	#TODO: check why
 
 RUN mkdir -p /run/mysqld /var/lib/mysql
 
