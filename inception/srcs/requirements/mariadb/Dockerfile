@@ -8,8 +8,8 @@ RUN apt update -y && \
 
 RUN mkdir -p /run/mysqld /var/lib/mysql
 
-COPY 50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
-COPY launch_mariadb.sh /usr/local/launch_mariadb.sh
+COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY tools/launch_mariadb.sh /usr/local/launch_mariadb.sh
 
 # ENV SQL_USER=${SQL_USER}
 # ENV SQL_PASSWORD=${SQL_PASSWORD}

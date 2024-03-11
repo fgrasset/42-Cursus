@@ -1,8 +1,7 @@
 FROM debian:buster
 
 RUN apt-get update && \
-    apt-get install -y nginx openssl && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y nginx openssl
 
 
 RUN mkdir -p /etc/nginx/ssl
@@ -13,7 +12,10 @@ RUN openssl req -x509 -nodes \
 RUN mkdir -p /var/run/nginx
 RUN mkdir -p /var/www/wordpress
 
-COPY nginx.conf /etc/nginx/nginx.conf
+RUN chmod -R 755 /var/www/wordpress
+RUN chown -R www-data:www-data /var/www/wordpress
+
+COPY conf/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 443
 

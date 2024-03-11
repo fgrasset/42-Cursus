@@ -3,7 +3,7 @@ echo "----------Starting Wordpress----------"
 php-fpm7.3 -v
 
 while ! mariadb -u $SQL_USER --password=$SQL_PASSWORD -h mariadb -P 3306 --silent; do
-	sleep 1
+	sleep 5
 	echo "Mariadb not ready"
 done
 
@@ -12,9 +12,9 @@ mariadb -u $SQL_USER --password=$SQL_PASSWORD -h mariadb -P 3306 -e "SHOW DATABA
 if [-e /var/www/wordpress/wp-config.php]
 then echo "wp_config exists"
 else
-	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-	chmod +x wp-cli.phar
-	mv wp-cli.phar /usr/local/bin/wp
+	# wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+	# chmod +x wp-cli.phar
+	# mv wp-cli.phar /usr/local/bin/wp
 
 	cd /var/www/wordpress
 	wp core download --allow-root

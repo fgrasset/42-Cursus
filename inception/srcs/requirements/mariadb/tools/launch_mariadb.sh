@@ -10,7 +10,7 @@ pid=$!
 
 
 # Wait briefly for initialization
-sleep 5
+sleep 10
 
 # Configure MariaDB (using your variables from Script 1)
 mysql -u root -p${SQL_ROOT_PASSWORD} -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${SQL_ROOT_PASSWORD}';"
