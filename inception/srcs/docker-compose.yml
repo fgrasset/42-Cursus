@@ -23,10 +23,10 @@ services:
     build:
       context: requirements/mariadb
       dockerfile: Dockerfile
-    volumes:
-      - mariadb_data:/var/lib/mysql
     networks:
       - inception
+    volumes:
+      - mariadb_data:/var/lib/mysql
     env_file: .env
     restart: unless-stopped
 
@@ -37,10 +37,10 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - mariadb
-    volumes:
-      - wordpress_data:/var/www/wordpress
     networks:
       - inception
+    volumes:
+      - wordpress_data:/var/www/wordpress
     env_file: .env
     restart: on-failure
 
@@ -53,13 +53,12 @@ services:
       - "443:443"
     depends_on:
       - wordpress
-    volumes:
-      - wordpress_data:/var/www/wordpress
     networks:
       - inception
+    volumes:
+      - wordpress_data:/var/www/wordpress
     env_file: .env
     restart: on-failure
-
 
 networks:
   inception:

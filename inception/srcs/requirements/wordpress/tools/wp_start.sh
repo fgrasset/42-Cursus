@@ -7,10 +7,11 @@ while ! mariadb -u $SQL_USER --password=$SQL_PASSWORD -h mariadb -P 3306 --silen
 	echo "Mariadb not ready"
 done
 
-mariadb -u $SQL_USER --password=$SQL_PASSWORD -h mariadb -P 3306 -e "SHOW DATABASES;"
+# mariadb -u $SQL_USER --password=$SQL_PASSWORD -h mariadb -P 3306 -e "SHOW DATABASES;"
 
 if [-e /var/www/wordpress/wp-config.php]
-then echo "wp_config exists"
+then
+	echo "wp_config exists"
 else
 	# wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 	# chmod +x wp-cli.phar

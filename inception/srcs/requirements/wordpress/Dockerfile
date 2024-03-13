@@ -8,8 +8,8 @@ RUN apt-get install -y php7.3\
 	php-mysql\
 	mariadb-client
 
-RUN mkdir -p /var/www/wordpress
 RUN mkdir -p /run/php
+RUN mkdir -p /var/www/wordpress
 
 RUN chown -R www-data:www-data /var/www
 RUN chmod -R 755 /var/www
