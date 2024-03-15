@@ -1,26 +1,37 @@
-#!/bin/bash
+echo "------------------------------- MARIADB START -------------------------------------"
 
-# Initialise the database
+# Initialisation de la base de données
 mysqld --initialize --user=mysql --datadir=/var/lib/mysql;
 
-# Modifie the owners and groups of the directories
 chown -R mysql:mysql /var/lib/mysql;
 chown -R mysql:mysql /run/mysqld;
 
-# Launch of mariadb in the background
+# Lancement de mariadb en arrière plan
 mysqld --user=mysql --datadir=/var/lib/mysql &
 
+# On met la valeur du pid dans une variable afin de pouvoir kill le process
+# lorsque la configuration de mariadb sera terminé
 pid=$!
 
-# Waiting for the end of the mariadb launch
+# Attente de la fin de lancement de mariadb
 sleep 10
 
-# Configure MariaDB (securely using environment variables)
-mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${SQL_ROOT_PASSWORD}';"
-mysql -u root -e "CREATE DATABASE IF NOT EXISTS ${SQL_DATABASE};"
-mysql -u root -e "CREATE USER IF NOT EXISTS '${SQL_USER}'@'%' IDENTIFIED BY '${SQL_PASSWORD}';"
-mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO '${SQL_USER}'@'%';"
-mysql -u root -e "FLUSH PRIVILEGES;"
+# Configuration de la base de données
+mysql -u root -p${MARIADB_ROOT_PASSWORD} -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}';"
+mysql -u root -p${MARIADB_ROOT_PASSWORD} -e "CREATE DATABASE IF NOT EXISTS ${MARIADB_DB_NAME};"
+mysql -u root -p${MARIADB_ROOT_PASSWORD} -e "CREATE USER IF NOT EXISTS '${MARIADB_USER}' IDENTIFIED BY '${MARIADB_PASS}';"
+mysql -u root -p${MARIADB_ROOT_PASSWORD} -e "GRANT ALL PRIVILEGES ON *.* TO '${MARIADB_USER}';"
+mysql -u root -p${MARIADB_ROOT_PASSWORD} -e "FLUSH PRIVILEGES;"
 
-# Run MariaDB in the foreground
+# Affichage des bases de données dans le terminal
+echo "------------------\n"
+mysql -u root -p${MARIADB_ROOT_PASSWORD} -e "SHOW DATABASES;"
+echo "------------------\n"
+mysql -u root -p${MARIADB_ROOT_PASSWORD} -e "SELECT User FROM mysql.user"
+echo "------------------\n"
+
+# Kill de mysqld
+kill "$pid"
+
+# Remplacement du processus shell par mysqld
 exec mysqld --user=mysql --datadir=/var/lib/mysql

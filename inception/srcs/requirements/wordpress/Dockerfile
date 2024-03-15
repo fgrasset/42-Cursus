@@ -1,27 +1,31 @@
 FROM debian:buster
 
-RUN apt update -y && \
-	apt upgrade -y
-RUN apt-get -y install wget
-RUN apt-get install -y php7.3\
-	php-fpm\
-	php-mysql\
-	mariadb-client
+# Installation et mise à jour des paquets
+RUN apt update -y && apt upgrade -y
 
+# Installation de wget programme permettant le téléchargement de fichiers depuis le Web
+RUN apt-get install -y wget
+
+# Installation de php7.3 et de php-fpm pour gérer les requête ".php"
+# Installation de mysql et de mariadb-client pour gérer les requête ".sql"
+RUN apt-get -y install php7.3 php-fpm php-mysql mariadb-client
+
+# Création du dossier de worpress et du dossier de travail php
+RUN	mkdir -p /var/www/wordpress
 RUN mkdir -p /run/php
-RUN mkdir -p /var/www/wordpress
 
+# Assignation des droits a l'utilisateur www-data
 RUN chown -R www-data:www-data /var/www
+
+# Changement de permission sur les dossiers et fichiers
 RUN chmod -R 755 /var/www
 
+# Copie de la configuration de php-fpm et du script de démarrage
 COPY conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
-COPY tools/wp_start.sh /usr/local/wp_start.sh
-RUN chmod +x /usr/local/wp_start.sh
+COPY tools/launch_wp.sh /usr/local/launch_wp.sh
+RUN chmod +x /usr/local/launch_wp.sh
 
-RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-RUN chmod +x wp-cli.phar
-RUN mv wp-cli.phar /usr/local/bin/wp
-
+# Exposition du port 9000
 EXPOSE 9000
 
-ENTRYPOINT ["sh", "/usr/local/wp_start.sh"]
+ENTRYPOINT ["sh", "/usr/local/launch_wp.sh"]

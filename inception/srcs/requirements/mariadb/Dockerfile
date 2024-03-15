@@ -1,18 +1,18 @@
 FROM debian:buster
 
-RUN apt update -y && \
-    apt upgrade -y && \
-    apt-get install mariadb-server -y
+#Installation de mariaDB
+RUN apt update -y && apt upgrade -y
+RUN apt-get install -y mariadb-server procps
 
+#Creation du repertoire de travail. /var/lib/mysql est le data direcory
 RUN mkdir -p /run/mysqld /var/lib/mysql
 
+#Copie des fichiers de configuration et du script de démarrage
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY tools/launch_mariadb.sh /usr/local/launch_mariadb.sh
-
-# Grant execute permission to the script
 RUN chmod +x /usr/local/launch_mariadb.sh
 
+#Port de connexion
 EXPOSE 3306
 
-# Start MariaDB on container startup
-ENTRYPOINT ["sh", "/usr/local/launch_mariadb.sh"]
+ENTRYPOINT [ "sh", "/usr/local/launch_mariadb.sh" ]

@@ -16,7 +16,10 @@ RUN chmod -R 755 /var/www/wordpress
 RUN chown -R www-data:www-data /var/www/wordpress
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY tools/launch_nginx.sh /usr/local/launch_nginx.sh
+RUN chmod +x /usr/local/launch_nginx.sh
+
 
 EXPOSE 443
 
-ENTRYPOINT	["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["sh", "/usr/local/launch_nginx.sh"]
