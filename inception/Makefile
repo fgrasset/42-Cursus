@@ -2,7 +2,7 @@ NAME = inception
 PATH_DOCKER_COMPOSE = srcs/docker-compose.yml
 PATH_V_WORDPRESS = /Users/fgrasset/data/wordpress
 PATH_V_MARIADB = /Users/fgrasset/data/mariadb
-PATH_TO_ENV_FILE = srcs/.env
+PATH_TO_ENV_FILE = /Users/fgrasset/.my_env
 RESET_COLOR = \033[0m
 
 all : prepare down build run
