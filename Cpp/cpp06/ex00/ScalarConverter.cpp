@@ -30,7 +30,7 @@ void				ScalarConverter::getType(std::string str)
 
 	if (str.empty())
 		return printError();
-	if (std::isalpha(str[0]) && (str[0] != '-'))
+	if (std::isprint(str[0]) && (str[0] != '-'))
 		return printChar(str[0]);
 	for(int i = 0; i < (int)str.length(); i++)
 	{
@@ -56,9 +56,7 @@ void				ScalarConverter::getType(std::string str)
 	}
 	else if (isFloat)
 	{
-		float	f;
-		ss >> f;
-		printFloat(f);
+		printFloat(atof(str.c_str()));
 	}
 	else
 	{
@@ -114,6 +112,7 @@ void				ScalarConverter::printDouble(double nb)
 
 void				ScalarConverter::printFloat(float nb)
 {
+	// std::cout << nb << std::endl;
 	convertChar(static_cast<char>(nb));
 	convertInt(static_cast<int>(nb));
 	convertDouble(static_cast<double>(nb));
@@ -146,11 +145,12 @@ void				ScalarConverter::convert(std::string str)
 	std::string	special[2][3] = {{"-inf", "+inf", "nan"}, {"-inff", "+inff", "nanf"}};
 	bool		flag_spe = false;
 
-	if (std::isalpha(str[0]) && std::isalpha(str[1]))
+	if (std::isalpha(str[0]) && std::isalpha(str[1]) && strcmp(str.c_str(), "nan") && strcmp(str.c_str(), "nanf"))
 	{
 		printError();
 		return ;
 	}
+
 	for (int i = 0; i < 3; i++)
 	{
 		if ((str == special[0][i]) || (str == special[1][i]))
@@ -159,6 +159,7 @@ void				ScalarConverter::convert(std::string str)
 			flag_spe = true;
 		}
 	}
+
 	if (!flag_spe)
 		getType(str);
 }
