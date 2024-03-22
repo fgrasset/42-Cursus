@@ -1,4 +1,4 @@
-NAME = Templates
+NAME = Iter
 
 SRCS = $(wildcard *.cpp)
 
