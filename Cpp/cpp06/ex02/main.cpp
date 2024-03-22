@@ -28,5 +28,7 @@ int	main()
 	Base *nullPtr = nullptr;
 	base->identify(nullPtr);
 
+	delete base;
+
 	return 0;
 }

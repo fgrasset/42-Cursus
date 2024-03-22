@@ -12,7 +12,7 @@ Base::~Base()
 
 Base	*Base::generate()
 {
-	// srand(time(NULL));
+	std::srand(static_cast<unsigned int>(std::time(nullptr)));
 	int	random = rand() % 3;
 
 	switch (random) {
