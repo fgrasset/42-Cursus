@@ -13,8 +13,6 @@ class ScalarConverter
 	ScalarConverter(const ScalarConverter &src);
 
 	ScalarConverter	&operator=(const ScalarConverter &src);
-	static bool		isAlpha(char c);
-	static bool		isDigit(char c);
 	static void		getType(std::string str);
 	static void		convertInt(int nb);
 	static void		convertDouble(double nb);

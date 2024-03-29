@@ -8,20 +8,6 @@ ScalarConverter::~ScalarConverter() {};
 
 ScalarConverter		&ScalarConverter::operator=(const ScalarConverter &src) {(void) src; return *this;}
 
-bool				ScalarConverter::isAlpha(char c)
-{
-	if (c < 32 || c > 126)
-		return false;
-	return true;
-}
-
-bool				ScalarConverter::isDigit(char c)
-{
-	if (c < 48 || c > 57)
-		return false;
-	return true;
-}
-
 void				ScalarConverter::getType(std::string str)
 {
 	bool				isDouble = false;
@@ -30,11 +16,11 @@ void				ScalarConverter::getType(std::string str)
 
 	if (str.empty())
 		return printError();
-	if (std::isprint(str[0]) && (str[0] != '-'))
-		return printChar(str[0]);
+	if (std::isalpha(str[0]) && str.size() == 1)
+		return printChar();
 	for(int i = 0; i < (int)str.length(); i++)
 	{
-		if ((str[0] == '-') && i == 0)
+		if ((str[i] == '-' || str[i] == '+') && i == 0)
 			i++;
 		if (std::isdigit(str[i]))
 			continue;
@@ -50,9 +36,7 @@ void				ScalarConverter::getType(std::string str)
 	}
 	if (isDouble)
 	{
-		double	d;
-		ss >> d;
-		printDouble(d);
+		printDouble(atof(str.c_str()));
 	}
 	else if (isFloat)
 	{
@@ -60,9 +44,7 @@ void				ScalarConverter::getType(std::string str)
 	}
 	else
 	{
-		int	i;
-		ss >> i;
-		printInt(i);
+		printInt(std::atoi(str.c_str()));
 	}
 }
 
@@ -84,15 +66,19 @@ void				ScalarConverter::convertFloat(float nb)
 	std::cout << "Float : " << std::fixed << std::setprecision(1) << nb << "f" << std::endl;
 }
 
-void				ScalarConverter::convertChar(char nb)
+void ScalarConverter::convertChar(char nb)
 {
-	if ((nb >= 0 && nb < 32) || (nb == 127))
-		std::cout << "Char : non displayable" << std::endl;
-	else if (nb < 0 || nb > 127)
-		std::cout << "Char : impossible" << std::endl;
-	else
-		std::cout << "Char : " << nb << std::endl;
+	std::cout << "number: " << nb << std::endl;
+	if ((nb < 32 || nb == 127) && !(nb >= '0' && nb <= '9')) {
+		std::cout << "testing" << std::endl;
+	std::cout << "Char: Non-displayable" << std::endl;
+	} else if (nb > 127) {
+		std::cout << "Char: Impossible" << std::endl;
+	} else {
+		std::cout << "Char: '" << nb << "'" << std::endl; // Added quotes for clarity
+	}
 }
+
 
 void				ScalarConverter::printInt(int nb)
 {
@@ -112,7 +98,6 @@ void				ScalarConverter::printDouble(double nb)
 
 void				ScalarConverter::printFloat(float nb)
 {
-	// std::cout << nb << std::endl;
 	convertChar(static_cast<char>(nb));
 	convertInt(static_cast<int>(nb));
 	convertDouble(static_cast<double>(nb));
