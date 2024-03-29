@@ -1,11 +1,20 @@
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
+#include <iostream>
+
 template<typename T>
-class Array
+class Array<unsigned int, T>
 {
-	Array();
-	~Array();
+
+
+	public:
+		Array<T>();
+		Array<T>(const Array &src);
+		~Array<T>();
+
+		Array	&operator=(const Array &src);
+
 };
 
 #endif
