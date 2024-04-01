@@ -1,21 +1,13 @@
 #ifndef DATA_HPP
 # define DATA_HPP
 
-class Data
-{
-	int	_x;
-	int	_y;
-	int	_z;
+#include <iostream>
 
-	public:
-		Data();
-		Data(int x, int y, int z);
-		~Data();
-		Data(const Data &src);
-		Data	&operator=(const Data &src);
-		int		getX();
-		int		getY();
-		int		getZ();
+struct Data
+{
+	int			km;
+	std::string	model;
+	std::string	color;
 };
 
 #endif

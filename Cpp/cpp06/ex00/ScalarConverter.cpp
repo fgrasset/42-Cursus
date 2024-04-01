@@ -17,7 +17,7 @@ void				ScalarConverter::getType(std::string str)
 	if (str.empty())
 		return printError();
 	if (std::isalpha(str[0]) && str.size() == 1)
-		return printChar();
+		return printChar(str[0]);
 	for(int i = 0; i < (int)str.length(); i++)
 	{
 		if ((str[i] == '-' || str[i] == '+') && i == 0)
@@ -68,14 +68,12 @@ void				ScalarConverter::convertFloat(float nb)
 
 void ScalarConverter::convertChar(char nb)
 {
-	std::cout << "number: " << nb << std::endl;
-	if ((nb < 32 || nb == 127) && !(nb >= '0' && nb <= '9')) {
-		std::cout << "testing" << std::endl;
-	std::cout << "Char: Non-displayable" << std::endl;
+	if ((nb >= 0 && nb <= 32) || nb == 127) {
+		std::cout << "Char: Non-displayable" << std::endl;
 	} else if (nb > 127) {
 		std::cout << "Char: Impossible" << std::endl;
 	} else {
-		std::cout << "Char: '" << nb << "'" << std::endl; // Added quotes for clarity
+		std::cout << "Char: '" << nb << "'" << std::endl;
 	}
 }
 
