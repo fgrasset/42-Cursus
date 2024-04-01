@@ -33,7 +33,7 @@ class Array
 template <typename T>
 Array<T>::Array()
 {
-	this->_arr = nullptr;
+	this->_arr = NULL;
 	this->_size = 0;
 }
 

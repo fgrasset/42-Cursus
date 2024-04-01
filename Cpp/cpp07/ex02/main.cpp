@@ -31,7 +31,7 @@ int main() {
 		testException[0] = 2;
 		testException[1] = -5;
 		std::cout << "Size of the array: " << testException.size() << std::endl;
-		std::cout << "Trying to acces third element: " << std::endl;
+		std::cout << "Trying to acces third element" << std::endl;
 		testException[2] = 42;
 	} catch (const Array<int>::IndexOutOfBounds& e) {
 		std::cerr << "Exception caught: " << e.what() << std::endl;
