@@ -2,7 +2,7 @@
 
 int main() {
 	// Test 1: Basic usage and span calculation
-	Span sp(5);  // Constructor call without `=`
+	Span sp(5);
 
 	try {
 		sp.addNumber(6);
