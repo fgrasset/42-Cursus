@@ -56,3 +56,16 @@ void	Span::fill(std::vector<int>::iterator it, std::vector<int>::iterator ite, i
 	for (; it != ite; ++it)
 		this->_container.push_back(*it + number);
 }
+
+void	Span::print()
+{
+	std::vector<int>::iterator	it = this->_container.begin();
+	std::vector<int>::iterator	ite = this->_container.end() - 1;
+	std::cout << "Vector {";
+	for (; it < ite; ++it)
+	{
+		std::cout << *it << ", ";
+	}
+	std::cout << *it;
+	std::cout << "}" << std::endl;
+}

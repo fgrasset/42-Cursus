@@ -19,6 +19,7 @@ class Span
 		int		shortestSpan();
 		int		longestSpan();
 		void	fill(std::vector<int>::iterator it, std::vector<int>::iterator ite, int number);
+		void	print();
 
 	class FullSpan : public std::exception
 	{
