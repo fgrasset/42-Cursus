@@ -25,7 +25,7 @@ Span	&Span::operator=(const Span &src)
 
 void	Span::addNumber(int nb)
 {
-	if (this->_container.size() <= this->_max)
+	if (this->_container.size() < this->_max)
 		this->_container.push_back(nb);
 	else
 		throw FullSpan();
@@ -33,20 +33,26 @@ void	Span::addNumber(int nb)
 
 int		Span::shortestSpan()
 {
-	std::vector<int>::iterator	min = std::min_element(this->_container.begin(), this->_container.end());
-	if (min != this->_container.end())
-		return (*min);
-	else
+	if (this->_container.size() < 2)
 		throw UnfindeableElement();
+	std::sort(this->_container.begin(), this->_container.end());
+	int	span = *std::next(this->_container.begin()) - this->_container.front();
+	int	container_size = this->_container.size();
+	for (int i = 1; i < container_size; i++)
+	{
+		int	dist = this->_container[i] - this->_container[i - 1];
+		if (dist < span)
+			span = dist;
+	}
+	return (span);
 }
 
 int		Span::longestSpan()
 {
-	std::vector<int>::iterator	max = std::max_element(this->_container.begin(), this->_container.end());
-	if (max != this->_container.end())
-		return (*max);
-	else
+	if (this->_container.size() < 2)
 		throw UnfindeableElement();
+	std::sort(this->_container.begin(), this->_container.end());
+	return (this->_container.back() - this->_container.front());
 }
 
 void	Span::fill(std::vector<int>::iterator it, std::vector<int>::iterator ite, int number)
