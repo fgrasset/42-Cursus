@@ -2,17 +2,17 @@
 # define PMERGEME_HPP
 
 #include <iostream>
+#include <iterator>
 #include <vector>
 #include <deque>
 #include <list>
 #include <algorithm>
+#include <ctime>
 
 class PmergeMe
 {
 	std::list<int>	_list;
 	std::deque<int>	_deque;
-	double			_timeList;
-	double			_timeDeque;
 
 	public:
 		PmergeMe(std::list<int> unsortedList, std::deque<int> unsortedDeque);

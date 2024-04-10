@@ -2,12 +2,27 @@
 
 PmergeMe::PmergeMe(std::list<int> unsortedList, std::deque<int> unsortedDeque) : _list(unsortedList), _deque(unsortedDeque)
 {
+	std::cout << "Before: ";
+	this->display();
+	// sleep(1);
 
+	clock_t	startDeque = clock();
+	fordJohnsonSort(unsortedDeque);
+	clock_t	endDeque = clock();
+
+	clock_t	startList = clock();
+	fordJohnsonSort(unsortedList);
+	clock_t	endList = clock();
+
+	std::cout << "After: ";
+	this->display();
+	std::cout << "Time to process a range of " << this->_list.size() << " elements with std::list<int>: " << static_cast<double>(endList - startList) / CLOCKS_PER_SEC * 1000 << std::endl;
+	std::cout << "Time to process a range of " << this->_deque.size() << " elements with std::deque<int>: " << static_cast<double>(endDeque - startDeque) / CLOCKS_PER_SEC * 1000 << std::endl;
 }
 
 PmergeMe::PmergeMe(const PmergeMe &src)
 {
-
+	*this = src;
 }
 
 PmergeMe::~PmergeMe()
@@ -17,7 +32,10 @@ PmergeMe::~PmergeMe()
 
 PmergeMe	&PmergeMe::operator=(const PmergeMe &src)
 {
+	this->_list = src._list;
+	this->_deque = src._deque;
 
+	return *this;
 }
 
 
@@ -56,17 +74,19 @@ void	PmergeMe::sortDescending(std::deque<int> &inputDeque, std::deque<int> &sort
 	std::deque<int>::iterator	it1 = inputDeque.begin();
 	std::deque<int>::iterator	it2 = std::next(it1);
 
-	while (it2 != inputDeque.end())
+	while ((it2 != inputDeque.end()))
 	{
 		if (*it1 > *it2) {
 			sortedSubDeque.push_back(*it1);
 		} else {
 			sortedSubDeque.push_back(*it2);
 		}
+		std::cout << "test: " << *it1 << " and " << *it2 << std::endl;
 		it1 = std::next(it2, 2); // Advance two positions
 		it2 = std::next(it1, 2);
 	}
 
+	std::cout << "test" << std::endl;
 	if (it1 != inputDeque.end()) { // Handle unpaired element
 		sortedSubDeque.push_back(*it1);
 	}
@@ -154,5 +174,10 @@ void	PmergeMe::fordJohnsonSort(std::deque<int> &inputDeque)
 
 void	PmergeMe::display()
 {
-
+	int	sizeDeque = this->_deque.size();
+	for (int i =  0; i < sizeDeque; ++i)
+	{
+		std::cout << this->_deque[i] << " ";
+	}
+	std::cout << std::endl;
 }
