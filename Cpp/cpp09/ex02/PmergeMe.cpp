@@ -40,7 +40,7 @@ PmergeMe	&PmergeMe::operator=(const PmergeMe &src)
 
 
 // Function to pair elements, extract larger ones, and sort them recursively
-void	PmergeMe::sortDescending(std::list<int> &inputList, std::list<int> &sortedSubList)
+void	PmergeMe::sortDescending(std::list<int> inputList, std::list<int> &sortedSubList)
 {
 	if (inputList.size() <= 1)
 		return; // Base case for recursion
@@ -63,36 +63,76 @@ void	PmergeMe::sortDescending(std::list<int> &inputList, std::list<int> &sortedS
 		sortedSubList.push_back(*it1);
 	}
 
-	sortDescending(sortedSubList, sortedSubList); // Recursion
+	std::list<int> newSortedSubList; // New container for recursion
+	sortDescending(newSortedSubList, sortedSubList); // Recursion
 }
 
-void	PmergeMe::sortDescending(std::deque<int> &inputDeque, std::deque<int> &sortedSubDeque)
+void PmergeMe::sortDescending(std::deque<int> inputDeque, std::deque<int> &sortedSubDeque)
 {
 	if (inputDeque.size() <= 1)
 		return; // Base case for recursion
 
-	std::deque<int>::iterator	it1 = inputDeque.begin();
-	std::deque<int>::iterator	it2 = std::next(it1);
-
-	while ((it2 != inputDeque.end()))
+	if (inputDeque.size() >= 2)
 	{
-		if (*it1 > *it2) {
-			sortedSubDeque.push_back(*it1);
+		if (inputDeque[0] > inputDeque[1]) {
+			sortedSubDeque.push_back(inputDeque[0]);
 		} else {
-			sortedSubDeque.push_back(*it2);
+			sortedSubDeque.push_back(inputDeque[1]);
 		}
-		std::cout << "test: " << *it1 << " and " << *it2 << std::endl;
-		it1 = std::next(it2, 2); // Advance two positions
-		it2 = std::next(it1, 2);
+	}
+	size_t index1 = 1;
+	size_t index2 = 2;
+
+	while (index2 < inputDeque.size())
+	{
+		if (inputDeque[index1] > inputDeque[index2]) {
+			sortedSubDeque.push_back(inputDeque[index1]);
+			index1++; // Only advance index1 if we added to sortedSubDeque
+			index2++;
+		} else {
+			sortedSubDeque.push_back(inputDeque[index2]);
+			index2++; // Only advance index2 if we added to sortedSubDeque
+		}
 	}
 
-	std::cout << "test" << std::endl;
-	if (it1 != inputDeque.end()) { // Handle unpaired element
-		sortedSubDeque.push_back(*it1);
+	if (index1 < inputDeque.size() - 1) { // Handle unpaired element
+		sortedSubDeque.push_back(inputDeque[index1]);
 	}
 
-	sortDescending(sortedSubDeque, sortedSubDeque); // Recursion
+	std::deque<int> newSortedSubDeque; // New container for recursion
+	sortDescending(newSortedSubDeque, sortedSubDeque); // Recursion
+
+	// sortedSubDeque.insert(sortedSubDeque.end(), newSortedSubDeque.begin(), newSortedSubDeque.end());
 }
+
+
+// void	PmergeMe::sortDescending(std::deque<int> inputDeque, std::deque<int> &sortedSubDeque)
+// {
+// 	if (inputDeque.size() <= 1)
+// 		return; // Base case for recursion
+
+// 	std::deque<int>::iterator	it1 = inputDeque.begin();
+// 	std::deque<int>::iterator	it2 = std::next(it1);
+
+// 	while ((it2 != inputDeque.end()))
+// 	{
+// 		if (*it1 > *it2) {
+// 			sortedSubDeque.push_back(*it1);
+// 		} else {
+// 			sortedSubDeque.push_back(*it2);
+// 		}
+// 		std::cout << "test: " << *it1 << " and " << *it2 << std::endl;
+// 		it1 = std::next(it2, 2); // Advance two positions
+// 		it2 = std::next(it1, 2);
+// 	}
+
+// 	std::cout << "test" << std::endl;
+// 	if (it1 != inputDeque.end()) { // Handle unpaired element
+// 		sortedSubDeque.push_back(*it1);
+// 	}
+
+// 	sortDescending(sortedSubDeque, sortedSubDeque); // Recursion
+// }
 
 
 // Binary-search like insertion
@@ -148,6 +188,12 @@ void	PmergeMe::fordJohnsonSort(std::list<int> &inputList)
 		}
 	}
 
+	// std::cout << "Sorted List: ";
+    //  for (std::list<int>::iterator it = sortedSubList.begin(); it != sortedSubList.end(); ++it) {
+    //      std::cout << *it << " ";
+    //  }
+    //  std::cout << std::endl;
+
 	inputList = sortedSubList; // Copy back to the original list
 }
 
@@ -168,6 +214,13 @@ void	PmergeMe::fordJohnsonSort(std::deque<int> &inputDeque)
 			insertElement(sortedSubDeque, *it);
 		}
 	}
+	int	sizeDeque = sortedSubDeque.size();
+	std::cout << "sortedSubDeque: ";
+	for (int i =  0; i < sizeDeque; ++i)
+	{
+		std::cout << sortedSubDeque[i] << " ";
+	}
+	std::cout << std::endl;
 
 	inputDeque = sortedSubDeque; // Copy back to the original list
 }

@@ -20,8 +20,8 @@ class PmergeMe
 		~PmergeMe();
 
 		PmergeMe	&operator=(const PmergeMe &src);
-		void		sortDescending(std::list<int> &inputList, std::list<int> &sortedSubList);
-		void		sortDescending(std::deque<int> &inputDeque, std::deque<int> &sortedSubDeque);
+		void		sortDescending(std::list<int> inputList, std::list<int> &sortedSubList);
+		void		sortDescending(std::deque<int> inputDeque, std::deque<int> &sortedSubDeque);
 		void		insertElement(std::list<int> &soretedSubList, int elment);
 		void		insertElement(std::deque<int> &sortedSubDeque, int element);
 		void		fordJohnsonSort(std::list<int> &inputList);
