@@ -2,21 +2,21 @@
 
 PmergeMe::PmergeMe(std::list<int> unsortedList, std::deque<int> unsortedDeque) : _list(unsortedList), _deque(unsortedDeque)
 {
-	std::cout << "Before: ";
+	std::cout << "----- Before -----";
 	this->display();
 	// sleep(1);
 
 	clock_t	startDeque = clock();
-	fordJohnsonSort(unsortedDeque);
+	fordJohnsonSort(this->_deque);
 	clock_t	endDeque = clock();
 
 	clock_t	startList = clock();
-	fordJohnsonSort(unsortedList);
+	fordJohnsonSort(this->_list);
 	clock_t	endList = clock();
 
-	std::cout << "After: ";
+	std::cout << std::endl << "----- After -----";
 	this->display();
-	std::cout << "Time to process a range of " << this->_list.size() << " elements with std::list<int>: " << static_cast<double>(endList - startList) / CLOCKS_PER_SEC * 1000 << std::endl;
+	std::cout << std::endl << "Time to process a range of " << this->_list.size() << " elements with std::list<int>: " << static_cast<double>(endList - startList) / CLOCKS_PER_SEC * 1000 << std::endl;
 	std::cout << "Time to process a range of " << this->_deque.size() << " elements with std::deque<int>: " << static_cast<double>(endDeque - startDeque) / CLOCKS_PER_SEC * 1000 << std::endl;
 }
 
@@ -206,6 +206,16 @@ void	PmergeMe::fordJohnsonSort(std::deque<int> &inputDeque)
 	// Pairing and extracting larger elements
 	sortDescending(inputDeque, sortedSubDeque);
 
+	std::cout << "sortedSubDeque after sortDescending(): ";
+	for (size_t i =  0; i < sortedSubDeque.size(); ++i)
+		std::cout << sortedSubDeque[i] << " ";
+	std::cout << std::endl;
+
+	std::cout << "inputDeque after sortDescending(): ";
+	for (size_t i =  0; i < inputDeque.size(); ++i)
+		std::cout << inputDeque[i] << " ";
+	std::cout << std::endl;
+
 	// Inserting remaining elements
 	for (std::deque<int>::iterator it = inputDeque.begin(); it != inputDeque.end(); ++it) {
 		if (sortedSubDeque.empty() || *it >= sortedSubDeque.front()) {
@@ -214,13 +224,6 @@ void	PmergeMe::fordJohnsonSort(std::deque<int> &inputDeque)
 			insertElement(sortedSubDeque, *it);
 		}
 	}
-	int	sizeDeque = sortedSubDeque.size();
-	std::cout << "sortedSubDeque: ";
-	for (int i =  0; i < sizeDeque; ++i)
-	{
-		std::cout << sortedSubDeque[i] << " ";
-	}
-	std::cout << std::endl;
 
 	inputDeque = sortedSubDeque; // Copy back to the original list
 }
@@ -228,9 +231,17 @@ void	PmergeMe::fordJohnsonSort(std::deque<int> &inputDeque)
 void	PmergeMe::display()
 {
 	int	sizeDeque = this->_deque.size();
+	std::cout << std::endl << "deque : ";
 	for (int i =  0; i < sizeDeque; ++i)
 	{
 		std::cout << this->_deque[i] << " ";
+	}
+	// std::cout << std::endl;
+
+	std::list<int>::iterator it;
+	std::cout << std::endl << "list  : ";
+	for (it = this->_list.begin(); it != this->_list.end(); ++it) {
+		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
 }
