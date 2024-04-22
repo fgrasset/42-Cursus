@@ -3,7 +3,6 @@
 PmergeMe::PmergeMe(std::list<int> unsortedList, std::deque<int> unsortedDeque) : _list(unsortedList), _deque(unsortedDeque)
 {
 	std::cout << "----- Before -----";
-	std::cout << std::endl;
 	this->display();
 
 	clock_t	startDeque = clock();
