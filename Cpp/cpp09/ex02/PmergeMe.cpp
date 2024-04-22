@@ -3,8 +3,8 @@
 PmergeMe::PmergeMe(std::list<int> unsortedList, std::deque<int> unsortedDeque) : _list(unsortedList), _deque(unsortedDeque)
 {
 	std::cout << "----- Before -----";
+	std::cout << std::endl;
 	this->display();
-	// sleep(1);
 
 	clock_t	startDeque = clock();
 	fordJohnsonSort(this->_deque);
@@ -38,194 +38,210 @@ PmergeMe	&PmergeMe::operator=(const PmergeMe &src)
 	return *this;
 }
 
+// ---------- List functions ----------
 
-// Function to pair elements, extract larger ones, and sort them recursively
-void	PmergeMe::sortDescending(std::list<int> inputList, std::list<int> &sortedSubList)
+void	PmergeMe::pairing(std::list<int> &inputList, std::list<int> &sortedSubList, std::list<int> &unsortedSubList)
 {
-	if (inputList.size() <= 1)
-		return; // Base case for recursion
+	if (inputList.size() <= 1) {
+		return;
+	}
 
-	std::list<int>::iterator	it1 = inputList.begin();
-	std::list<int>::iterator	it2 = std::next(it1);
+	std::list<int>::iterator it = inputList.begin();
+	while (it != inputList.end()) {
+		int first = *it;
+		++it;
+		if (it != inputList.end()) {
+			int second = *it;
+			++it;
+			if (first > second) {
+				sortedSubList.push_back(first);
+				unsortedSubList.push_back(second);
+			} else {
+				sortedSubList.push_back(second);
+				unsortedSubList.push_back(first);
+			}
+		} else {
+			sortedSubList.push_back(first);
+		}
+	}
+}
 
-	while (it2 != inputList.end())
+void	PmergeMe::recursiveSort(std::list<int> &sortedSubList)
+{
+	if (sortedSubList.size() <= 1) {
+		return;
+	}
+
+	size_t mid = sortedSubList.size() / 2;
+	std::list<int> left(sortedSubList.begin(), std::next(sortedSubList.begin(), mid));
+	std::list<int> right(std::next(sortedSubList.begin(), mid), sortedSubList.end());
+
+	recursiveSort(left);
+	recursiveSort(right);
+
+	sortedSubList.clear();
+	std::list<int>::iterator it_left = left.begin();
+	std::list<int>::iterator it_right = right.begin();
+	while (it_left != left.end() && it_right != right.end()) {
+		if (*it_left < *it_right) {
+			sortedSubList.push_back(*it_left);
+			++it_left;
+		} else {
+			sortedSubList.push_back(*it_right);
+			++it_right;
+		}
+	}
+
+	while (it_left != left.end()) {
+		sortedSubList.push_back(*it_left);
+		++it_left;
+	}
+	while (it_right != right.end()) {
+		sortedSubList.push_back(*it_right);
+		++it_right;
+	}
+}
+
+void	PmergeMe::binarySearchInsertion(std::list<int> &sortedSubList, std::list<int> &unsortedSubList)
+{
+	for (std::list<int>::iterator it = unsortedSubList.begin(); it != unsortedSubList.end(); ++it)
 	{
-		if (*it1 > *it2) {
-			sortedSubList.push_back(*it1);
-		} else {
-			sortedSubList.push_back(*it2);
+		int element = *it;
+
+		std::list<int>::iterator low = sortedSubList.begin();
+		std::list<int>::iterator high = sortedSubList.end();
+		while (low != high) {
+			std::list<int>::iterator mid = low;
+			std::advance(mid, std::distance(low, high) / 2);
+			if (*mid < element) {
+				++low;
+			} else {
+				high = mid;
+			}
 		}
-		it1 = std::next(it2, 2); // Advance two positions
-		it2 = std::next(it1, 2);
-	}
 
-	if (it1 != inputList.end()) { // Handle unpaired element
-		sortedSubList.push_back(*it1);
+		sortedSubList.insert(low, element);
 	}
-
-	std::list<int> newSortedSubList; // New container for recursion
-	sortDescending(newSortedSubList, sortedSubList); // Recursion
 }
 
-void PmergeMe::sortDescending(std::deque<int> inputDeque, std::deque<int> &sortedSubDeque)
-{
-	if (inputDeque.size() <= 1)
-		return; // Base case for recursion
-
-	if (inputDeque.size() >= 2)
-	{
-		if (inputDeque[0] > inputDeque[1]) {
-			sortedSubDeque.push_back(inputDeque[0]);
-		} else {
-			sortedSubDeque.push_back(inputDeque[1]);
-		}
-	}
-	size_t index1 = 1;
-	size_t index2 = 2;
-
-	while (index2 < inputDeque.size())
-	{
-		if (inputDeque[index1] > inputDeque[index2]) {
-			sortedSubDeque.push_back(inputDeque[index1]);
-			index1++; // Only advance index1 if we added to sortedSubDeque
-			index2++;
-		} else {
-			sortedSubDeque.push_back(inputDeque[index2]);
-			index2++; // Only advance index2 if we added to sortedSubDeque
-		}
-	}
-
-	if (index1 < inputDeque.size() - 1) { // Handle unpaired element
-		sortedSubDeque.push_back(inputDeque[index1]);
-	}
-
-	std::deque<int> newSortedSubDeque; // New container for recursion
-	sortDescending(newSortedSubDeque, sortedSubDeque); // Recursion
-
-	// sortedSubDeque.insert(sortedSubDeque.end(), newSortedSubDeque.begin(), newSortedSubDeque.end());
-}
-
-
-// void	PmergeMe::sortDescending(std::deque<int> inputDeque, std::deque<int> &sortedSubDeque)
-// {
-// 	if (inputDeque.size() <= 1)
-// 		return; // Base case for recursion
-
-// 	std::deque<int>::iterator	it1 = inputDeque.begin();
-// 	std::deque<int>::iterator	it2 = std::next(it1);
-
-// 	while ((it2 != inputDeque.end()))
-// 	{
-// 		if (*it1 > *it2) {
-// 			sortedSubDeque.push_back(*it1);
-// 		} else {
-// 			sortedSubDeque.push_back(*it2);
-// 		}
-// 		std::cout << "test: " << *it1 << " and " << *it2 << std::endl;
-// 		it1 = std::next(it2, 2); // Advance two positions
-// 		it2 = std::next(it1, 2);
-// 	}
-
-// 	std::cout << "test" << std::endl;
-// 	if (it1 != inputDeque.end()) { // Handle unpaired element
-// 		sortedSubDeque.push_back(*it1);
-// 	}
-
-// 	sortDescending(sortedSubDeque, sortedSubDeque); // Recursion
-// }
-
-
-// Binary-search like insertion
-void	PmergeMe::insertElement(std::list<int> &sortedSubList, int element)
-{
-	std::list<int>::iterator low = sortedSubList.begin();
-	std::list<int>::iterator high = sortedSubList.end();
-
-	while (low != high) {
-		std::list<int>::iterator mid = std::next(low, std::distance(low, high) / 2);
-		if (element > *mid) {
-			high = mid;
-		} else {
-			low = std::next(mid);
-		}
-	}
-	sortedSubList.insert(low, element);
-}
-
-void	PmergeMe::insertElement(std::deque<int> &sortedSubDeque, int element)
-{
-	std::deque<int>::iterator low = sortedSubDeque.begin();
-	std::deque<int>::iterator high = sortedSubDeque.end();
-
-	while (low != high) {
-		std::deque<int>::iterator mid = std::next(low, std::distance(low, high) / 2);
-		if (element > *mid) {
-			high = mid;
-		} else {
-			low = std::next(mid);
-		}
-	}
-	sortedSubDeque.insert(low, element);
-}
-
-
-// Main Ford-Johnson sorting function
 void	PmergeMe::fordJohnsonSort(std::list<int> &inputList)
 {
-	if (inputList.size() <= 1) return; // Already sorted
+	if (inputList.size() <= 1) return;
 
 	std::list<int> sortedSubList;
+	std::list<int> unsortedSubList;
 
-	// Pairing and extracting larger elements
-	sortDescending(inputList, sortedSubList);
+	// Pairing and extracting bigger numbers
+	pairing(inputList, sortedSubList, unsortedSubList);
 
-	// Inserting remaining elements
-	for (std::list<int>::iterator it = inputList.begin(); it != inputList.end(); ++it) {
-		if (sortedSubList.empty() || *it >= sortedSubList.front()) {
-			sortedSubList.push_front(*it);
+	// Sorting in ascending order half of bigger numbers
+	recursiveSort(sortedSubList);
+
+	// Inserting half smaller elements using binary search
+	binarySearchInsertion(sortedSubList, unsortedSubList);
+
+	inputList = sortedSubList;
+}
+
+
+
+
+// ---------- Deque functons ----------
+
+void	PmergeMe::pairing(std::deque<int> &inputDeque, std::deque<int> &sortedSubDeque, std::deque<int> &unsortedSubDeque)
+{
+	if (inputDeque.size() <= 1) {
+		return;
+	}
+
+	for (size_t i = 0; i < inputDeque.size(); i += 2) {
+		if (i + 1 < inputDeque.size()) {
+			if (inputDeque[i] > inputDeque[i + 1]) {
+				sortedSubDeque.push_back(inputDeque[i]);
+				unsortedSubDeque.push_back(inputDeque[i + 1]);
+			} else {
+				sortedSubDeque.push_back(inputDeque[i + 1]);
+				unsortedSubDeque.push_back(inputDeque[i]);
+			}
 		} else {
-			insertElement(sortedSubList, *it);
+			sortedSubDeque.push_back(inputDeque[i]);
+		}
+	}
+}
+
+void	PmergeMe::recursiveSort(std::deque<int> &sortedSubDeque)
+{
+	if (sortedSubDeque.size() <= 1) {
+		return;
+	}
+
+	size_t mid = sortedSubDeque.size() / 2;
+	std::deque<int> left(sortedSubDeque.begin(), sortedSubDeque.begin() + mid);
+	std::deque<int> right(sortedSubDeque.begin() + mid, sortedSubDeque.end());
+
+	recursiveSort(left);
+	recursiveSort(right);
+
+	sortedSubDeque.clear();
+	size_t i = 0, j = 0;
+	while (i < left.size() && j < right.size()) {
+		if (left[i] < right[j]) {
+			sortedSubDeque.push_back(left[i]);
+			++i;
+		} else {
+			sortedSubDeque.push_back(right[j]);
+			++j;
 		}
 	}
 
-	// std::cout << "Sorted List: ";
-    //  for (std::list<int>::iterator it = sortedSubList.begin(); it != sortedSubList.end(); ++it) {
-    //      std::cout << *it << " ";
-    //  }
-    //  std::cout << std::endl;
+	while (i < left.size()) {
+		sortedSubDeque.push_back(left[i]);
+		++i;
+	}
+	while (j < right.size()) {
+		sortedSubDeque.push_back(right[j]);
+		++j;
+	}
+}
 
-	inputList = sortedSubList; // Copy back to the original list
+void	PmergeMe::binarySearchInsertion(std::deque<int> &sortedSubDeque, std::deque<int> &unsortedSubDeque)
+{
+	for (size_t i = 0; i < unsortedSubDeque.size(); ++i)
+	{
+		int element = unsortedSubDeque[i];
+
+		size_t low = 0;
+		size_t high = sortedSubDeque.size();
+		while (low < high) {
+			size_t mid = (low + high) / 2;
+			if (sortedSubDeque[mid] < element) {
+				low = mid + 1;
+			} else {
+				high = mid;
+			}
+		}
+
+		sortedSubDeque.insert(sortedSubDeque.begin() + low, element);
+	}
 }
 
 void	PmergeMe::fordJohnsonSort(std::deque<int> &inputDeque)
 {
-	if (inputDeque.size() <= 1) return; // Already sorted
+	if (inputDeque.size() <= 1) return;
 
 	std::deque<int> sortedSubDeque;
+	std::deque<int> unsortedSubDeque;
 
-	// Pairing and extracting larger elements
-	sortDescending(inputDeque, sortedSubDeque);
+	// pairing and extracting bigger numbers
+	pairing(inputDeque, sortedSubDeque, unsortedSubDeque);
 
-	std::cout << "sortedSubDeque after sortDescending(): ";
-	for (size_t i =  0; i < sortedSubDeque.size(); ++i)
-		std::cout << sortedSubDeque[i] << " ";
-	std::cout << std::endl;
+	// sorting in ascending order half of bigger numbers
+	recursiveSort(sortedSubDeque);
 
-	std::cout << "inputDeque after sortDescending(): ";
-	for (size_t i =  0; i < inputDeque.size(); ++i)
-		std::cout << inputDeque[i] << " ";
-	std::cout << std::endl;
+	// inserting half smaller elements using binary search
+	binarySearchInsertion(sortedSubDeque, unsortedSubDeque);
 
-	// Inserting remaining elements
-	for (std::deque<int>::iterator it = inputDeque.begin(); it != inputDeque.end(); ++it) {
-		if (sortedSubDeque.empty() || *it >= sortedSubDeque.front()) {
-			sortedSubDeque.push_front(*it);
-		} else {
-			insertElement(sortedSubDeque, *it);
-		}
-	}
-
-	inputDeque = sortedSubDeque; // Copy back to the original list
+	inputDeque = sortedSubDeque;
 }
 
 void	PmergeMe::display()
@@ -236,7 +252,7 @@ void	PmergeMe::display()
 	{
 		std::cout << this->_deque[i] << " ";
 	}
-	// std::cout << std::endl;
+	std::cout << std::endl << std::endl;
 
 	std::list<int>::iterator it;
 	std::cout << std::endl << "list  : ";
