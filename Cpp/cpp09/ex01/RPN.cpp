@@ -55,6 +55,8 @@ void	RPN::calculate(std::string input)
 
 long	RPN::toPop(char ops)
 {
+	if (this->_stack.size() <= 1)
+		throw std::invalid_argument("Wrong input please use single digits and (+-*/) operators");
 	long	a = this->_stack.top();
 	this->_stack.pop();
 	long	b = this->_stack.top();
