@@ -7,15 +7,15 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-typedef struct client{
+typedef struct client {
 	int id;
 	char msg[100000];
 }	t_client;
 
 t_client	clients[1024];
 
-fd_set active, readyRead, readyWrite;
 int	max, next_id = 0;
+fd_set	active, readyRead, readyWrite;
 char bufRead[424242], bufWrite[424242];
 
 void	exitError(char *str)
@@ -29,7 +29,7 @@ void	sendAll(int excludedSocket)
 {
 	for (int fd = 0; fd <= max; fd++)
 	{
-		if (FD_ISSET(fd, &active) && fd != excludedSocket)
+		if (FD_ISSET(fd, &readyWrite) && fd != excludedSocket)
 			send(fd, bufWrite, strlen(bufWrite), 0);
 	}
 }
@@ -37,7 +37,7 @@ void	sendAll(int excludedSocket)
 int	main(int ac, char **av)
 {
 	if (ac != 2)
-		exitError("Wrong number of arguments\n");
+		exitError("Wrong number of arguments");
 	int	port = atoi(av[1]);
 
 	int	listeningSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -60,18 +60,20 @@ int	main(int ac, char **av)
 	if (listen(listeningSocket, 128) < 0)
 		exitError("Fatal error\n");
 
-	while(1)
+	while (1)
 	{
 		readyRead = readyWrite = active;
 		if (select(max + 1, &readyRead, &readyWrite, NULL, NULL) < 0)
 			continue;
+
 		for (int fd = 0; fd <= max; fd++)
 		{
 			if (FD_ISSET(fd, &active) && fd == listeningSocket)
 			{
-				int	clientSocket = accept(fd, 0, 0);
+				int clientSocket = accept(fd, 0, 0);
 				if (clientSocket < 0)
 					continue;
+				max = (clientSocket > max) ? clientSocket : max;
 				clients[clientSocket].id = next_id++;
 				FD_SET(clientSocket, &active);
 				sprintf(bufWrite, "server: client %d just arrived\n", clients[clientSocket].id);
@@ -87,7 +89,7 @@ int	main(int ac, char **av)
 					sendAll(fd);
 					FD_CLR(fd, &active);
 					close(fd);
-					break;
+					break ;
 				}
 				else
 				{
@@ -99,7 +101,7 @@ int	main(int ac, char **av)
 							clients[fd].msg[j] = '\0';
 							sprintf(bufWrite, "client %d: %s\n", clients[fd].id, clients[fd].msg);
 							sendAll(fd);
-							bzero(clients[fd].msg, strlen(clients[fd].msg));
+							bzero(&clients[fd].msg, strlen(clients[fd].msg));
 							j = -1;
 						}
 					}
@@ -108,4 +110,5 @@ int	main(int ac, char **av)
 			}
 		}
 	}
+
 }
