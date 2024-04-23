@@ -7,16 +7,16 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-typedef struct client {
-	int	id;
-	char	msg[100000];
+typedef struct client{
+	int id;
+	char msg[100000];
 }	t_client;
 
 t_client	clients[1024];
 
-int	max = 0, next_id = 0;
-fd_set	active, readyRead, readyWrite;
-char	bufRead[424242], bufWrite[424242];
+fd_set active, readyRead, readyWrite;
+int	max, next_id = 0;
+char bufRead[424242], bufWrite[424242];
 
 void	exitError(char *str)
 {
@@ -27,18 +27,18 @@ void	exitError(char *str)
 
 void	sendAll(int excludedSocket)
 {
-	for (int i = 0; i <= max; i++)
+	for (int fd = 0; fd <= max; fd++)
 	{
-		if (FD_ISSET(i, &readyWrite) && i != excludedSocket)
-			send(i, bufWrite, strlen(bufWrite), 0);
+		if (FD_ISSET(fd, &active) && fd != excludedSocket)
+			send(fd, bufWrite, strlen(bufWrite), 0);
 	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	if (ac != 2)
 		exitError("Wrong number of arguments\n");
-	int port = atoi(av[1]);
+	int	port = atoi(av[1]);
 
 	int	listeningSocket = socket(AF_INET, SOCK_STREAM, 0);
 	if (listeningSocket < 0)
@@ -60,29 +60,27 @@ int main(int ac, char **av)
 	if (listen(listeningSocket, 128) < 0)
 		exitError("Fatal error\n");
 
-	while (1)
+	while(1)
 	{
 		readyRead = readyWrite = active;
 		if (select(max + 1, &readyRead, &readyWrite, NULL, NULL) < 0)
 			continue;
-
 		for (int fd = 0; fd <= max; fd++)
 		{
-			if (FD_ISSET(fd, &readyRead) && fd == listeningSocket)
+			if (FD_ISSET(fd, &active) && fd == listeningSocket)
 			{
-				int clientSocket = accept(listeningSocket, NULL, NULL);
+				int	clientSocket = accept(fd, 0, 0);
 				if (clientSocket < 0)
 					continue;
-				max = (clientSocket > max) ? clientSocket : max;
 				clients[clientSocket].id = next_id++;
 				FD_SET(clientSocket, &active);
-				sprintf(bufWrite, "server: client %d just arrived\n", clients[clientSocket]. id);
+				sprintf(bufWrite, "server: client %d just arrived\n", clients[clientSocket].id);
 				sendAll(fd);
 				break;
 			}
-			if (FD_ISSET(fd, &readyRead) && fd != listeningSocket)
+			if (FD_ISSET(fd, &active) && fd != listeningSocket)
 			{
-				int	read = recv(fd, bufRead, 4242, 0);
+				int	read = recv(fd, bufRead, strlen(bufRead), 0);
 				if (read <= 0)
 				{
 					sprintf(bufWrite, "server: client %d just left\n", clients[fd].id);
@@ -101,6 +99,7 @@ int main(int ac, char **av)
 							clients[fd].msg[j] = '\0';
 							sprintf(bufWrite, "client %d: %s\n", clients[fd].id, clients[fd].msg);
 							sendAll(fd);
+							bzero(clients[fd].msg, strlen(clients[fd].msg));
 							j = -1;
 						}
 					}
